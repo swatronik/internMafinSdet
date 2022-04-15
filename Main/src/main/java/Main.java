@@ -21,7 +21,7 @@ public class Main {
         else if (disc == 0)
             System.out.println("Корень=" + (-b - sqrt(disc)) / 2 * a);
         else
-            System.out.println("1й корень=" + (-b - sqrt(disc)) / 2 * a + "2й корень=" + (-b + sqrt(disc)) / 2 * a);
+            System.out.println("1й корень=" + (-b - sqrt(disc)) / 2 * a + " 2й корень=" + (-b + sqrt(disc)) / 2 * a);
 
     }
 

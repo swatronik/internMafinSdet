@@ -16,13 +16,15 @@ public class Main {
 
         double disc = b * b - 4 * a * c;
 
-        if (disc < 0)
+        if (disc > 0) {
+            double root1 = (-b - sqrt(disc)) / 2 * a;
+            double root2 = (-b + sqrt(disc)) / 2 * a;
+            System.out.println(String.format("1й корень=%s 2й корень=%s", root1, root2));
+        } else if (disc == 0) {
+            double root = -b / 2 * a;
+            System.out.println(String.format("Корень=%s", root));
+        } else
             System.out.println("Нет корней");
-        else if (disc == 0)
-            System.out.println("Корень=" + (-b - sqrt(disc)) / 2 * a);
-        else
-            System.out.println("1й корень=" + (-b - sqrt(disc)) / 2 * a + " 2й корень=" + (-b + sqrt(disc)) / 2 * a);
-
     }
 
 }

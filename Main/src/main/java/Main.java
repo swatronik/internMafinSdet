@@ -35,7 +35,7 @@ public class Main {
     }
 
     public static double getOneDecision(double firstArr, double secondArr) {
-        return secondArr * -1 / 2 * firstArr;
+        return (secondArr * -1) / (2 * firstArr);
     }
 
     public static String getNoDecisions() {

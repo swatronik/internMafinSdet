@@ -4,51 +4,41 @@ import static java.lang.Math.sqrt;
 
 public class Main {
 
-    double firstArr;
-    double secondArr;
-    double thirdArr;
-    double discr;
-
     public static void main(String[] args) {
-        Main exampleEquation = new Main();
         Scanner in = new Scanner(System.in);
         System.out.print("Input first argument: ");
-        exampleEquation.firstArr = in.nextDouble();
+        double firstArr = in.nextDouble();
         System.out.print("Input second argument: ");
-        exampleEquation.secondArr = in.nextDouble();
+        double secondArr = in.nextDouble();
         System.out.print("Input third argument: ");
-        exampleEquation.thirdArr = in.nextDouble();
+        double thirdArr = in.nextDouble();
         in.close();
-        exampleEquation.discr = exampleEquation.getDescriminant(exampleEquation.firstArr, exampleEquation.secondArr, exampleEquation.thirdArr);
-        System.out.print("Discriminant = ");
-        System.out.println(exampleEquation.discr);
-        if (exampleEquation.discr > 0) {
-            System.out.println("Discriminant > 0, so decision is: ");
-            System.out.print(Arrays.toString(exampleEquation.getFullDecision(exampleEquation.firstArr, exampleEquation.secondArr, exampleEquation.thirdArr)));
-        } else if (exampleEquation.discr == 0) {
-            System.out.println("Discriminant = 0, so decision is: ");
-            System.out.print(exampleEquation.getOneDecision(exampleEquation.firstArr, exampleEquation.secondArr));
-        } else if (exampleEquation.discr < 0) {
-            System.out.println("Decision is: ");
-            System.out.print(exampleEquation.getNoDecisions());
+        double disc = getDescriminant(firstArr, secondArr, thirdArr);
+        System.out.println(String.format("Discriminant = %s", disc));
+        if (disc > 0) {
+            System.out.println(String.format("Discriminant > 0, so decision is: %s ", getFullDecision(firstArr, secondArr, thirdArr)));
+        } else if (disc == 0) {
+            System.out.println(String.format("Discriminant = 0, so decision is: %s ", getOneDecision(firstArr, secondArr)));
+        } else if (disc < 0) {
+            System.out.println(String.format("Decision is: %s", getNoDecisions()));
         }
     }
 
-    public double getDescriminant(double firstArr, double secondArr, double thirdArr) {
+    public static double getDescriminant(double firstArr, double secondArr, double thirdArr) {
         return (secondArr * secondArr) - (4 * (firstArr * thirdArr));
     }
 
-    public double[] getFullDecision(double firstArr, double secondArr, double thirdArr) {
-        double x1 = ((-secondArr - sqrt((secondArr * secondArr) - (4 * (firstArr * thirdArr)))) / 2 * firstArr);
-        double x2 = ((-secondArr + sqrt((secondArr * secondArr) - (4 * (firstArr * thirdArr)))) / 2 * firstArr);
-        return new double[] {x1, x2};
+    public static String getFullDecision(double firstArr, double secondArr, double thirdArr) {
+        double x1 = ((-secondArr + sqrt(getDescriminant(firstArr,secondArr,thirdArr))) / (firstArr * 2));
+        double x2 = ((-secondArr - sqrt(getDescriminant(firstArr,secondArr,thirdArr))) / (firstArr * 2));
+        return Arrays.toString(new double[]{x1, x2});
     }
 
-    public double getOneDecision (double firstArr, double secondArr) {
+    public static double getOneDecision(double firstArr, double secondArr) {
         return secondArr * -1 / 2 * firstArr;
     }
 
-    public String getNoDecisions() {
+    public static String getNoDecisions() {
         return ("Discriminant < 0, there's no decisions");
     }
 }

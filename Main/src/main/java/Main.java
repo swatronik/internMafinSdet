@@ -1,18 +1,50 @@
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+
 import java.util.Arrays;
-import java.util.Scanner;
+
 import static java.lang.Math.sqrt;
 
 public class Main {
+    @Parameter(
+            names = {"--firstArr", "-a"},
+            description = "first argument in our equation",
+            required = true
+    )
+    double firstArr;
+    @Parameter(
+            names = {"--secondArr", "-b"},
+            description = "second argument in our equation",
+            required = true
+    )
+    double secondArr;
+    @Parameter(
+            names = {"--thirdArr", "-c"},
+            description = "third argument in our equation",
+            required = true
+    )
+    double thirdArr;
+
+    @Parameter(
+            names = {"--help", "-h"},
+            help = true
+    )
+    private boolean help = false;
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Input first argument: ");
-        double firstArr = in.nextDouble();
-        System.out.print("Input second argument: ");
-        double secondArr = in.nextDouble();
-        System.out.print("Input third argument: ");
-        double thirdArr = in.nextDouble();
-        in.close();
+        Main Equation = new Main();
+        JCommander jct = JCommander.newBuilder().addObject(args).build();
+        jct.parse(args);
+        if (Equation.isHelp()) {
+            jct.usage();
+        }
+    }
+
+    public boolean isHelp() {
+        return help;
+    }
+
+    public void run() {
         double disc = getDescriminant(firstArr, secondArr, thirdArr);
         System.out.println(String.format("Discriminant = %s", disc));
         if (disc > 0) {
@@ -29,8 +61,8 @@ public class Main {
     }
 
     public static String getFullDecision(double firstArr, double secondArr, double thirdArr) {
-        double x1 = ((-secondArr + sqrt(getDescriminant(firstArr,secondArr,thirdArr))) / (firstArr * 2));
-        double x2 = ((-secondArr - sqrt(getDescriminant(firstArr,secondArr,thirdArr))) / (firstArr * 2));
+        double x1 = ((-secondArr + sqrt(getDescriminant(firstArr, secondArr, thirdArr))) / (firstArr * 2));
+        double x2 = ((-secondArr - sqrt(getDescriminant(firstArr, secondArr, thirdArr))) / (firstArr * 2));
         return Arrays.toString(new double[]{x1, x2});
     }
 

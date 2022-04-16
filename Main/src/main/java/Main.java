@@ -1,3 +1,5 @@
+import org.apache.commons.cli.*;
+
 import java.util.Scanner;
 
 import static java.lang.Math.sqrt;
@@ -9,16 +11,31 @@ public class Main {
         double b = 0;
         double c = 0;
         if (args.length == 6) {
-            for (int i = 0; i < 5; i++) {
-                if (args[i].equals("-a")) {
-                    a = Double.parseDouble(args[i + 1]);
+            try {
+                Option countA = new Option("a", "koeff a", true, "define a koef");
+                Option countB = new Option("b", "koeff b", true, "define b koef");
+                Option countC = new Option("c", "koeff c", true, "define c koef");
+
+                Options options = new Options();
+
+                options.addOption(countA);
+                options.addOption(countB);
+                options.addOption(countC);
+
+                CommandLineParser parser = new DefaultParser();
+                CommandLine line = parser.parse(options, args);
+
+                if (line.hasOption("a")) {
+                    a = Double.parseDouble(line.getOptionValue("a"));
                 }
-                if (args[i].equals("-b")) {
-                    b = Double.parseDouble(args[i + 1]);
+                if (line.hasOption("b")) {
+                    b = Double.parseDouble(line.getOptionValue("b"));
                 }
-                if (args[i].equals("-c")) {
-                    c = Double.parseDouble(args[i + 1]);
+                if (line.hasOption("c")) {
+                    c = Double.parseDouble(line.getOptionValue("c"));
                 }
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
             }
         } else {
             Scanner scanner = new Scanner(System.in);

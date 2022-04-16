@@ -25,3 +25,5 @@ hs_err_pid*
 
 # Directory
 *.idea
+Main.iml
+.idea

@@ -41,8 +41,7 @@ public class Main {
     public double[] getFullDecision(double firstArr, double secondArr, double thirdArr) {
         double x1 = ((-secondArr - sqrt((secondArr * secondArr) - (4 * (firstArr * thirdArr)))) / 2 * firstArr);
         double x2 = ((-secondArr + sqrt((secondArr * secondArr) - (4 * (firstArr * thirdArr)))) / 2 * firstArr);
-        double[] Decisions  = {x1, x2};
-        return Decisions;
+        return new double[] {x1, x2};
     }
 
     public double getOneDecision (double firstArr, double secondArr) {

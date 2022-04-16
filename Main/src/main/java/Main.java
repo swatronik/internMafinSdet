@@ -51,11 +51,11 @@ public class Main {
         double disc = b * b - 4 * a * c;
 
         if (disc > 0) {
-            double root1 = (-b - sqrt(disc)) / 2 * a;
-            double root2 = (-b + sqrt(disc)) / 2 * a;
+            double root1 = (-b - sqrt(disc)) / (2 * a);
+            double root2 = (-b + sqrt(disc)) / (2 * a);
             System.out.println(String.format("1st root=%s 2nd root=%s", root1, root2));
         } else if (disc == 0) {
-            double root = -b / 2 * a;
+            double root = -b /( 2 * a);
             System.out.println(String.format("Root=%s", root));
         } else
             System.out.println("There are no roots");

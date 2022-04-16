@@ -1,12 +1,14 @@
 import org.apache.commons.cli.*;
-
-import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.Math.sqrt;
 
 public class Main {
 
     public static void main(String[] args) {
+        Logger logger = LoggerFactory.getLogger("SampleLogger");
+
         double a = 0;
         double b = 0;
         double c = 0;
@@ -34,31 +36,25 @@ public class Main {
                 if (line.hasOption("c")) {
                     c = Double.parseDouble(line.getOptionValue("c"));
                 }
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                logger.error("Failed to read file {}", e.getMessage());
+                return;
             }
         } else {
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Enter a");
-            a = scanner.nextDouble();
-            System.out.println("Enter b");
-            b = scanner.nextDouble();
-            System.out.println("Enter c");
-            c = scanner.nextDouble();
+            logger.error("Bad arguments");
+            return;
         }
-
         double disc = b * b - 4 * a * c;
 
         if (disc > 0) {
             double root1 = (-b - sqrt(disc)) / (2 * a);
             double root2 = (-b + sqrt(disc)) / (2 * a);
-            System.out.println(String.format("1st root=%s 2nd root=%s", root1, root2));
+            logger.info("1st root={} 2nd root={}", root1, root2);
         } else if (disc == 0) {
             double root = -b / (2 * a);
-            System.out.println(String.format("Root=%s", root));
+            logger.info("Root={}", root);
         } else
-            System.out.println("There are no roots");
+            logger.info("There are no roots");
     }
 
 }

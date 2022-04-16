@@ -46,7 +46,7 @@ public class Main {
             Float D = bFactor*bFactor - 4*aFactor*cFactor;
 
             if(D < 0) {
-                System.out.println("There is no solution");
+                System.out.println("There is no solution!");
             }
             else if (D==0) {
             Float Result = -1*bFactor/(2*aFactor);

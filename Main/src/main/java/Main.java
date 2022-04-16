@@ -46,8 +46,7 @@ public class Main {
     }
 
     public double getOneDecision (double firstArr, double secondArr) {
-        double x1 = secondArr * -1 / 2 * firstArr;
-        return x1;
+        return secondArr * -1 / 2 * firstArr;
     }
 
     public String getNoDecisions() {

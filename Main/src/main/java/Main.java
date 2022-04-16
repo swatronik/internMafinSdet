@@ -25,23 +25,13 @@ public class Main {
     )
     double thirdArr;
 
-    @Parameter(
-            names = {"--help", "-h"},
-            help = true
-    )
-    private boolean help = false;
-
     public static void main(String[] args) {
         Main Equation = new Main();
-        JCommander jct = JCommander.newBuilder().addObject(args).build();
-        jct.parse(args);
-        if (Equation.isHelp()) {
-            jct.usage();
-        }
-    }
-
-    public boolean isHelp() {
-        return help;
+        JCommander.newBuilder()
+                .addObject(Equation)
+                .build()
+                .parse(args);
+        Equation.run();
     }
 
     public void run() {

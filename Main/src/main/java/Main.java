@@ -13,7 +13,6 @@ public class Main {
             description = "Enter first argument in equation",
             required = true
     )
-
     double firstArr;
     @Parameter(
             names = {"--secondArr", "-b"},
@@ -41,9 +40,7 @@ public class Main {
 
     public static void main(String[] args) {
         Main Equation = new Main();
-        JCommander jct = JCommander.newBuilder()
-                .addObject(Equation)
-                .build();
+        JCommander jct = JCommander.newBuilder().addObject(Equation).build();
         try {
             jct.parse(args);
             if (Equation.ishelp()) {

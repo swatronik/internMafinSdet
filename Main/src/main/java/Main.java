@@ -33,9 +33,7 @@ public class Main {
     )
     private boolean help = false;
 
-    private boolean ishelp() {
-        return help;
-    }
+    private boolean ishelp() { return help;}
 
 
     public static void main(String[] args) {

@@ -12,6 +12,7 @@
         <groupId>com.beust</groupId>
         <artifactId>jcommander</artifactId>
         <version>1.82</version>
+        <scope>import</scope>
     </dependency>
     </dependencies>
 

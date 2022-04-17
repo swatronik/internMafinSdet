@@ -1,37 +1,58 @@
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 
 import java.util.Arrays;
 
 import static java.lang.Math.sqrt;
 
 public class Main {
+
     @Parameter(
             names = {"--firstArr", "-a"},
-            description = "first argument in our equation",
+            description = "Enter first argument in equation",
             required = true
     )
+
     double firstArr;
     @Parameter(
             names = {"--secondArr", "-b"},
-            description = "second argument in our equation",
+            description = "Enter second argument in equation",
             required = true
     )
     double secondArr;
     @Parameter(
             names = {"--thirdArr", "-c"},
-            description = "third argument in our equation",
+            description = "Enter third argument in equation",
             required = true
     )
     double thirdArr;
 
+    @Parameter (
+            names = {"--help", "-h"},
+            help = true
+    )
+    boolean help = false;
+
+    private boolean ishelp() {
+        return help;
+    }
+
+
     public static void main(String[] args) {
         Main Equation = new Main();
-        JCommander.newBuilder()
+        JCommander jct = JCommander.newBuilder()
                 .addObject(Equation)
-                .build()
-                .parse(args);
-        Equation.run();
+                .build();
+        try {
+            jct.parse(args);
+            if (Equation.ishelp()) {
+                jct.usage();
+            } else Equation.run();
+        } catch (ParameterException e) {
+            System.err.println(e.getLocalizedMessage());
+            jct.usage();
+        }
     }
 
     public void run() {

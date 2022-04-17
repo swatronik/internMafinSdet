@@ -28,11 +28,11 @@ public class Main {
     )
     double thirdArr;
 
-    @Parameter (
+    @Parameter(
             names = {"--help", "-h"},
             help = true
     )
-    boolean help = false;
+    private boolean help = false;
 
     private boolean ishelp() {
         return help;

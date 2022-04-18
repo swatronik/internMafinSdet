@@ -1,12 +1,15 @@
 import org.apache.commons.cli.*;
-
-import java.util.Scanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.Math.sqrt;
 
 public class Main {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
+
         double a = 0;
         double b = 0;
         double c = 0;
@@ -34,31 +37,25 @@ public class Main {
                 if (line.hasOption("c")) {
                     c = Double.parseDouble(line.getOptionValue("c"));
                 }
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                LOGGER.error("Failed to read arguments {}", e.getMessage());
+                return;
             }
         } else {
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Enter a");
-            a = scanner.nextDouble();
-            System.out.println("Enter b");
-            b = scanner.nextDouble();
-            System.out.println("Enter c");
-            c = scanner.nextDouble();
+            LOGGER.error("Bad arguments");
+            return;
         }
-
         double disc = b * b - 4 * a * c;
 
         if (disc > 0) {
             double root1 = (-b - sqrt(disc)) / (2 * a);
             double root2 = (-b + sqrt(disc)) / (2 * a);
-            System.out.println(String.format("1st root=%s 2nd root=%s", root1, root2));
+            LOGGER.info("Result of quadratic equation is: 1st root={} 2nd root={}", root1, root2);
         } else if (disc == 0) {
             double root = -b / (2 * a);
-            System.out.println(String.format("Root=%s", root));
+            LOGGER.info("Result of quadratic equation is: root={}", root);
         } else
-            System.out.println("There are no roots");
+            LOGGER.info("There are no roots");
     }
 
 }

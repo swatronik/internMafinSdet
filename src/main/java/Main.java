@@ -2,18 +2,47 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.commons.cli.*;
+import org.apache.commons.cli.Option.Builder;
+
 import static java.lang.Math.sqrt;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         String a = "0", b = "0", c = "0";
+
         if (args.length > 0) {
-            for (int i = 0; i < args.length - 1; i++) {
-                if (args[i].contains("a")) a = args[i + 1].toString();
-                else if (args[i].contains("b")) b = args[i + 1].toString();
-                else if (args[i].contains("c")) c = args[i + 1].toString();
+            Options options = new Options();
+
+            Option aFactor = new Option("a", "aValue", true, "input a-Factor");
+            aFactor.setRequired(true);
+            options.addOption(aFactor);
+
+            Option bFactor = new Option("b", "bValue", true, "input b-Factor");
+            bFactor.setRequired(true);
+            options.addOption(bFactor);
+
+            Option cFactor = new Option("c", "cValue", true, "input c-Factor");
+            cFactor.setRequired(true);
+            options.addOption(cFactor);
+
+            CommandLineParser parser = new DefaultParser();
+            HelpFormatter formatter = new HelpFormatter();
+            CommandLine cmd = null;
+
+            try {
+                cmd = parser.parse(options, args);
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
+                formatter.printHelp("utility-name", options);
+                System.exit(1);
             }
+
+            a = cmd.getOptionValue("aValue");
+            b = cmd.getOptionValue("bValue");
+            c = cmd.getOptionValue("cValue");
+
         } else {
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(System.in));

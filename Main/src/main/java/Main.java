@@ -6,8 +6,9 @@ import static java.lang.Math.sqrt;
 
 public class Main {
 
+    private static final Logger logger = LoggerFactory.getLogger("MainClassLogger");
+
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger("SampleLogger");
 
         double a = 0;
         double b = 0;

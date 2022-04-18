@@ -6,7 +6,7 @@ import static java.lang.Math.sqrt;
 
 public class Main {
 
-    private static final Logger logger = LoggerFactory.getLogger("MainClassLogger");
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
 
@@ -38,11 +38,11 @@ public class Main {
                     c = Double.parseDouble(line.getOptionValue("c"));
                 }
             } catch (Exception e) {
-                logger.error("Failed to read file {}", e.getMessage());
+                LOGGER.error("Failed to read arguments {}", e.getMessage());
                 return;
             }
         } else {
-            logger.error("Bad arguments");
+            LOGGER.error("Bad arguments");
             return;
         }
         double disc = b * b - 4 * a * c;
@@ -50,12 +50,12 @@ public class Main {
         if (disc > 0) {
             double root1 = (-b - sqrt(disc)) / (2 * a);
             double root2 = (-b + sqrt(disc)) / (2 * a);
-            logger.info("1st root={} 2nd root={}", root1, root2);
+            LOGGER.info("Result of quadratic equation is: 1st root={} 2nd root={}", root1, root2);
         } else if (disc == 0) {
             double root = -b / (2 * a);
-            logger.info("Root={}", root);
+            LOGGER.info("Result of quadratic equation is: root={}", root);
         } else
-            logger.info("There are no roots");
+            LOGGER.info("There are no roots");
     }
 
 }

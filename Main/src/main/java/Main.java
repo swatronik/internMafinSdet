@@ -1,6 +1,8 @@
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
@@ -8,21 +10,24 @@ import static java.lang.Math.sqrt;
 
 public class Main {
 
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
+
     @Parameter(
             names = {"--firstArr", "-a"},
-            description = "Enter first argument in equation",
+            description = "Enter number that will be first argument of quadratic equation",
             required = true
     )
     double firstArr;
     @Parameter(
             names = {"--secondArr", "-b"},
-            description = "Enter second argument in equation",
+            description = "Enter number that will be second argument of quadratic equation",
             required = true
     )
     double secondArr;
     @Parameter(
             names = {"--thirdArr", "-c"},
-            description = "Enter third argument in equation",
+            description = "Enter number that will be third argument of quadratic equation",
             required = true
     )
     double thirdArr;
@@ -47,20 +52,21 @@ public class Main {
                 jct.usage();
             } else Equation.run();
         } catch (ParameterException e) {
-            System.err.println(e.getLocalizedMessage());
+            logger.error(e.getLocalizedMessage());
             jct.usage();
         }
     }
 
     private void run() {
+        logger.info("firstArr set to {}.\n secondArr set to {}.\n thirdArr set to {}.", firstArr, secondArr, thirdArr);
         double disc = getDescriminant(firstArr, secondArr, thirdArr);
-        System.out.println(String.format("Discriminant = %s", disc));
+        logger.info(String.format("Discriminant = %s", disc));
         if (disc > 0) {
-            System.out.println(String.format("Discriminant > 0, so decision is: %s ", getFullDecision(firstArr, secondArr, thirdArr)));
+            logger.info(String.format("Discriminant > 0, so decision is: %s ", getFullDecision(firstArr, secondArr, thirdArr)));
         } else if (disc == 0) {
-            System.out.println(String.format("Discriminant = 0, so decision is: %s ", getOneDecision(firstArr, secondArr)));
+            logger.info(String.format("Discriminant = 0, so decision is: %s ", getOneDecision(firstArr, secondArr)));
         } else if (disc < 0) {
-            System.out.println(String.format("Decision is: %s", getNoDecisions()));
+            logger.info(String.format("Decision is: %s", getNoDecisions()));
         }
     }
 

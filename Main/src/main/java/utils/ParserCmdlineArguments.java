@@ -1,3 +1,4 @@
+package utils;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
@@ -5,26 +6,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ParserCmdlineArguments {
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Parameter(
             names = {"--firstArr", "-a"},
             description = "Enter number that will be first argument of quadratic equation",
             required = true
     )
-    double firstArr;
+    public double firstArr;
     @Parameter(
             names = {"--secondArr", "-b"},
             description = "Enter number that will be second argument of quadratic equation",
             required = true
     )
-    double secondArr;
+    public double secondArr;
     @Parameter(
             names = {"--thirdArr", "-c"},
             description = "Enter number that will be third argument of quadratic equation",
             required = true
     )
-    double thirdArr;
+    public double thirdArr;
 
     @Parameter(
             names = {"--help", "-h"},
@@ -53,8 +54,4 @@ public class ParserCmdlineArguments {
             jct.usage();
         }
     }
-
-
 }
-
-

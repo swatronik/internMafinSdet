@@ -1,8 +1,7 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import utils.ParserCmdlineArguments;
 import java.util.Arrays;
-
 import static java.lang.Math.sqrt;
 
 public class Main {
@@ -14,7 +13,7 @@ public class Main {
         Main.run(read.firstArr, read.secondArr, read.thirdArr);
     }
 
-    public static void run(double firstArr, double secondArr, double thirdArr) {
+    private static void run(double firstArr, double secondArr, double thirdArr) {
         logger.info("firstArr set to {}.\n secondArr set to {}.\n thirdArr set to {}.", firstArr, secondArr, thirdArr);
         double disc = getDescriminant(firstArr, secondArr, thirdArr);
         logger.info(String.format("Discriminant = %s", disc));
@@ -26,7 +25,6 @@ public class Main {
             logger.info(String.format("Decision is: %s", getNoDecisions()));
         }
     }
-
 
     private static double getDescriminant(double firstArr, double secondArr, double thirdArr) {
         return (secondArr * secondArr) - (4 * (firstArr * thirdArr));

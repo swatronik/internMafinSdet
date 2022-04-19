@@ -1,6 +1,3 @@
-import com.beust.jcommander.JCommander;
-import com.beust.jcommander.Parameter;
-import com.beust.jcommander.ParameterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,52 +9,12 @@ public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-
-    @Parameter(
-            names = {"--firstArr", "-a"},
-            description = "Enter number that will be first argument of quadratic equation",
-            required = true
-    )
-    double firstArr;
-    @Parameter(
-            names = {"--secondArr", "-b"},
-            description = "Enter number that will be second argument of quadratic equation",
-            required = true
-    )
-    double secondArr;
-    @Parameter(
-            names = {"--thirdArr", "-c"},
-            description = "Enter number that will be third argument of quadratic equation",
-            required = true
-    )
-    double thirdArr;
-
-    @Parameter(
-            names = {"--help", "-h"},
-            help = true
-    )
-    private boolean help = false;
-
-    private boolean ishelp() {
-        return help;
-    }
-
-
     public static void main(String[] args) {
-        Main Equation = new Main();
-        JCommander jct = JCommander.newBuilder().addObject(Equation).build();
-        try {
-            jct.parse(args);
-            if (Equation.ishelp()) {
-                jct.usage();
-            } else Equation.run();
-        } catch (ParameterException e) {
-            logger.error(e.getLocalizedMessage());
-            jct.usage();
-        }
+        ParserCmdlineArguments read = new ParserCmdlineArguments(args);
+        Main.run(read.firstArr, read.secondArr, read.thirdArr);
     }
 
-    private void run() {
+    public static void run(double firstArr, double secondArr, double thirdArr) {
         logger.info("firstArr set to {}.\n secondArr set to {}.\n thirdArr set to {}.", firstArr, secondArr, thirdArr);
         double disc = getDescriminant(firstArr, secondArr, thirdArr);
         logger.info(String.format("Discriminant = %s", disc));
@@ -69,6 +26,7 @@ public class Main {
             logger.info(String.format("Decision is: %s", getNoDecisions()));
         }
     }
+
 
     private static double getDescriminant(double firstArr, double secondArr, double thirdArr) {
         return (secondArr * secondArr) - (4 * (firstArr * thirdArr));

@@ -14,22 +14,22 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException, ParseException {
-        String a = "0", b = "0", c = "0";
+        float aFactor = 0, bFactor = 0, cFactor = 0;
 
         if (args.length > 0) {
             Options options = new Options();
 
-            Option aFactor = new Option("a", "aValue", true, "input a-Factor");
-            aFactor.setRequired(true);
-            options.addOption(aFactor);
+            Option aFactorOpt = new Option("a", "aValue", true, "input a-Factor");
+            aFactorOpt.setRequired(true);
+            options.addOption(aFactorOpt);
 
-            Option bFactor = new Option("b", "bValue", true, "input b-Factor");
-            bFactor.setRequired(true);
-            options.addOption(bFactor);
+            Option bFactorOpt = new Option("b", "bValue", true, "input b-Factor");
+            bFactorOpt.setRequired(true);
+            options.addOption(bFactorOpt);
 
-            Option cFactor = new Option("c", "cValue", true, "input c-Factor");
-            cFactor.setRequired(true);
-            options.addOption(cFactor);
+            Option cFactorOpt = new Option("c", "cValue", true, "input c-Factor");
+            cFactorOpt.setRequired(true);
+            options.addOption(cFactorOpt);
 
             CommandLineParser parser = new DefaultParser();
             HelpFormatter formatter = new HelpFormatter();
@@ -43,32 +43,13 @@ public class Main {
                 throw e;
             }
 
-            a = cmd.getOptionValue("aValue");
-            b = cmd.getOptionValue("bValue");
-            c = cmd.getOptionValue("cValue");
+            aFactor = Float.parseFloat(cmd.getOptionValue("aValue"));
+            bFactor = Float.parseFloat(cmd.getOptionValue("bValue"));
+            cFactor = Float.parseFloat(cmd.getOptionValue("cValue"));
 
-        } else {
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(System.in));
-
-            logger.info("Enter a from aX^2 + bX + c = 0");
-            a = reader.readLine();
-            logger.info(a + " is a-factor");
-
-            logger.info("Enter b from aX^2 + bX + c = 0");
-            b = reader.readLine();
-            logger.info(b + " is b-factor");
-
-            logger.info("Enter c from aX^2 + bX + c = 0");
-            c = reader.readLine();
-            logger.info(c + " is c-factor");
         }
 
         try {
-            Float aFactor = Float.parseFloat(a);
-            Float bFactor = Float.parseFloat(b);
-            Float cFactor = Float.parseFloat(c);
-
             Float D = bFactor * bFactor - 4 * aFactor * cFactor;
 
             if (D < 0) {
@@ -79,7 +60,7 @@ public class Main {
             } else if (D > 0) {
                 double Result1 = (-1 * bFactor + sqrt(D)) / (2 * aFactor);
                 double Result2 = (-1 * bFactor - sqrt(D)) / (2 * aFactor);
-                logger.info("Result 1 is: {} \nResult 2 is: {}", Result1, Result2);
+                logger.info("Result 1 is: {} Result 2 is: {}", Result1, Result2);
             }
         } catch (Exception e) {
             throw e;

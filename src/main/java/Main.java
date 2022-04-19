@@ -38,7 +38,7 @@ public class Main {
             try {
                 cmd = parser.parse(options, args);
             } catch (ParseException e) {
-                logger.info(e.getMessage());
+                logger.error(e.getMessage());
                 formatter.printHelp("utility-name", options);
                 throw e;
             }
@@ -63,6 +63,7 @@ public class Main {
                 logger.info("Result 1 is: {} Result 2 is: {}", Result1, Result2);
             }
         } catch (Exception e) {
+            logger.error(e.getMessage());
             throw e;
         }
     }

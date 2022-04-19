@@ -4,9 +4,9 @@ import org.slf4j.LoggerFactory;
 
 public class ParserArgumentsUtil {
 
-    Double a = 0.0;
-    Double b = 0.0;
-    Double c = 0.0;
+    double a = 0.0;
+    double b = 0.0;
+    double c = 0.0;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParserArgumentsUtil.class);
 

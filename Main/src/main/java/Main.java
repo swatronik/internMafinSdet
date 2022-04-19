@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         ParserCmdlineArguments read = new ParserCmdlineArguments(args);
-        Main.run(read.firstArr, read.secondArr, read.thirdArr);
+        run(read.firstArr, read.secondArr, read.thirdArr);
     }
 
     private static void run(double firstArr, double secondArr, double thirdArr) {

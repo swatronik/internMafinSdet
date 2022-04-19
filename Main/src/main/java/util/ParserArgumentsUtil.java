@@ -21,7 +21,7 @@ public class ParserArgumentsUtil {
         return b;
     }
 
-    public ParserArgumentsUtil(String[] args) throws Exception, ParseArgumentsException {
+    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException,ParseArgumentsException {
 
         if (args.length == 6) {
             try {
@@ -47,11 +47,14 @@ public class ParserArgumentsUtil {
                 if (line.hasOption("c")) {
                     this.c = Double.parseDouble(line.getOptionValue("c"));
                 }
-            } catch (Exception e) {
-                throw new Exception("Failed to read arguments");
+            } catch (ParseException e) {
+                throw new ParseException("Failed to read arguments");
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException("Invalid value of argument");
             }
-        } else {
-            throw new ParseArgumentsException("Bad arguments");
+            if (args.length > 6) {
+                throw new ParseArgumentsException("Bad arguments");
+            }
         }
     }
 }

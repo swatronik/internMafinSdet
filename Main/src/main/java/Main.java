@@ -1,4 +1,5 @@
 import exceptions.ParseArgumentsException;
+import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import util.ParserArgumentsUtil;
@@ -27,7 +28,9 @@ public class Main {
                 LOGGER.info("There are no roots");
         } catch (ParseArgumentsException parseArgumentsException) {
             LOGGER.error(parseArgumentsException.getMessage());
-        } catch (Exception e) {
+        } catch (ParseException e) {
+            LOGGER.error(e.getMessage());
+        } catch (NumberFormatException e) {
             LOGGER.error(e.getMessage());
         }
     }

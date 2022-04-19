@@ -14,15 +14,15 @@ public class Main {
     }
 
     private static void run(double firstArr, double secondArr, double thirdArr) {
-        logger.info("firstArr set to {}.\n secondArr set to {}.\n thirdArr set to {}.", firstArr, secondArr, thirdArr);
+        logger.info("\nfirstArr set to {}.\nsecondArr set to {}.\nthirdArr set to {}.", firstArr, secondArr, thirdArr);
         double disc = getDescriminant(firstArr, secondArr, thirdArr);
-        logger.info(String.format("Discriminant = %s", disc));
+        logger.info(String.format("\nDiscriminant = %s", disc));
         if (disc > 0) {
-            logger.info(String.format("Discriminant > 0, so decision is: %s ", getFullDecision(firstArr, secondArr, thirdArr)));
+            logger.info(String.format("\nDiscriminant > 0, so decision is: %s ", getFullDecision(firstArr, secondArr, thirdArr)));
         } else if (disc == 0) {
-            logger.info(String.format("Discriminant = 0, so decision is: %s ", getOneDecision(firstArr, secondArr)));
+            logger.info(String.format("\nDiscriminant = 0, so decision is: %s ", getOneDecision(firstArr, secondArr)));
         } else if (disc < 0) {
-            logger.info(String.format("Decision is: %s", getNoDecisions()));
+            logger.info(String.format("\nDecision is: %s", getNoDecisions()));
         }
     }
 

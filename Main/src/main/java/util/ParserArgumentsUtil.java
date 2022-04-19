@@ -23,6 +23,10 @@ public class ParserArgumentsUtil {
 
     public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException, ParseArgumentsException {
 
+        if (args.length != 6) {
+            throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
+        }
+
         if (args.length == 6) {
             try {
                 Option countA = new Option("a", "koeff a", true, "define a koef");
@@ -48,12 +52,9 @@ public class ParserArgumentsUtil {
                     this.c = Double.parseDouble(line.getOptionValue("c"));
                 }
             } catch (ParseException e) {
-                throw new ParseException("Failed to read arguments");
+                throw new ParseException(String.format("Failed to read arguments %s ", args));
             } catch (NumberFormatException e) {
-                throw new NumberFormatException("Invalid value of argument");
-            }
-            if (args.length > 6) {
-                throw new ParseArgumentsException("Bad arguments");
+                throw new NumberFormatException(String.format("Invalid value of argument %s ", args));
             }
         }
     }

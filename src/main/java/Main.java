@@ -13,7 +13,7 @@ public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         String a = "0", b = "0", c = "0";
 
         if (args.length > 0) {
@@ -38,9 +38,9 @@ public class Main {
             try {
                 cmd = parser.parse(options, args);
             } catch (ParseException e) {
-                System.out.println(e.getMessage());
+                logger.info(e.getMessage());
                 formatter.printHelp("utility-name", options);
-                System.exit(1);
+                throw e;
             }
 
             a = cmd.getOptionValue("aValue");
@@ -51,17 +51,17 @@ public class Main {
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(System.in));
 
-            System.out.println("Enter a from aX^2 + bX + c = 0");
+            logger.info("Enter a from aX^2 + bX + c = 0");
             a = reader.readLine();
-            System.out.println(a + " is a-factor");
+            logger.info(a + " is a-factor");
 
-            System.out.println("Enter b from aX^2 + bX + c = 0");
+            logger.info("Enter b from aX^2 + bX + c = 0");
             b = reader.readLine();
-            System.out.println(b + " is b-factor");
+            logger.info(b + " is b-factor");
 
-            System.out.println("Enter c from aX^2 + bX + c = 0");
+            logger.info("Enter c from aX^2 + bX + c = 0");
             c = reader.readLine();
-            System.out.println(c + " is c-factor");
+            logger.info(c + " is c-factor");
         }
 
         try {
@@ -82,7 +82,7 @@ public class Main {
                 logger.info("Result 1 is: {} \nResult 2 is: {}", Result1, Result2);
             }
         } catch (Exception e) {
-            System.out.println(e);
+            throw e;
         }
     }
 }

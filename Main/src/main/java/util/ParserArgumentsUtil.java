@@ -1,12 +1,26 @@
+package util;
+
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ParserArgumentsUtil {
 
-    double a = 0.0;
-    double b = 0.0;
-    double c = 0.0;
+    private double a = 0.0;
+    private double b = 0.0;
+    private double c = 0.0;
+
+    public double getA() {
+        return a;
+    }
+
+    public double getC() {
+        return c;
+    }
+
+    public double getB() {
+        return b;
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParserArgumentsUtil.class);
 
@@ -44,3 +58,4 @@ public class ParserArgumentsUtil {
         }
     }
 }
+

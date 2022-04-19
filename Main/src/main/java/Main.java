@@ -9,9 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ParserArgumentsUtil parserArgumentsUtil = new ParserArgumentsUtil();
-
-        parserArgumentsUtil.parserArgumentsUtil(args);
+        ParserArgumentsUtil parserArgumentsUtil = new ParserArgumentsUtil(args);
 
         double disc = parserArgumentsUtil.b * parserArgumentsUtil.b - 4 * parserArgumentsUtil.a * parserArgumentsUtil.c;
 

@@ -10,7 +10,7 @@ public class ParserArgumentsUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParserArgumentsUtil.class);
 
-    public void parserArgumentsUtil(String[] args) {
+    public ParserArgumentsUtil(String[] args) {
 
         if (args.length == 6) {
             try {

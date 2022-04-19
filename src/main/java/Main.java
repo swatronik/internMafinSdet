@@ -4,10 +4,14 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.cli.Option.Builder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.Math.sqrt;
 
 public class Main {
+
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
         String a = "0", b = "0", c = "0";
@@ -68,14 +72,14 @@ public class Main {
             Float D = bFactor * bFactor - 4 * aFactor * cFactor;
 
             if (D < 0) {
-                System.out.println("There is no solution");
+                logger.info("There is no solution");
             } else if (D == 0) {
                 Float Result = -1 * bFactor / (2 * aFactor);
-                System.out.println(Result);
+                logger.info("Only one result: {}", Result);
             } else if (D > 0) {
                 double Result1 = (-1 * bFactor + sqrt(D)) / (2 * aFactor);
                 double Result2 = (-1 * bFactor - sqrt(D)) / (2 * aFactor);
-                System.out.println(String.format("Result 1 is: %f \nResult 2 is: %f", Result1, Result2));
+                logger.info("Result 1 is: {} \nResult 2 is: {}", Result1, Result2);
             }
         } catch (Exception e) {
             System.out.println(e);

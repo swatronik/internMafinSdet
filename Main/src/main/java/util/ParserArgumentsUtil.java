@@ -21,7 +21,7 @@ public class ParserArgumentsUtil {
         return b;
     }
 
-    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException,ParseArgumentsException {
+    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException, ParseArgumentsException {
 
         if (args.length == 6) {
             try {

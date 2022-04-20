@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-
         System.out.println("Введите первый коэффициент a");
         double a = sc.nextDouble();
         System.out.println("Введите второй коэффициент b");

@@ -15,7 +15,7 @@ public class Main {
         System.out.println("Введите третий коэффициент с");
         double c = sc.nextDouble();
 
-        double discriminant = b * b - ((4 * a) * c);
+        double discriminant = b * b - 4 * a * c;
         System.out.println("discriminant = " + discriminant);
 
         if (discriminant == 0) {

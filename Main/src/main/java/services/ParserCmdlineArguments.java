@@ -1,4 +1,4 @@
-package models;
+package services;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
@@ -53,5 +53,6 @@ public class ParserCmdlineArguments {
             logger.error(e.getLocalizedMessage());
             jct.usage();
         }
+        logger.info("\nfirstArr set to {}.\nsecondArr set to {}.\nthirdArr set to {}.", firstArr, secondArr, thirdArr);
     }
 }

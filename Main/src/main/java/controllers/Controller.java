@@ -1,25 +1,25 @@
 package controllers;
-import models.ParserCmdlineArguments;
-import models.QuadraticEquationRootsFinder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import services.ParserCmdlineArguments;
+import services.QuadraticEquationRootsFinder;
 
 public class Controller {
 
-    private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+    ParserCmdlineArguments arguments;
+    QuadraticEquationRootsFinder finder;
 
-    private static String d;
+    private String ds;
 
-    public static void run(String[] args) {
-        ParserCmdlineArguments arrgs = new ParserCmdlineArguments(args);
-        QuadraticEquationRootsFinder findroot = new QuadraticEquationRootsFinder();
-        logger.info("\nfirstArr set to {}.\nsecondArr set to {}.\nthirdArr set to {}.", arrgs.firstArr, arrgs.secondArr, arrgs.thirdArr);
-        findroot.run(arrgs.firstArr, arrgs.secondArr,arrgs.thirdArr);
-        d = findroot.getDecision();
-        logger.info("\nSo your decision is: {}", d);
+    public Controller(String[] args) {
+        arguments = new ParserCmdlineArguments(args);
+        finder = new QuadraticEquationRootsFinder();
     }
 
-    public String getD() {
-        return d;
+    public String getDecision() {
+        if (ds == null) {
+            finder.run(arguments.firstArr, arguments.secondArr, arguments.thirdArr);
+            ds = finder.getDecision();
+        }
+        return ds;
     }
 }

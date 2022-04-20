@@ -1,8 +1,7 @@
 package util;
 
+import exceptions.ParseArgumentsException;
 import org.apache.commons.cli.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ParserArgumentsUtil {
 
@@ -22,9 +21,11 @@ public class ParserArgumentsUtil {
         return b;
     }
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ParserArgumentsUtil.class);
+    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException, ParseArgumentsException {
 
-    public ParserArgumentsUtil(String[] args) {
+        if (args.length != 6) {
+            throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
+        }
 
         if (args.length == 6) {
             try {
@@ -51,11 +52,10 @@ public class ParserArgumentsUtil {
                     this.c = Double.parseDouble(line.getOptionValue("c"));
                 }
             } catch (ParseException e) {
-                LOGGER.error("Failed to read arguments {}", e.getMessage());
+                throw new ParseException(String.format("Failed to read arguments %s ", args));
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException(String.format("Invalid value of argument %s ", args));
             }
-        } else {
-            LOGGER.error("Bad arguments");
         }
     }
 }
-

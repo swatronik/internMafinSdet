@@ -66,7 +66,7 @@ public class ParserArgumentsUtil {
                     if (matcher.find()) {
 
                         String argAPattern = "\\-?[0-9]*\\.?[0-9]*(?=x\\^2)";
-                        String argBPattern = "(-|\\+)\\-?[0-9]*\\.?[0-9]*(?=x(\\+|-|))";
+                        String argBPattern = "(-|\\+)\\-?[0-9]*\\.?[0-9]*(?=x\\+|-|=)";
                         String argCPattern = "(-|\\+)[0-9]*\\.?[0-9]*(?==0)";
 
                         Pattern patternA = Pattern.compile(argAPattern);

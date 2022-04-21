@@ -58,7 +58,7 @@ public class ParserArgumentsUtil {
 
                     String equation = "";
                     equation = line.getOptionValue("e");
-                    String argEquationPattern = "((-|\\+)?[0-9]*\\.?[0-9]*)x\\^2(((-|\\+)?[0-9]*\\.?[0-9]*)x)*((-|\\+)?[0-9]*\\.?[0-9]*)(=0)";
+                    String argEquationPattern = "(((-|\\+)?[0-9]*\\.?[0-9]*)x\\^2)(((-|\\+)?[0-9]*\\.?[0-9]*)x)*((-|\\+)?[0-9]*\\.?[0-9]*)(=0)";
 
                     Pattern pattern = Pattern.compile(argEquationPattern);
 
@@ -66,26 +66,28 @@ public class ParserArgumentsUtil {
 
                     if (matcher.matches()) {
 
-                        if (matcher.group(1).equals("-")) {
+                        if (matcher.group(1).equals("-x^2")) {
                             this.a = -1.0;
+                        } else if (matcher.group(1).equals("x^2")) {
+                            this.a = 1.0;
                         } else {
-                            this.a = Double.parseDouble(matcher.group(1));
+                            this.a = Double.parseDouble(matcher.group(2));
                         }
 
-                        if (matcher.group(4).equals("-")) {
-                            this.b = -1.0;
-                        } else if (matcher.group(4).equals("+")) {
-                            this.b = 1.0;
-                        } else if (matcher.group(4).equals("")) {
+                        if (matcher.group(4) == (null) || matcher.group(4).equals("")) {
                             this.b = 0.0;
+                        } else if (matcher.group(4).equals("+x")) {
+                            this.b = 1.0;
+                        } else if (matcher.group(4).equals("-x")) {
+                            this.b = -1.0;
                         } else {
-                            this.b = Double.parseDouble(matcher.group(4));
+                            this.b = Double.parseDouble(matcher.group(5));
                         }
 
-                        if (matcher.group(6).equals("")) {
+                        if (matcher.group(7) == null || matcher.group(7).equals("")) {
                             this.c = 0.0;
                         } else {
-                            this.c = Double.parseDouble(matcher.group(6));
+                            this.c = Double.parseDouble(matcher.group(7));
                         }
                     } else throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
                 }

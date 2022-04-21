@@ -64,7 +64,7 @@ public class ParserArgumentsUtil {
 
                     Matcher matcher = pattern.matcher(equation);
 
-                    if (matcher.find()) {
+                    if (matcher.matches()) {
 
                         if (matcher.group(1).equals("-")) {
                             this.a = -1.0;

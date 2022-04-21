@@ -8,8 +8,6 @@ import java.util.regex.Pattern;
 
 public class ParserArgumentsUtil {
 
-    private String equation = "";
-    private String type = "";
     private double a = 0.0;
     private double b = 0.0;
     private double c = 0.0;
@@ -48,15 +46,18 @@ public class ParserArgumentsUtil {
             CommandLineParser parser = new DefaultParser();
             CommandLine line = parser.parse(options, args);
 
+            String type = "";
+
             if (line.hasOption("type")) {
-                this.type = line.getOptionValue("type");
+                type = line.getOptionValue("type");
             } else
                 throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
 
             if (type.equals("equation")) {
                 if (line.hasOption("e")) {
 
-                    this.equation = line.getOptionValue("e");
+                    String equation = "";
+                    equation = line.getOptionValue("e");
                     String argEquationPattern = "\\-?[0-9]+\\.?[0-9]*x\\^2|-|\\+|\\-?[0-9]+\\.?[0-9]*x|-|\\+|[0-9]*\\.?[0-9]*=0";
 
                     Pattern pattern = Pattern.compile(argEquationPattern);

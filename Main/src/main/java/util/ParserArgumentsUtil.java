@@ -58,7 +58,7 @@ public class ParserArgumentsUtil {
 
                     String equation = "";
                     equation = line.getOptionValue("e");
-                    String argEquationPattern = "\\-?[0-9]+\\.?[0-9]*x\\^2|-|\\+|\\-?[0-9]+\\.?[0-9]*x|-|\\+|[0-9]*\\.?[0-9]*=0";
+                    String argEquationPattern = "((-|\\+)?[0-9]*\\.?[0-9]*)x\\^2(((-|\\+)?[0-9]*\\.?[0-9]*)x)*((-|\\+)?[0-9]*\\.?[0-9]*)(=0)";
 
                     Pattern pattern = Pattern.compile(argEquationPattern);
 
@@ -66,37 +66,27 @@ public class ParserArgumentsUtil {
 
                     if (matcher.find()) {
 
-                        String argAPattern = "\\-?[0-9]*\\.?[0-9]*(?=x\\^2)";
-                        String argBPattern = "(-|\\+)?[0-9]*\\.?[0-9]*(?=x(\\+|\\-|=))";
-                        String argCPattern = "(-|\\+)[0-9]*\\.?[0-9]*(?==0)";
-
-                        Pattern patternA = Pattern.compile(argAPattern);
-                        Pattern patternB = Pattern.compile(argBPattern);
-                        Pattern patternC = Pattern.compile(argCPattern);
-
-                        Matcher matcherA = patternA.matcher(equation);
-                        matcherA.find();
-                        Matcher matcherB = patternB.matcher(equation);
-                        matcherB.find();
-                        Matcher matcherC = patternC.matcher(equation);
-                        matcherC.find();
-
-                        if (matcherA.group().equals("-")) {
+                        if (matcher.group(1).equals("-")) {
                             this.a = -1.0;
                         } else {
-                            this.a = Double.parseDouble(matcherA.group());
+                            this.a = Double.parseDouble(matcher.group(1));
                         }
 
-                        if (matcherB.group().equals("-")) {
+                        if (matcher.group(4).equals("-")) {
                             this.b = -1.0;
-                        } else if (matcherB.group().equals("+")) {
+                        } else if (matcher.group(4).equals("+")) {
                             this.b = 1.0;
+                        } else if (matcher.group(4).equals("")) {
+                            this.b = 0.0;
                         } else {
-                            this.b = Double.parseDouble(matcherB.group());
+                            this.b = Double.parseDouble(matcher.group(4));
                         }
 
-                        this.c = Double.parseDouble(matcherC.group());
-
+                        if (matcher.group(6).equals("")) {
+                            this.c = 0.0;
+                        } else {
+                            this.c = Double.parseDouble(matcher.group(6));
+                        }
                     } else throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
                 }
             } else if (type.equals("coefficient")) {

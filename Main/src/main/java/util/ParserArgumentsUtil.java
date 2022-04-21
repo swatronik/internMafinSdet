@@ -51,7 +51,7 @@ public class ParserArgumentsUtil {
             if (line.hasOption("type")) {
                 type = line.getOptionValue("type");
             } else
-                throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
+                throw new ParseArgumentsException(String.format("Bad arguments - no type %s  ", args));
 
             if (type.equals("equation")) {
                 if (line.hasOption("e")) {
@@ -89,7 +89,8 @@ public class ParserArgumentsUtil {
                         } else {
                             this.c = Double.parseDouble(matcher.group(7));
                         }
-                    } else throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
+                    } else
+                        throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation %s ", args));
                 }
             } else if (type.equals("coefficient")) {
                 if (line.hasOption("a")) {
@@ -101,10 +102,8 @@ public class ParserArgumentsUtil {
                 if (line.hasOption("c")) {
                     this.c = Double.parseDouble(line.getOptionValue("c"));
                 }
-            } else throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
+            } else throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
 
-        } catch (ParseException e) {
-            throw new ParseException(String.format("Failed to read arguments %s ", args));
         } catch (NumberFormatException e) {
             throw new NumberFormatException(String.format("Invalid value of argument %s ", args));
         }

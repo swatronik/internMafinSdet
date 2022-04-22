@@ -22,10 +22,11 @@ class EquationParser {
         return b;
     }
 
-    public EquationParser(String equation) throws ParseArgumentsException {
-        String argEquationPattern = "(((-|\\+)?[\\d]*\\.?[\\d]*)x\\^2){1}(((-|\\+)?[\\d]*\\.?[\\d]*)x)?((-|\\+)?[\\d]*\\.?[\\d]*)?(=0)";
+   private static final String ARGEQUATIONPATTERN = "(((-|\\+)?[\\d]*\\.?[\\d]*)x\\^2){1}(((-|\\+)?[\\d]*\\.?[\\d]*)x)?((-|\\+)?[\\d]*\\.?[\\d]*)?(=0)";
 
-        Pattern pattern = Pattern.compile(argEquationPattern);
+    public EquationParser(String equation) throws ParseArgumentsException {
+
+        Pattern pattern = Pattern.compile(ARGEQUATIONPATTERN);
 
         Matcher matcher = pattern.matcher(equation);
 

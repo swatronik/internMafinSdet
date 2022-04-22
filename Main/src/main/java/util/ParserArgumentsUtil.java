@@ -58,7 +58,7 @@ public class ParserArgumentsUtil {
 
                     String equation = "";
                     equation = line.getOptionValue("e");
-                    String argEquationPattern = "(((-|\\+)?[0-9]*\\.?[0-9]*)x\\^2)(((-|\\+)?[0-9]*\\.?[0-9]*)x)*((-|\\+)?[0-9]*\\.?[0-9]*)(=0)";
+                    String argEquationPattern = "(((-|\\+)?[0-9]*\\.?[0-9]*)x\\^2)?(((-|\\+)?[0-9]*\\.?[0-9]*)x)?((-|\\+)?[0-9]*\\.?[0-9]*)?(=0)";
 
                     Pattern pattern = Pattern.compile(argEquationPattern);
 

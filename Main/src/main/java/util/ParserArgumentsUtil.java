@@ -59,15 +59,11 @@ public class ParserArgumentsUtil {
                 }
 
             } else if (type.equals("coefficient")) {
-                if (line.hasOption("a")) {
-                    this.a = Double.parseDouble(line.getOptionValue("a"));
-                }
-                if (line.hasOption("b")) {
-                    this.b = Double.parseDouble(line.getOptionValue("b"));
-                }
-                if (line.hasOption("c")) {
-                    this.c = Double.parseDouble(line.getOptionValue("c"));
-                }
+                ParseArguments parseArguments = new ParseArguments(line);
+                this.a = parseArguments.getA();
+                this.b = parseArguments.getB();
+                this.c = parseArguments.getC();
+
             } else
                 throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
 

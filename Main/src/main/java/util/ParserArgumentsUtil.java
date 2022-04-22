@@ -52,10 +52,10 @@ public class ParserArgumentsUtil {
 
             if (type.equals("equation")) {
                 if (line.hasOption("e")) {
-                    EquationParser eqargs = new EquationParser(line.getOptionValue("e"));
-                    this.a = eqargs.getA();
-                    this.b = eqargs.getB();
-                    this.c = eqargs.getC();
+                    EquationParser eqArgs = new EquationParser(line.getOptionValue("e"));
+                    this.a = eqArgs.getA();
+                    this.b = eqArgs.getB();
+                    this.c = eqArgs.getC();
                 }
 
             } else if (type.equals("coefficient")) {

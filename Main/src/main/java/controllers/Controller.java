@@ -1,23 +1,23 @@
 package controllers;
 
-import services.ParserCmdlineArguments;
+import services.ParserMainArgument;
 import services.QuadraticEquationRootsFinder;
 
 public class Controller {
 
-    ParserCmdlineArguments arguments;
+    ParserMainArgument arguments;
     QuadraticEquationRootsFinder finder;
 
     private String ds;
 
     public Controller(String[] args) {
-        arguments = new ParserCmdlineArguments(args);
+        arguments = new ParserMainArgument(args);
         finder = new QuadraticEquationRootsFinder();
     }
 
     public String getDecision() {
         if (ds == null) {
-            finder.run(arguments.firstArr, arguments.secondArr, arguments.thirdArr);
+            finder.run(5,6,7);
             ds = finder.getDecision();
         }
         return ds;

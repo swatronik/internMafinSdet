@@ -2,7 +2,7 @@ package util;
 
 import org.apache.commons.cli.CommandLine;
 
-public class ParseArguments {
+public class ArgumentsParser {
     private double a = 0.0;
     private double b = 0.0;
     private double c = 0.0;
@@ -19,7 +19,7 @@ public class ParseArguments {
         return b;
     }
 
-    public ParseArguments(CommandLine line) {
+    public ArgumentsParser(CommandLine line) {
         if (line.hasOption("a")) {
             this.a = Double.parseDouble(line.getOptionValue("a"));
         }

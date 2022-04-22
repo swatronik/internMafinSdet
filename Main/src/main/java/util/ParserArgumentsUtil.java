@@ -59,7 +59,7 @@ public class ParserArgumentsUtil {
                 }
 
             } else if (type.equals("coefficient")) {
-                ParseArguments parseArguments = new ParseArguments(line);
+                ArgumentsParser parseArguments = new ArgumentsParser(line);
                 this.a = parseArguments.getA();
                 this.b = parseArguments.getB();
                 this.c = parseArguments.getC();

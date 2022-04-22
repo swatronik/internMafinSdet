@@ -1,4 +1,4 @@
-package services;
+package services.Validators;
 
 import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.ParameterException;
@@ -21,6 +21,4 @@ public class ValidateREGEX implements IParameterValidator {
                 .matcher(value)
                 .matches();
     }
-
-
 }

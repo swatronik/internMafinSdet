@@ -1,25 +1,22 @@
 package controllers;
 
-import services.ParserMainArgument;
+import services.ParserCmdlineArguments;
 import services.QuadraticEquationRootsFinder;
 
 public class Controller {
 
-    ParserMainArgument arguments;
-    QuadraticEquationRootsFinder finder;
+    private ParserCmdlineArguments cmdlineArguments;
+    private QuadraticEquationRootsFinder rootsFinder;
 
     private String ds;
 
-    public Controller(String[] args) {
-        arguments = new ParserMainArgument(args);
-        finder = new QuadraticEquationRootsFinder();
-    }
-
-    public String getDecision() {
+    public void getDecision (String[] args) {
+        cmdlineArguments = new ParserCmdlineArguments();
+        rootsFinder = new QuadraticEquationRootsFinder();
         if (ds == null) {
-            finder.run(5,6,7);
+            rootsFinder.run(cmdlineArguments.);
+
             ds = finder.getDecision();
         }
-        return ds;
     }
 }

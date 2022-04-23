@@ -13,6 +13,7 @@ public class ParserCmdlineArguments {
     private double firstArr;
     private double secondArr;
     private double thirdArr;
+    private String equation;
 
     public double getFirstArr() {
         return firstArr;
@@ -37,17 +38,22 @@ public class ParserCmdlineArguments {
                 .addObject(this)
                 .build();
         jct.parse(args);
-        this.firstArr = commandArguments.getFirstArr();
-        this.secondArr = commandArguments.getSecondArr();
-        this.thirdArr = commandArguments.getThirdArr();
         String parsedCmdStr = jct.getParsedCommand();
         switch (parsedCmdStr) {
             case "formula":
-                logger.info("\n found command, {}", parsedCmdStr);
-                logger.info("\n firstArr set to {} ", commandFormula.getEquation());
+                this.equation = commandFormula.getEquation();
+                logger.info("\n Found command '{}'", parsedCmdStr);
+                logger.info("\n Found correct equation {}", commandFormula.getEquation());
+                this.firstArr = commandFormula.getFirstArr();
+                this.secondArr = commandFormula.getSecondArr();
+                this.thirdArr = commandFormula.getThirdArr();
+                logger.info("\n firstArr set to {} \n secondArr set to {} \n thirdArr set to {}", firstArr, secondArr, thirdArr);
                 break;
             case "arguments":
-                logger.info("\n found command '{}'", parsedCmdStr);
+                this.firstArr = commandArguments.getFirstArr();
+                this.secondArr = commandArguments.getSecondArr();
+                this.thirdArr = commandArguments.getThirdArr();
+                logger.info("\n Found command '{}'", parsedCmdStr);
                 logger.info("\n firstArr set to {} \n secondArr set to {} \n thirdArr set to {}", firstArr, secondArr, thirdArr);
                 break;
             default:

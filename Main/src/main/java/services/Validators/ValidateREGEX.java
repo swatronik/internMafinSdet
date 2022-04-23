@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class ValidateREGEX implements IParameterValidator {
 
-    private static final String QuadraticEquation_REGEX = "[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}";
+    private static final String QuadraticEquation_REGEX = "(^-?[\\d]*.?[\\d]*)([x][\\^][2])(-?[\\d]*.?[\\d]*)([x])(-?[\\d]*.?[\\d]*)([\\=][0])";
 
     public void validate(String name, String value) throws ParameterException {
         if (!isValidUUID(value)) {

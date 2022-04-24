@@ -1,5 +1,3 @@
-
-
 import org.apache.commons.cli.ParseException;
 
 import static java.lang.Math.sqrt;

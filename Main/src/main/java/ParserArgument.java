@@ -35,6 +35,5 @@ public class ParserArgument {
         this.a = Double.parseDouble(cmd.getOptionValue("a"));
         this.b = Double.parseDouble(cmd.getOptionValue("b"));
         this.c = Double.parseDouble(cmd.getOptionValue("c"));
-
     }
 }

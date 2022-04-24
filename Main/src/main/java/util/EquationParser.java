@@ -22,7 +22,7 @@ class EquationParser {
         return b;
     }
 
-   private static final String ARGEQUATIONPATTERN = "(((-|\\+)?[\\d]*\\.?[\\d]*)x\\^2){1}(((-|\\+)?[\\d]*\\.?[\\d]*)x)?((-|\\+)?[\\d]*\\.?[\\d]*)?(=0)";
+   private static final String ARGEQUATIONPATTERN = "(?<x2>(?<a>(-|\\+)?([\\d]+\\.?[\\d]*))?x\\^2){1}(?<x>((?<b>(-|\\+)?([\\d]+\\.?[\\d]*)?)x))?(?<c>(-|\\+)?[\\d]+\\.?[\\d]*)?(=0)";
 
     public EquationParser(String equation) throws ParseArgumentsException {
 
@@ -31,28 +31,28 @@ class EquationParser {
         Matcher matcher = pattern.matcher(equation);
 
         if (matcher.matches()) {
-            if (matcher.group(1).equals("-x^2")) {
+            if (matcher.group("x2").equals("-x^2")) {
                 this.a = -1.0;
-            } else if (matcher.group(1).equals("x^2")) {
+            } else if (matcher.group("x2").equals("x^2")) {
                 this.a = 1.0;
             } else {
-                this.a = Double.parseDouble(matcher.group(2));
+                this.a = Double.parseDouble(matcher.group("a"));
             }
 
-            if (matcher.group(4) == (null) || matcher.group(4).equals("")) {
+            if (matcher.group("x") == (null) || matcher.group("x").equals("")) {
                 this.b = 0.0;
-            } else if (matcher.group(4).equals("+x")) {
+            } else if (matcher.group("x").equals("+x")) {
                 this.b = 1.0;
-            } else if (matcher.group(4).equals("-x")) {
+            } else if (matcher.group("x").equals("-x")) {
                 this.b = -1.0;
             } else {
-                this.b = Double.parseDouble(matcher.group(5));
+                this.b = Double.parseDouble(matcher.group("b"));
             }
 
-            if (matcher.group(7) == null || matcher.group(7).equals("")) {
+            if (matcher.group("c") == null || matcher.group("c").equals("")) {
                 this.c = 0.0;
             } else {
-                this.c = Double.parseDouble(matcher.group(7));
+                this.c = Double.parseDouble(matcher.group("c"));
             }
         } else {
             throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation %s ", equation));

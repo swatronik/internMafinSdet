@@ -43,7 +43,7 @@ public class ParserCmdlineArguments {
             case "formula":
                 this.equation = commandFormula.getEquation();
                 logger.info("\n Found command '{}'", parsedCmdStr);
-                logger.info("\n Found correct equation {}", commandFormula.getEquation());
+                logger.info("\n Found correct equation {}", equation);
                 this.firstArr = commandFormula.getFirstArr();
                 this.secondArr = commandFormula.getSecondArr();
                 this.thirdArr = commandFormula.getThirdArr();

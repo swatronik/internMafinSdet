@@ -12,7 +12,7 @@ public class ValidateREGEX implements IParameterValidator {
     public void validate(String name, String value) throws ParameterException {
         if (!isValidUUID(value)) {
             throw new ParameterException(
-                    "Equation " + value + " is not a valid equation.");
+                    "Equation " + value + " is not a valid quadratic equation formula. Expected ax^2+bx+c=0.");
         }
     }
 

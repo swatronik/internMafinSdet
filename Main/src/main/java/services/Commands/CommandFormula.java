@@ -1,10 +1,7 @@
 package services.Commands;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 import services.Validators.ValidateREGEX;

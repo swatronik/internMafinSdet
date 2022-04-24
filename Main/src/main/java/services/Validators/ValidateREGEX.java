@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class ValidateREGEX implements IParameterValidator {
 
-    private static final String QuadraticEquation_REGEX = "(^-?[\\d]*.?[\\d]*)([x][\\^][2])(-?[\\d]*.?[\\d]*)([x])(-?[\\d]*.?[\\d]*)([\\=][0])";
+    private static final String QuadraticEquation_REGEX = "((-?[1-9][0-9]?\\.?[0-9]+)|(-?[1-9]\\.?[0-9]?))(x\\^2)(\\+|-)((-?[1-9][0-9]?\\.?[0-9]+)|(-?[1-9]\\.?[0-9]?))(x)(\\+|-)((-?[1-9][0-9]?\\.?[0-9]+)|(-?[1-9]\\.?[0-9]?))([=])([0])";
 
     public void validate(String name, String value) throws ParameterException {
         if (!isValidUUID(value)) {

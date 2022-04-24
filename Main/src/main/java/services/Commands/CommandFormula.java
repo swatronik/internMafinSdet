@@ -28,7 +28,6 @@ public class CommandFormula {
             ArgsArray[i] = equation.substring(matcher.start(), matcher.end());
             i++;
             }
-        System.out.println(ArgsArray);
         return ArgsArray;
         }
 

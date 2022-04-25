@@ -20,13 +20,13 @@ public class CommandFormula {
 
 
     private String[] parseArgsFromString() {
-        Pattern pattern = Pattern.compile("([-+]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)");
+        Pattern pattern = Pattern.compile("(-?[0-9.]+)x[^-+]+\\+?(-?[0-9.]+)x(-?[0-9.]+)?=");
         Matcher matcher = pattern.matcher(equation);
-        String[] ArgsArray = new String[5];
-        int i = 0;
+        String[] ArgsArray = new String[3];
         while (matcher.find()) {
-            ArgsArray[i] = equation.substring(matcher.start(), matcher.end());
-            i++;
+            ArgsArray[0] = String.valueOf(matcher.group(1));
+            ArgsArray[1] = String.valueOf(matcher.group(2));
+            ArgsArray[2] = String.valueOf(matcher.group(3));
             }
         return ArgsArray;
         }
@@ -41,10 +41,10 @@ public class CommandFormula {
     }
 
     public double getSecondArr() {
-        return Double.parseDouble(parseArgsFromString()[2]);
+        return Double.parseDouble(parseArgsFromString()[1]);
     }
 
     public double getThirdArr() {
-        return Double.parseDouble(parseArgsFromString()[3]);
+        return Double.parseDouble(parseArgsFromString()[2]);
     }
 }

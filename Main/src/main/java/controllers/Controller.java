@@ -8,7 +8,6 @@ public class Controller {
     private ParserCmdlineArguments cmdlineArguments;
     private QuadraticEquationRootsFinder rootsFinder;
 
-
     private String ds;
 
     public Controller(String[] args) {

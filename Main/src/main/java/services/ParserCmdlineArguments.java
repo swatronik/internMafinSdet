@@ -8,8 +8,10 @@ import services.Commands.CommandFormula;
 
 public class ParserCmdlineArguments {
 
-    CommandFormula commandFormula = new CommandFormula();
-    CommandArguments commandArguments = new CommandArguments();
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private CommandFormula commandFormula = new CommandFormula();
+    private CommandArguments commandArguments = new CommandArguments();
     private double firstArr;
     private double secondArr;
     private double thirdArr;
@@ -57,9 +59,7 @@ public class ParserCmdlineArguments {
                 logger.info("\n firstArr set to {} \n secondArr set to {} \n thirdArr set to {}", firstArr, secondArr, thirdArr);
                 break;
             default:
-                System.err.println("Invalid command: " + parsedCmdStr);
+                logger.error("Invalid command: " + parsedCmdStr);
         }
     }
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 }

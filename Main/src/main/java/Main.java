@@ -6,12 +6,9 @@ import static java.lang.Math.sqrt;
 
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
+    public static Logger logger = LoggerFactory.getLogger(Main.class);
 
-        //added logger
-        final Logger logger = LoggerFactory.getLogger(Main.class);
-        logger.info("Just a log message.");
-        logger.debug("Message for debug level.");
+    public static void main(String[] args) throws ParseException {
 
         ParserArgument parserArgument = new ParserArgument(args);
 
@@ -19,10 +16,9 @@ public class Main {
         logger.info("discriminant = " + discriminant);
 
         if (discriminant == 0) {
-
             logger.info("discriminant = 0, get one root");
             double x = -parserArgument.getB() / (2 * parserArgument.getA());
-            logger.info("root =  " + x);
+            logger.info("root = " + x);
         } else if (discriminant > 0) {
             logger.info("discriminant is positive, get two roots");
             double x1 = (-parserArgument.getB() + sqrt(discriminant)) / (2 * parserArgument.getA());
@@ -31,6 +27,5 @@ public class Main {
             logger.info("root 2 = " + x2);
         } else
             logger.info("discriminant is negative, no roots");
-
     }
 }

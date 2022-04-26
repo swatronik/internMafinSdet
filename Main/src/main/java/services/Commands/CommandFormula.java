@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
-import services.Validators.ValidateREGEX;
+import services.Validators.EquationFormulaValidation;
 
 @Parameters(
         commandNames = "formula",
@@ -14,7 +14,7 @@ public class CommandFormula {
     @Parameter(
             description = "Required parametr after cmd 'formula'",
             required = true,
-            validateWith = ValidateREGEX.class
+            validateWith = EquationFormulaValidation.class
     )
     private String equation;
 
@@ -29,7 +29,7 @@ public class CommandFormula {
             ArgsArray[2] = String.valueOf(matcher.group(3));
             }
         return ArgsArray;
-        }
+    }
 
 
     public String getEquation() {

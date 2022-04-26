@@ -1,9 +1,9 @@
 import org.apache.commons.cli.*;
 
 public class ParserArgument {
-    double a;
-    double b;
-    double c;
+    private double a;
+    private double b;
+    private double c;
 
     public double getA() {
         return a;

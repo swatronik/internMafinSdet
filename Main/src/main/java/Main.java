@@ -12,10 +12,9 @@ public class Main {
         System.out.println("discriminant = " + discriminant);
 
         if (discriminant == 0) {
-
             System.out.println("discriminant = 0, get one root");
             double x = -parserArgument.getB() / (2 * parserArgument.getA());
-            System.out.println("root =  " + x);
+            System.out.println("root = " + x);
         } else if (discriminant > 0) {
             System.out.println("discriminant is positive, get two roots");
             double x1 = (-parserArgument.getB() + sqrt(discriminant)) / (2 * parserArgument.getA());

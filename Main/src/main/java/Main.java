@@ -1,4 +1,3 @@
-import exceptions.ParseArgumentsException;
 import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +25,7 @@ public class Main {
                 LOGGER.info("Result of quadratic equation is: root={}", root);
             } else
                 LOGGER.info("There are no roots");
-        } catch (ParseArgumentsException parseArgumentsException) {
-            LOGGER.error(parseArgumentsException.getMessage());
-        } catch (ParseException e) {
-            LOGGER.error(e.getMessage());
-        } catch (NumberFormatException e) {
+        } catch (ParseException | NumberFormatException e) {
             LOGGER.error(e.getMessage());
         }
     }

@@ -21,41 +21,55 @@ public class ParserArgumentsUtil {
         return b;
     }
 
-    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException, ParseArgumentsException {
+    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException {
 
-        if (args.length != 6) {
+        if (args.length == 0) {
             throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
         }
+        try {
+            Options options = new Options();
+            Option optionType = new Option("type", "type of arguments", true, "type of arguments");
+            Option countA = new Option("a", "koeff a", true, "define a koef");
+            Option countB = new Option("b", "koeff b", true, "define b koef");
+            Option countC = new Option("c", "koeff c", true, "define c koef");
+            Option optionEquation = new Option("e", "equation", true, "define equation");
 
-        if (args.length == 6) {
-            try {
-                Option countA = new Option("a", "koeff a", true, "define a koef");
-                Option countB = new Option("b", "koeff b", true, "define b koef");
-                Option countC = new Option("c", "koeff c", true, "define c koef");
+            options.addOption(optionEquation);
+            options.addOption(countA);
+            options.addOption(countB);
+            options.addOption(countC);
+            options.addOption(optionType);
 
-                Options options = new Options();
+            CommandLineParser parser = new DefaultParser();
+            CommandLine line = parser.parse(options, args);
 
-                options.addOption(countA);
-                options.addOption(countB);
-                options.addOption(countC);
+            String type = "";
 
-                CommandLineParser parser = new DefaultParser();
-                CommandLine line = parser.parse(options, args);
+            if (line.hasOption("type")) {
+                type = line.getOptionValue("type");
+            } else
+                throw new ParseArgumentsException(String.format("Bad arguments - no type %s  ", args));
 
-                if (line.hasOption("a")) {
-                    this.a = Double.parseDouble(line.getOptionValue("a"));
+            if (type.equals("equation")) {
+                if (line.hasOption("e")) {
+                    EquationParser eqArgs = new EquationParser(line.getOptionValue("e"));
+                    this.a = eqArgs.getA();
+                    this.b = eqArgs.getB();
+                    this.c = eqArgs.getC();
                 }
-                if (line.hasOption("b")) {
-                    this.b = Double.parseDouble(line.getOptionValue("b"));
-                }
-                if (line.hasOption("c")) {
-                    this.c = Double.parseDouble(line.getOptionValue("c"));
-                }
-            } catch (ParseException e) {
-                throw new ParseException(String.format("Failed to read arguments %s ", args));
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException(String.format("Invalid value of argument %s ", args));
-            }
+
+            } else if (type.equals("coefficient")) {
+                ArgumentsParser parseArguments = new ArgumentsParser(line);
+                this.a = parseArguments.getA();
+                this.b = parseArguments.getB();
+                this.c = parseArguments.getC();
+
+            } else
+                throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
+
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(String.format("Invalid value of argument %s ", args));
         }
+
     }
 }

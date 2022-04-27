@@ -5,20 +5,14 @@ import org.apache.commons.cli.*;
 
 public class ParserArgumentsUtil {
 
-    private double a = 0.0;
-    private double b = 0.0;
-    private double c = 0.0;
+    private final double a = 0.0;
+    private final double b = 0.0;
+    private final double c = 0.0;
 
-    public double getA() {
-        return a;
-    }
+    Equation equation = new Equation(a, b, c);
 
-    public double getC() {
-        return c;
-    }
-
-    public double getB() {
-        return b;
+    public Equation getEquation() {
+        return equation;
     }
 
     public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException {
@@ -53,16 +47,16 @@ public class ParserArgumentsUtil {
             if (type.equals("equation")) {
                 if (line.hasOption("e")) {
                     EquationParser eqArgs = new EquationParser(line.getOptionValue("e"));
-                    this.a = eqArgs.getA();
-                    this.b = eqArgs.getB();
-                    this.c = eqArgs.getC();
+                    this.equation.setA(eqArgs.equation.getA());
+                    this.equation.setB(eqArgs.equation.getB());
+                    this.equation.setC(eqArgs.equation.getC());
                 }
 
             } else if (type.equals("coefficient")) {
                 ArgumentsParser parseArguments = new ArgumentsParser(line);
-                this.a = parseArguments.getA();
-                this.b = parseArguments.getB();
-                this.c = parseArguments.getC();
+                this.equation.setA(parseArguments.equation.getA());
+                this.equation.setB(parseArguments.equation.getB());
+                this.equation.setC(parseArguments.equation.getC());
 
             } else
                 throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));

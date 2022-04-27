@@ -2,9 +2,9 @@ package util;
 
 public class Equation {
 
-    private double a = 0.0;
-    private double b = 0.0;
-    private double c = 0.0;
+    private double a;
+    private double b;
+    private double c;
 
     String signB = "";
     String signC = "";

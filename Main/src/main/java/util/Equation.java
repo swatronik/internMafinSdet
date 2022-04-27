@@ -45,7 +45,7 @@ public class Equation {
             signB = "+";
         if (c > 0)
             signC = "+";
-        return String.format("%f x^2 %s %f x %s %f = 0", a, signB, b, signC, c);
+        return String.format("%fx^2 %s%fx %s%f = 0", a, signB, b, signC, c);
     }
 
 }

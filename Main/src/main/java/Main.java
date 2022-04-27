@@ -14,6 +14,8 @@ public class Main {
 
         try {
             ParserArgumentsUtil parserArgumentsUtil = new ParserArgumentsUtil(args);
+            LOGGER.info(parserArgumentsUtil.getEquation().toString());
+
             double disc = parserArgumentsUtil.getEquation().getB() * parserArgumentsUtil.getEquation().getB() - 4 * parserArgumentsUtil.getEquation().getA() * parserArgumentsUtil.getEquation().getC();
 
             if (disc > 0) {

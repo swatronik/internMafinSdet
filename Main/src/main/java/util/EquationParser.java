@@ -41,7 +41,7 @@ class EquationParser {
             if (matcher.group(9) == null || matcher.group(9).equals("")) {
                 this.equation.setC(0.0);
             } else {
-                this.equation.setB(Double.parseDouble(matcher.group(9)));
+                this.equation.setC(Double.parseDouble(matcher.group(9)));
             }
         } else {
             throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation %s ", equation));

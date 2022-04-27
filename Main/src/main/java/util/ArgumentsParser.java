@@ -7,7 +7,7 @@ public class ArgumentsParser {
     private final double b = 0.0;
     private final double c = 0.0;
 
-    Equation equation=new Equation(a,b,c);
+    Equation equation = new Equation(a, b, c);
 
     public ArgumentsParser(CommandLine line) {
         if (line.hasOption("a")) {

@@ -6,6 +6,9 @@ public class Equation {
     private double b = 0.0;
     private double c = 0.0;
 
+    String signB = "";
+    String signC = "";
+
     public Equation(double a, double b, double c) {
         this.a = a;
         this.b = b;
@@ -38,7 +41,11 @@ public class Equation {
 
     @Override
     public String toString() {
-        return String.format("%fx^2+%fb+%fc",a,b,c);
+        if (b > 0)
+            signB = "+";
+        if (c > 0)
+            signC = "+";
+        return String.format("%f x^2 %s %f x %s %f = 0", a, signB, b, signC, c);
     }
 
 }

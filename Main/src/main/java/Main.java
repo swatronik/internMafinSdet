@@ -1,33 +1,27 @@
-import java.util.Scanner;
+import org.apache.commons.cli.ParseException;
 
 import static java.lang.Math.sqrt;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Введите первый коэффициент a");
-        double a = sc.nextDouble();
-        System.out.println("Введите второй коэффициент b");
-        double b = sc.nextDouble();
-        System.out.println("Введите третий коэффициент с");
-        double c = sc.nextDouble();
+        ParserArgument parserArgument = new ParserArgument(args);
 
-        double discriminant = b * b - 4 * a * c;
+        double discriminant = parserArgument.getA() * parserArgument.getB() - 4 * parserArgument.getA() * parserArgument.getC();
         System.out.println("discriminant = " + discriminant);
 
         if (discriminant == 0) {
-            System.out.println("дискриминант равен нулю, вычислим единственный корень уравнения");
-            double x = -b / (2 * a);
-            System.out.println("Корень равен =  " + x);
+            System.out.println("discriminant = 0, get one root");
+            double x = -parserArgument.getB() / (2 * parserArgument.getA());
+            System.out.println("root = " + x);
         } else if (discriminant > 0) {
-            System.out.println("Дискриминант положительный, найдем два действительных корня квадратного уравнения");
-            double x1 = (-b + sqrt(discriminant)) / (2 * a);
-            double x2 = (-b - sqrt(discriminant)) / (2 * a);
-            System.out.println("Корень 1 равен " + x1);
-            System.out.println("Корень 2 равен " + x2);
+            System.out.println("discriminant is positive, get two roots");
+            double x1 = (-parserArgument.getB() + sqrt(discriminant)) / (2 * parserArgument.getA());
+            double x2 = (-parserArgument.getB() - sqrt(discriminant)) / (2 * parserArgument.getA());
+            System.out.println("root 1 = " + x1);
+            System.out.println("root 2 = " + x2);
         } else
-            System.out.println("Дискриминант отрицательный, действительных корней нет");
+            System.out.println("discriminant is negative, no roots");
     }
 }

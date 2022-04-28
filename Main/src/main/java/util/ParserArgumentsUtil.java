@@ -1,21 +1,14 @@
 package util;
 
+import equations.Equation;
 import exceptions.ParseArgumentsException;
 import org.apache.commons.cli.*;
 
 public class ParserArgumentsUtil {
 
-    private final double a = 0.0;
-    private final double b = 0.0;
-    private final double c = 0.0;
+    private static Equation equation;
 
-    Equation equation = new Equation(a, b, c);
-
-    public Equation getEquation() {
-        return equation;
-    }
-
-    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException {
+    public static Equation parserArgumentsUtil(String[] args) throws ParseException, NumberFormatException {
 
         if (args.length == 0) {
             throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
@@ -46,17 +39,12 @@ public class ParserArgumentsUtil {
 
             if (type.equals("equation")) {
                 if (line.hasOption("e")) {
-                    EquationParser eqArgs = new EquationParser(line.getOptionValue("e"));
-                    this.equation.setA(eqArgs.equation.getA());
-                    this.equation.setB(eqArgs.equation.getB());
-                    this.equation.setC(eqArgs.equation.getC());
-                }
+                    equation = Parser.parseEquation(line);
+                } else
+                    throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
 
             } else if (type.equals("coefficient")) {
-                ArgumentsParser parseArguments = new ArgumentsParser(line);
-                this.equation.setA(parseArguments.equation.getA());
-                this.equation.setB(parseArguments.equation.getB());
-                this.equation.setC(parseArguments.equation.getC());
+                equation = Parser.parseArgs(line);
 
             } else
                 throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
@@ -64,6 +52,6 @@ public class ParserArgumentsUtil {
         } catch (NumberFormatException e) {
             throw new NumberFormatException(String.format("Invalid value of argument %s ", args));
         }
-
+        return equation;
     }
 }

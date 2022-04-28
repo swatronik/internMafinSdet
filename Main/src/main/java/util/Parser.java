@@ -59,15 +59,15 @@ class Parser {
         if (line.hasOption("a")) {
             a = Double.parseDouble(line.getOptionValue("a"));
         } else
-            throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation %s ", line.toString()));
+            throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation \"a\" is %s", line.getOptionValue("a")));
         if (line.hasOption("b")) {
             b = Double.parseDouble(line.getOptionValue("b"));
         } else
-            throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation %s ", line.toString()));
+            b = 0.0;
         if (line.hasOption("c")) {
             c = Double.parseDouble(line.getOptionValue("c"));
         } else
-            throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation %s ", line.toString()));
+            c = 0.0;
         return new Equation(a, b, c);
     }
 }

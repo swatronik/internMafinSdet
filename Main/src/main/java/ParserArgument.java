@@ -37,3 +37,4 @@ public class ParserArgument {
         this.c = Double.parseDouble(cmd.getOptionValue("c"));
     }
 }
+

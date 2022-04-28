@@ -1,7 +1,7 @@
 import org.apache.commons.cli.ParseException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import static java.lang.Math.sqrt;
 
 public class Main {

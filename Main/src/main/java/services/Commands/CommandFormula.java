@@ -20,13 +20,13 @@ public class CommandFormula {
 
 
     private String[] parseArgsFromString() {
-        Pattern pattern = Pattern.compile("(-?[0-9.]+)x[^-+]+\\+?(-?[0-9.]+)x(-?[0-9.]+)?=");
+        Pattern pattern = Pattern.compile(EquationFormulaValidation.QUADRATIC_EQUATION_VALIDATE_REGEX);
         Matcher matcher = pattern.matcher(equation);
         String[] ArgsArray = new String[3];
         while (matcher.find()) {
             ArgsArray[0] = String.valueOf(matcher.group(1));
-            ArgsArray[1] = String.valueOf(matcher.group(2));
-            ArgsArray[2] = String.valueOf(matcher.group(3));
+            ArgsArray[1] = String.valueOf(matcher.group(3));
+            ArgsArray[2] = String.valueOf(matcher.group(4));
             }
         return ArgsArray;
     }

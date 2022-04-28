@@ -5,6 +5,6 @@ public class ExampleAppEquationView {
 
     public void startApp(String[] args) {
         Controller contr = new Controller(args);
-        contr.getDecision();
+        contr.getDecision(contr.toString());
     }
 }

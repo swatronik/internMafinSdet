@@ -31,12 +31,10 @@ public class Equation {
         stringBuilder.append(a).append("*x^2");
 
         if (b > 0) stringBuilder.append("+").append(b).append("*x");
-        else if (b == 0) stringBuilder.append(" ");
         else if (b < 0) stringBuilder.append(b).append("*x");
 
-        if (c == 0) stringBuilder.append(" ");
+        if (c > 0) stringBuilder.append("+").append(c);
         else if (c < 0) stringBuilder.append(c);
-        else if (c > 0) stringBuilder.append("+").append(c);
 
         stringBuilder.append("=0");
 

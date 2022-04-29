@@ -6,14 +6,16 @@ import org.apache.commons.cli.*;
 
 public class ParserArgumentsUtil {
 
-    private static Equation equation;
 
     public static Equation parserArgumentsUtil(String[] args) throws ParseException, NumberFormatException {
+
+        Equation equation;
 
         if (args.length == 0) {
             throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
         }
         try {
+
             Options options = new Options();
             Option optionType = new Option("type", "type of arguments", true, "type of arguments");
             Option countA = new Option("a", "koeff a", true, "define a koef");

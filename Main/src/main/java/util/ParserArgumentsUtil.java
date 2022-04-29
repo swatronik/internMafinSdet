@@ -1,32 +1,21 @@
 package util;
 
+import equations.Equation;
 import exceptions.ParseArgumentsException;
 import org.apache.commons.cli.*;
 
 public class ParserArgumentsUtil {
 
-    private double a = 0.0;
-    private double b = 0.0;
-    private double c = 0.0;
 
-    public double getA() {
-        return a;
-    }
+    public static Equation parserArgumentsUtil(String[] args) throws ParseException, NumberFormatException {
 
-    public double getC() {
-        return c;
-    }
-
-    public double getB() {
-        return b;
-    }
-
-    public ParserArgumentsUtil(String[] args) throws ParseException, NumberFormatException {
+        Equation equation;
 
         if (args.length == 0) {
             throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
         }
         try {
+
             Options options = new Options();
             Option optionType = new Option("type", "type of arguments", true, "type of arguments");
             Option countA = new Option("a", "koeff a", true, "define a koef");
@@ -52,17 +41,12 @@ public class ParserArgumentsUtil {
 
             if (type.equals("equation")) {
                 if (line.hasOption("e")) {
-                    EquationParser eqArgs = new EquationParser(line.getOptionValue("e"));
-                    this.a = eqArgs.getA();
-                    this.b = eqArgs.getB();
-                    this.c = eqArgs.getC();
-                }
+                    equation = Parser.parseEquation(line);
+                } else
+                    throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
 
             } else if (type.equals("coefficient")) {
-                ArgumentsParser parseArguments = new ArgumentsParser(line);
-                this.a = parseArguments.getA();
-                this.b = parseArguments.getB();
-                this.c = parseArguments.getC();
+                equation = Parser.parseArgs(line);
 
             } else
                 throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
@@ -70,6 +54,6 @@ public class ParserArgumentsUtil {
         } catch (NumberFormatException e) {
             throw new NumberFormatException(String.format("Invalid value of argument %s ", args));
         }
-
+        return equation;
     }
 }

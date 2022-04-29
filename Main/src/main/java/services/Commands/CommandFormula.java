@@ -26,7 +26,7 @@ public class CommandFormula {
         while (matcher.find()) {
             ArgsArray[0] = String.valueOf(matcher.group(1));
             ArgsArray[1] = String.valueOf(matcher.group(3));
-            ArgsArray[2] = String.valueOf(matcher.group(4));
+            ArgsArray[2] = String.valueOf(matcher.group(5));
             }
         return ArgsArray;
     }

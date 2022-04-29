@@ -11,7 +11,7 @@ public class EquationFormulaValidation implements IParameterValidator {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static final String QUADRATIC_EQUATION_VALIDATE_REGEX = "((-?[0-9.])+)x[^-+]+\\+?(-?[0-9.]+)x(-?[0-9.]+)?=0";
+    public static final String QUADRATIC_EQUATION_VALIDATE_REGEX = "(^-?[\\d]*.?[\\d]*)([x][\\^][2])(-?[\\d]*.?[\\d]*)([x])(-?[\\d]*.?[\\d]*)([\\=][0])";
 
     public void validate(String name, String value) throws ParameterException {
         if (!isValidFormula(value)) {

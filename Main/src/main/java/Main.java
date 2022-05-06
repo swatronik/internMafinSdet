@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import util.ParserArgumentsUtil;
 
+import java.util.Arrays;
+
 public class Main {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
@@ -14,7 +16,9 @@ public class Main {
         try {
             Equation equation = ParserArgumentsUtil.parserArgumentsUtil(args);
             LOGGER.info(equation.toString());
-            EquationDecision.decision(equation);
+            if (EquationDecision.decision(equation) != null) {
+                LOGGER.info(String.format("The result of equation:%s ", Arrays.toString(EquationDecision.decision(equation))));
+            } else LOGGER.info("There are no roots");
         } catch (ParseException | NumberFormatException e) {
             LOGGER.error(e.getMessage());
         }

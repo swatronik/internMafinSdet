@@ -16,9 +16,7 @@ public class Main {
             Equation equation = ParserArgumentsUtil.parserArgumentsUtil(args);
             Roots roots = EquationDecision.decision(equation);
             LOGGER.info(equation.toString());
-            if (roots != null) {
-                LOGGER.info(roots.toString());
-            } else LOGGER.info("There are no roots");
+            LOGGER.info(roots.toString());
         } catch (ParseException | NumberFormatException e) {
             LOGGER.error(e.getMessage());
         }

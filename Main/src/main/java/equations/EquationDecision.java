@@ -16,7 +16,7 @@ public class EquationDecision {
             return new Roots((-equation.getB() / (2 * equation.getA())));
 
         } else {
-            return null;
+            return new Roots();
         }
     }
 }

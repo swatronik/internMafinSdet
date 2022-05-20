@@ -17,10 +17,7 @@ public class Main {
             Roots roots = EquationDecision.decision(equation);
             LOGGER.info(equation.toString());
             if (roots != null) {
-                if (roots.getX2() != null)
-                    LOGGER.info(String.format("The result of equation:%s %s", roots.getX2(), roots.getX1()));
-                else
-                    LOGGER.info(String.format("The result of equation:%s ", roots.getX1()));
+                LOGGER.info(roots.toString());
             } else LOGGER.info("There are no roots");
         } catch (ParseException | NumberFormatException e) {
             LOGGER.error(e.getMessage());

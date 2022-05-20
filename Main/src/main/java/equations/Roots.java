@@ -13,12 +13,10 @@ public class Roots {
         this.x1 = x1;
     }
 
-    public Double getX1() {
-        return x1;
+    @Override
+    public String toString() {
+        if (x2 != null) {
+            return String.format("Roots: x1=%s x2 =%s", x1, x2);
+        } else return String.format("Roots: x=%s", x1);
     }
-
-    public Double getX2() {
-        return x2;
-    }
-
 }

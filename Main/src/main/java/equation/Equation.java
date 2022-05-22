@@ -23,5 +23,4 @@ public class Equation {
     public double getC() {
         return c;
     }
-
 }

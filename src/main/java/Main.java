@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.Math.sqrt;
@@ -22,7 +23,13 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException {
         float aFactor = 0, bFactor = 0, cFactor = 0;
 
-        if (args.length == 1){
+        String testEq = "-2.3x^2-2.1x-4.2=0";
+        Pattern pattern = Pattern.compile("(((\\+|-|)((\\d+)|(\\d+\\.\\d+)))(x\\^2)((\\+|-|)((\\d+)|(\\d+\\.\\d+)))(x)((\\+|-|)((\\d+)|(\\d+\\.\\d+)))(=0))");
+        Matcher matcher = pattern.matcher(testEq);
+        System.out.println(matcher.matches());
+        System.out.println(matcher.group(2) + "-a " + matcher.group(8) + "-b " + matcher.group(14) + "-c ");
+
+        if (args.length == 2){
             Options options = new Options();
 
             Option eFull = new Option("e", "fullEquation", true, "input equation ax^2 + bx + c = 0");

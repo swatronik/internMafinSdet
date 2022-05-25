@@ -7,7 +7,14 @@ public class Roots {
         ONE_ROOT(1),
         TWO_ROOTS(2);
 
+        private int amount;
+
         CountRoot(int amount) {
+            this.amount = amount;
+        }
+
+        public int getAmount() {
+            return amount;
         }
     }
 
@@ -20,10 +27,8 @@ public class Roots {
     private Double x1;
     private Double x2;
 
-    public Roots(Double x1, Double x2) {
-        this.x1 = x1;
-        this.x2 = x2;
-        countRoot = CountRoot.TWO_ROOTS;
+    public Roots() {
+        countRoot = CountRoot.NO_ROOTS;
     }
 
     public Roots(Double x1) {
@@ -31,15 +36,24 @@ public class Roots {
         countRoot = CountRoot.ONE_ROOT;
     }
 
-    public Roots() {
-        countRoot = CountRoot.NO_ROOTS;
+    public Roots(Double x1, Double x2) {
+        this.x1 = x1;
+        this.x2 = x2;
+        countRoot = CountRoot.TWO_ROOTS;
     }
 
     @Override
     public String toString() {
-        if (countRoot == CountRoot.TWO_ROOTS) {
-            return String.format("Roots: x1=%s x2 =%s", x1, x2);
-        } else if ((countRoot == CountRoot.ONE_ROOT)) return String.format("Root: x=%s", x1);
-        else return String.format("No roots");
+
+        switch (countRoot) {
+            case NO_ROOTS:
+                return String.format("No roots");
+            case ONE_ROOT:
+                return String.format("Root: x=%s", x1);
+            case TWO_ROOTS:
+                return String.format("Roots: x1=%s x2 =%s", x1, x2);
+            default:
+                return "";
+        }
     }
 }

@@ -12,7 +12,7 @@ public class ParserArgumentsUtil {
         Equation equation;
 
         if (args.length == 0) {
-            throw new ParseArgumentsException(String.format("Bad arguments %s ", args));
+            throw new ParseArgumentsException(String.format("No arguments ", args));
         }
         try {
 

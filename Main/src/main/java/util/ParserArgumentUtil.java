@@ -1,3 +1,5 @@
+package util;
+
 import equation.Equation;
 import exception.ExceptionMessage;
 import org.apache.commons.cli.*;

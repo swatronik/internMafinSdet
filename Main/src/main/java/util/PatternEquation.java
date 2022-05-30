@@ -1,23 +1,24 @@
+package util;
+
 import equation.Equation;
 import exception.ExceptionMessage;
 import org.apache.commons.cli.CommandLine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import patternRegexp.PatternRegexp;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PatternEquation {
 
-    //отдельный логгер для PatternEquation. Для каждого класса - отдельный логгер
+    //отдельный логгер для util.PatternEquation. Для каждого класса - отдельный логгер
     public static Logger loggerPatternEquation = LoggerFactory.getLogger(PatternEquation.class);
-
-    public static final String patternEquation = "((((-|\\+)?)([\\d]+|)x\\^2)(((-|\\+){1}([\\d]+|))x)((-|\\+){1}[\\d]+)=0){1,}";
 
     //метод для парсинга значений целого уравнения и его проверки.
     public static Equation getEquation(CommandLine cmd) throws ExceptionMessage {
 
-        Pattern pattern = Pattern.compile(patternEquation);
+        Pattern pattern = Pattern.compile(PatternRegexp.patternEquation);
         Matcher matcher = pattern.matcher(cmd.getOptionValue("eq"));
 
         if (matcher.matches()) {

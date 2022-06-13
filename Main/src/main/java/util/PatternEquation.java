@@ -16,7 +16,7 @@ public class PatternEquation {
     public static Logger loggerPatternEquation = LoggerFactory.getLogger(PatternEquation.class);
 
     //метод для парсинга значений целого уравнения и его проверки.
-    public static Equation getEquation(CommandLine cmd) throws ExceptionMessage {
+    public static Equation getFullEquation(CommandLine cmd) throws ExceptionMessage {
 
         Pattern pattern = Pattern.compile(PatternRegexp.patternEquation);
         Matcher matcher = pattern.matcher(cmd.getOptionValue("eq"));
@@ -24,15 +24,12 @@ public class PatternEquation {
         if (matcher.matches()) {
             loggerPatternEquation.info("Введенное уравнение проходит проверку шаблона регулярки - ок");
 
-            double a;
-            double b;
-            double c;
-
-            a = Double.parseDouble(matcher.group(5));
-            b = Double.parseDouble(matcher.group(7));
-            c = Double.parseDouble(matcher.group(10));
+            double a = Double.parseDouble(matcher.group(5));
+            double b = Double.parseDouble(matcher.group(7));
+            double c = Double.parseDouble(matcher.group(10));
 
             return new Equation(a, b, c);
+
         } else {
             throw new ExceptionMessage("Введенное уравнение НЕ проходит проверку шаблона регулярки");
         }
@@ -40,13 +37,10 @@ public class PatternEquation {
 
     //метод для парсинга значений аргументов
     public static Equation getArgs(CommandLine cmd) {
-        double a;
-        double b;
-        double c;
 
-        a = Double.parseDouble(cmd.getOptionValue("a"));
-        b = Double.parseDouble(cmd.getOptionValue("b"));
-        c = Double.parseDouble(cmd.getOptionValue("c"));
+        double a = Double.parseDouble(cmd.getOptionValue("a"));
+        double b = Double.parseDouble(cmd.getOptionValue("b"));
+        double c = Double.parseDouble(cmd.getOptionValue("c"));
 
         return new Equation(a, b, c);
     }

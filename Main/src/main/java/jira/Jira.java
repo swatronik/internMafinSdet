@@ -1,3 +1,5 @@
+package jira;
+
 public class Jira {
     private String status;
 

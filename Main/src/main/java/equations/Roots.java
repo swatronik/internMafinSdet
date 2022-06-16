@@ -27,6 +27,14 @@ public class Roots {
     private final Double x1;
     private final Double x2;
 
+    public Double getX1() {
+        return x1;
+    }
+
+    public Double getX2() {
+        return x2;
+    }
+
     public Roots() {
         this.x1 = null;
         this.x2 = null;
@@ -59,4 +67,5 @@ public class Roots {
                 return "";
         }
     }
+
 }

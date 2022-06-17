@@ -44,16 +44,11 @@ public class ParseEquationUnit {
         };
     }
 
-    @Test(dataProvider = "tablesDataNegative")
-    void EquationValidatorTestNegative(String equation) {
-        try {
-            parseEquation(equation);
-            Assert.fail("Expected ParseArgumentsException");
-        } catch (ParseArgumentsException thrown) {
-            Assert.assertNotEquals("", thrown.getMessage());
-        }
+    @Test(dataProvider = "tablesDataNegative", expectedExceptions = {ParseArgumentsException.class})
+    void EquationValidatorTestNegative(String equation) throws ParseArgumentsException {
+        parseEquation(equation);
     }
-
 }
+
 
 

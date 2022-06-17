@@ -41,7 +41,9 @@ public class ParserArgumentsUtil {
 
             if (type.equals("equation")) {
                 if (line.hasOption("e")) {
-                    equation = Parser.parseEquation(line);
+                    String eq=line.getOptionValue("e");
+                    equation=Parser.parseEquation(eq);
+
                 } else
                     throw new ParseArgumentsException(String.format("Bad arguments, provide correct type %s ", args));
 

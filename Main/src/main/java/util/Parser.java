@@ -8,13 +8,11 @@ import org.apache.commons.cli.CommandLine;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Parser {
+public class Parser {
 
-    public static Equation parseEquation(CommandLine line) throws ParseArgumentsException {
+    public static Equation parseEquation(String eq) throws ParseArgumentsException {
 
         Pattern pattern = Pattern.compile(Const.ARG_EQUATION_PATTERN);
-
-        String eq = line.getOptionValue("e");
 
         Matcher matcher = pattern.matcher(eq);
 

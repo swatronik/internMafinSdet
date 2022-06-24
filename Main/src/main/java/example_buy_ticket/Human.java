@@ -4,21 +4,98 @@ import java.util.ArrayList;
 
 public class Human {
 
+    private enum SEX{
+        MAN,
+        WOMAN;
+    }
+
     private String last_name;
     private String first_name;
     private String middle_name;
+    private Integer age;
+    private SEX sex;
+    private String dayBirthday;
+
     ArrayList<Ticket> list;
 
     public ArrayList<Ticket> getList() {
         return list;
     }
 
-    public Human(String last_name, String first_name, String middle_name,ArrayList<Ticket> list) {
+    public Human(String last_name, String first_name, String middle_name, Integer age, SEX sex, String dayBirthday, ArrayList<Ticket> list) {
         this.last_name = last_name;
         this.first_name = first_name;
         this.middle_name = middle_name;
-        this.list=list;
+        this.age = age;
+        this.sex = sex;
+        this.dayBirthday = dayBirthday;
+        this.list = list;
     }
+
+    public Human(String last_name, String first_name, String middle_name, Integer age, SEX sex, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.age = age;
+        this.sex = sex;
+        this.list = list;
+    }
+
+    public Human(String last_name, String first_name, String middle_name, Integer age, String dayBirthday, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.age = age;
+        this.dayBirthday = dayBirthday;
+        this.list = list;
+    }
+
+    public Human(String last_name, String first_name, String middle_name, Integer age, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.age = age;
+        this.list = list;
+    }
+
+    public Human(String last_name, String first_name, String middle_name, SEX sex, String dayBirthday, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.sex = sex;
+        this.dayBirthday = dayBirthday;
+        this.list = list;
+    }
+
+    public Human(String last_name, String first_name, String middle_name, SEX sex, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.sex = sex;
+        this.list = list;
+    }
+
+    public Human(String last_name, String first_name, String middle_name, String dayBirthday, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.dayBirthday = dayBirthday;
+        this.list = list;
+    }
+
+    public Human(String last_name, String first_name, String middle_name, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.middle_name = middle_name;
+        this.list = list;
+    }
+
+    /*public Human(String last_name, String first_name, String dayBirthday, ArrayList<Ticket> list) {
+        this.last_name = last_name;
+        this.first_name = first_name;
+        this.dayBirthday = dayBirthday;
+        this.list = list;
+    }*/
 
     public Ticket buyTheTicket(String direction) {
 

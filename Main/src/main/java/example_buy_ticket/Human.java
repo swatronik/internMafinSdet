@@ -7,30 +7,24 @@ public class Human {
     private String last_name;
     private String first_name;
     private String middle_name;
-    private String birthday;
-    private String passport_date;
-    private String passport_serie;
-    private String passport_number;
-    private String address;
-    private String email;
-    private String mobile;
+    ArrayList<Ticket> list;
 
-    public Human(String last_name, String first_name, String middle_name, String birthday, String passport_date, String passport_serie, String passport_number, String address, String email, String mobile) {
+    public ArrayList<Ticket> getList() {
+        return list;
+    }
+
+    public Human(String last_name, String first_name, String middle_name,ArrayList<Ticket> list) {
         this.last_name = last_name;
         this.first_name = first_name;
         this.middle_name = middle_name;
-        this.birthday = birthday;
-        this.passport_date = passport_date;
-        this.passport_serie = passport_serie;
-        this.passport_number = passport_number;
-        this.address = address;
-        this.email = email;
-        this.mobile = mobile;
+        this.list=list;
     }
 
-    public Ticket buyTheTicket() {
+    public Ticket buyTheTicket(String direction) {
 
         System.out.println("Билет куплен");
-        return new Ticket();
+        Ticket ticket=new Ticket(last_name, first_name, middle_name,direction);
+        list.add(ticket);
+        return ticket;
     }
 }

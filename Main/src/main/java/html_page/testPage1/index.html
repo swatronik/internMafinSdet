@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<!-- это комментарии. их не видно при отображении файла в браузере-->
+<html> <!-- тег html обозначает открытие файла html-->
+<head> <!-- head обозначает открытие головной части документа-->
+    <meta charset="utf-8">
+    <title>Название страницы: Решение квадратных уравнений</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <!-- закрываем тег title иначе у нас всё последующее будет считаться заголовком-->
+
+</head> <!-- тег head также нужно закрыть-->
+<body>  <!-- наконец открываем тело нашего документа. Здесь будет всё его содержание-->
+
+<!--начиная отсюда вставляем любые текст, заголовки, ссылки и тп-->
+<h1>Решение квадратных уравнений</h1> <!--h1 служит для обозначения заголовка.
+
+    Есть ещё h2, h3 и так до h6. самого маленького заголовка-->
+
+
+<form class="equation_form" name="feedback" method="POST" action="/feedback.php">
+
+    <!--        <div>Имя</div>-->
+    <input type="text" name="name" required placeholder="Введите уравнение">
+    <br>
+    <br>
+
+    <input type="submit" name="submit_btn" value="Отправить">
+
+    <br>
+    <br>
+
+
+    <div class="guruweba_example_infofield">Последнее уравнение</div>
+    <table id="model_table_id1231" class="model_table">
+        <tr>
+            <!--                <td>&nbsp;</td> - пустая клетка-->
+            <td>№</td>
+            <td>Уравнение</td>
+            <td>Корни</td>
+            <td>Время</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1x</td>
+            <td>x1=2</td>
+            <td>070</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2x</td>
+            <td>x1=2</td>
+            <td>070</td>
+        </tr>
+        <tr>
+            <td>33</td>
+            <td>3x+y</td>
+            <td>x1=2</td>
+            <td>070</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <!--        <table class="properties">-->
+    <!--            <tbody>-->
+    <!--            <tr>-->
+    <!--                <th scope="row"><a href="/ru/docs/HTML/Content_categories">Категории контента</a></th>-->
+    <!--                <td>Нет</td>-->
+    <!--            </tr>-->
+    <!--            <tr>-->
+    <!--                <th scope="row">Разрешённый контент</th>-->
+    <!--                <td><a href="/ru/docs/HTML/Content_categories#Phrasing_content">Фразовый контент</a>.</td>-->
+    <!--            </tr>-->
+    <!--            <tr>-->
+    <!--                <th scope="row">Пропуск тегов</th>-->
+    <!--                <td>{{no_tag_omission}}</td>-->
+    <!--            </tr>-->
+    <!--            <tr>-->
+    <!--                <th scope="row">Разрешённые родители</th>-->
+    <!--                <td>Является дочерним элементом тега {{HTMLElement("fieldset")}}</td>-->
+    <!--            </tr>-->
+    <!--            <tr>-->
+    <!--                <th scope="row">Разрешённые ARIA roles</th>-->
+    <!--                <td>Нет</td>-->
+    <!--            </tr>-->
+    <!--            <tr>-->
+    <!--                <th scope="row">Взаимодействие с DOM</th>-->
+    <!--                <td>{{domxref("HTMLLegendElement")}}</td>-->
+    <!--            </tr>-->
+    <!--            </tbody>-->
+    <!--        </table>-->
+</form>
+
+<br>
+<br>
+
+    <fieldset>
+        <legend>Решение квадратных уравнений</legend>
+        <div class="guruweba_example_infofield">Примеры уравнений</div>
+        <select name="theme_id_12" required="required">
+            <option value="">Выберите вариант</option>
+            <option>Привер уравнения 1</option>
+            <option>Привер уравнения 2</option>
+        </select>
+</fieldset>
+
+
+<!--<fieldset>-->
+<!--    <legend>Название страницы: Решение квадратных уравнений</legend>-->
+<!--    <label>Имя <input type="text" required placeholder="Ваше имя"></label>-->
+<!--    &lt;!&ndash;    <label>E-mail<input type="email" required></label>&ndash;&gt;-->
+<!--    &lt;!&ndash;  required placeholder - значит что поле обязательно  &ndash;&gt;-->
+<!--    <br>-->
+<!--    <label>E-mail <input type="text" required placeholder="Ваш E-mail"></label>-->
+<!--</fieldset>-->
+
+
+</body> <!--тело также следует закрыть, после него уже не вставляем текст и тп-->
+</html> <!-- закрывающий тег html обозначает закрытие файла html-->
+

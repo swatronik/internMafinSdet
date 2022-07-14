@@ -45,22 +45,19 @@ public class ParserArgumentsUtilUnit extends BaseTest {
     @DataProvider
     public Object[][] tablesDataNegative() {
         return new Object[][]{
-                {new String[]{"-type", "-ffuuu", "-a", "9", "-b", "8", "-c", "1"}, 9.0, 8.0, 1.0},
-                {new String[]{"-type", "coefficient", "k", "-9", "-b", "-8", "-c", "-1"}, -9.0, -8.0, -1.0},
-                {new String[]{"-type", "coefficient", "53553..6646", "-9", "-b", "0", "-c", "0"}, -9.0, 0, 0},
-                {new String[]{"-rrr", "coefficient", "-a", "-9.2", "-b", "0.1", "-c", "1.4"}, -9.2, 0.1, 1.4},
-                {new String[]{"-type", "-ffuu", "-e", "9x^2+8x+1=0"}, 9.0, 8.0, 1.0},
-                {new String[]{"-type", "equation", "-ttt", "-9x^2-8x-1=0"}, -9.0, -8.0, -1.0},
-                {new String[]{"-rrr", "equation", "-e", "-9x^2=0"}, -9.0, 0, 0},
+                {new String[]{"-type", "-ffuuu", "-a", "9", "-b", "8", "-c", "1"}},
+                {new String[]{"-type", "coefficient", "k", "-9", "-b", "-8", "-c", "-1"}},
+                {new String[]{"-type", "coefficient", "53553..6646", "-9", "-b", "0", "-c", "0"}},
+                {new String[]{"-rrr", "coefficient", "-a", "-9.2", "-b", "0.1", "-c", "1.4"}},
+                {new String[]{"-type", "-ffuu", "-e", "9x^2+8x+1=0"}},
+                {new String[]{"-type", "equation", "-ttt", "-9x^2-8x-1=0"}},
+                {new String[]{"-rrr", "equation", "-e", "-9x^2=0"}},
         };
     }
 
     @Test(dataProvider = "tablesDataNegative", expectedExceptions = {ParseException.class})
-    void ArgumentsValidatorTestNegative(String[] args, double a, double b, double c) throws ParseException {
+    void argumentsValidatorTestNegative(String[] args) throws ParseException {
         argsToLog(LOGGER, args);
-        LOGGER.debug("a=" + a);
-        LOGGER.debug("b=" + b);
-        LOGGER.debug("c=" + c);
         parserArgumentsUtil(args);
     }
 

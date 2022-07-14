@@ -2,13 +2,17 @@ package unit;
 
 import equations.Equation;
 import exceptions.ParseArgumentsException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static util.Parser.parseEquation;
 
-public class ParseEquationUnit {
+public class ParseEquationUnit extends BaseTest {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ParseEquationUnit.class);
 
     @DataProvider
     public Object[][] tablesDataPositive() {
@@ -24,7 +28,11 @@ public class ParseEquationUnit {
     }
 
     @Test(dataProvider = "tablesDataPositive")
-    void EquationValidatorTestPositive(String equation, double a, double b, double c) throws ParseArgumentsException {
+    void equationValidatorTestPositive(String equation, double a, double b, double c) throws ParseArgumentsException {
+        equationToLog(LOGGER, equation);
+        LOGGER.debug("a=" + a);
+        LOGGER.debug("b=" + b);
+        LOGGER.debug("c=" + c);
         Equation equation1 = parseEquation(equation);
         Assert.assertEquals(equation1.getA(), a);
         Assert.assertEquals(equation1.getB(), b);
@@ -45,7 +53,8 @@ public class ParseEquationUnit {
     }
 
     @Test(dataProvider = "tablesDataNegative", expectedExceptions = {ParseArgumentsException.class})
-    void EquationValidatorTestNegative(String equation) throws ParseArgumentsException {
+    void equationValidatorTestNegative(String equation) throws ParseArgumentsException {
+        equationToLog(LOGGER, equation);
         parseEquation(equation);
     }
 }

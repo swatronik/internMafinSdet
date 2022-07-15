@@ -49,23 +49,4 @@ public class Parser {
             throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation %s ", eq));
         }
     }
-
-//    public static Equation parseArgs(CommandLine line) throws ParseArgumentsException {
-//        double a;
-//        double b;
-//        double c;
-//        if (line.hasOption("a")) {
-//            a = Double.parseDouble(line.getOptionValue("a"));
-//        } else
-//            throw new ParseArgumentsException(String.format("Bad arguments - this is no quadratic equation \"a\" is %s", line.getOptionValue("a")));
-//        if (line.hasOption("b")) {
-//            b = Double.parseDouble(line.getOptionValue("b"));
-//        } else
-//            b = 0.0;
-//        if (line.hasOption("c")) {
-//            c = Double.parseDouble(line.getOptionValue("c"));
-//        } else
-//            c = 0.0;
-//        return new Equation(a, b, c);
-//    }
 }

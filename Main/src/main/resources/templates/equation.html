@@ -17,47 +17,60 @@
 	border: 1px solid black;
    }
 
+
 </style>
 <body>
-<form class="equation_form" name="equtaion" method="post">
-    <div style="font-size:large;">Решение квадратных уравнений</div><br>
+<form class="equation_form" name="eq" method="post">
+    <div style="font-size:large;">Решение квадратных уравнений</div>
+    <br>
 
-    <input type="text" name="equation" style="background-color: powderblue;" placeholder="Введите уравнение" required="required">
-    <input type="submit" name="submit_btn" value="Решить"><br>
-</form><br>
-<div>Последние решения</div><br>
+    <input type="text" id="inputEquation" name="equation" style="background-color: powderblue;"
+           placeholder="Введите уравнение" required="required">
+    <input type="button" name="submit_btn" onclick="desicion()" value="Решить"><br>
+</form>
+<br>
+<div>Последние решения</div>
+<br>
 
-    <table>
-        <tr>
-            <th>Номер</th>
-            <th>Уравнение</th>
-            <th>Корни</th>
-            <th>Время</th>
-        </tr>
-        <tr>
-            <th>1</th>
-            <th>x2=0</th>
-            <th>0</th>
-            <th>01:02:2021 13:30:11</th>
-        </tr>
-        <tr>
-            <th>2</th>
-            <th>x^2+x=0</th>
-            <th>x1=1 x2 =3</th>
-            <th>01:02:2021 13:30:11</th>
-        </tr>
-        <tr>
-            <th>3</th>
-            <th>x^2+1=0</th>
-            <th> No roots</th>
-            <th>01:01:2021 13:30:11</th>
-        </tr>
-        <tr>
-            <th>4</th>
-            <th>x+2+error=0</th>
-            <th>Error invalid equation</th>
-            <th>01:01:2020 13:30:11</th>
-        </tr>
-    </table>
+<table>
+    <tr>
+        <th>Номер</th>
+        <th>Уравнение</th>
+        <th>Корни</th>
+        <th>Время</th>
+    </tr>
+    <tr>
+        <th>1</th>
+        <th>x2=0</th>
+        <th>0</th>
+        <th>01:02:2021 13:30:11</th>
+    </tr>
+    <tr>
+        <th>2</th>
+        <th>x^2+x=0</th>
+        <th>x1=1 x2 =3</th>
+        <th>01:02:2021 13:30:11</th>
+    </tr>
+    <tr>
+        <th>3</th>
+        <th>x^2+1=0</th>
+        <th> No roots</th>
+        <th>01:01:2021 13:30:11</th>
+    </tr>
+    <tr>
+        <th>4</th>
+        <th>x+2+error=0</th>
+        <th>Error invalid equation</th>
+        <th>01:01:2020 13:30:11</th>
+    </tr>
+</table>
 </body>
 </html>
+
+<script>
+function desicion(){
+var equation=document.getElementById("inputEquation").value;
+console.log(equation);
+}
+
+</script>

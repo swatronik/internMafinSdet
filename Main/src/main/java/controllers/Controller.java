@@ -13,8 +13,7 @@ public class Controller {
     public Controller(String[] args) {
         cmdlineArguments = new ParserCmdlineArguments(args);
     }
-
-    public String getDecision (String s) {
+    public String findAnyRoots() {
         rootsFinder = new QuadraticEquationRootsFinder();
         if (ds == null) {
             rootsFinder.run(cmdlineArguments.getFirstArr(), cmdlineArguments.getSecondArr(), cmdlineArguments.getThirdArr());

@@ -10,6 +10,13 @@ public class Main {
 
         System.out.println(myClass2.funcInter(10.5));
 
+        MyClass3 myClass3 = new MyClass3();
+        myClass3.run();
+
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        Object[] objects = arrayList.stream().filter(x -> x > 5).toArray();
+
     }
 
 }

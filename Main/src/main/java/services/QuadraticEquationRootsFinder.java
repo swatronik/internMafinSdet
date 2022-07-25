@@ -23,7 +23,7 @@ public class QuadraticEquationRootsFinder {
         } else if (disc < 0) {
             decision = getNoDecisions();
         }
-        logger.info("\nSo your decision is: {}", decision);
+        logger.info("\nSo your roots is: {}", decision);
     }
 
     public String getDecision() {

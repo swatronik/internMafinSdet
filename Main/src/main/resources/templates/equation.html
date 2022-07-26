@@ -26,7 +26,6 @@
     <input type="text" id="inputEquation" name="equation" style="background-color: powderblue;"
            placeholder="Введите уравнение" required="required">
     <input type="button" name="submit_btn" onclick="desicion()" value="Решить"><br>
-    <label id="result"> </label>
 </form>
 <br>
 <div>Последние решения</div>
@@ -75,7 +74,6 @@ console.log(equation);
 var xmlHttp=new XMLHttpRequest();
 xmlHttp.open( "GET", "http://localhost:8080/abc/"+equation, false ); // false for synchronous request
 xmlHttp.send("")
-document.getElementById('result').innerHTML=xmlHttp.responseText;
 document.getElementById('equation_'+i).innerHTML=equation;
 document.getElementById('roots_'+i).innerHTML=xmlHttp.responseText;
 document.getElementById('date_'+i).innerHTML=new Date();

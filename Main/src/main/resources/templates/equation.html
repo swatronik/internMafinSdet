@@ -17,7 +17,6 @@
 	border: 1px solid black;
    }
 
-
 </style>
 <body>
 <form class="equation_form" name="eq" method="post">
@@ -27,6 +26,7 @@
     <input type="text" id="inputEquation" name="equation" style="background-color: powderblue;"
            placeholder="Введите уравнение" required="required">
     <input type="button" name="submit_btn" onclick="desicion()" value="Решить"><br>
+    <label id="result"> </label>
 </form>
 <br>
 <div>Последние решения</div>
@@ -41,36 +41,46 @@
     </tr>
     <tr>
         <th>1</th>
-        <th>x2=0</th>
-        <th>0</th>
-        <th>01:02:2021 13:30:11</th>
+        <th id="equation_1"></th>
+        <th id="roots_1"></th>
+        <th id="date_1"></th>
     </tr>
     <tr>
         <th>2</th>
-        <th>x^2+x=0</th>
-        <th>x1=1 x2 =3</th>
-        <th>01:02:2021 13:30:11</th>
+        <th id="equation_2"></th>
+        <th id="roots_2"></th>
+        <th id="date_2"></th>
     </tr>
     <tr>
         <th>3</th>
-        <th>x^2+1=0</th>
-        <th> No roots</th>
-        <th>01:01:2021 13:30:11</th>
+        <th id="equation_3"></th>
+        <th id="roots_3"></th>
+        <th id="date_3"></th>
     </tr>
     <tr>
         <th>4</th>
-        <th>x+2+error=0</th>
-        <th>Error invalid equation</th>
-        <th>01:01:2020 13:30:11</th>
+        <th id="equation_4"></th>
+        <th id="roots_4"></th>
+        <th id="date_4"></th>
     </tr>
 </table>
 </body>
 </html>
 
 <script>
+var i=1;
 function desicion(){
 var equation=document.getElementById("inputEquation").value;
 console.log(equation);
+var xmlHttp=new XMLHttpRequest();
+xmlHttp.open( "GET", "http://localhost:8080/abc/"+equation, false ); // false for synchronous request
+xmlHttp.send("")
+document.getElementById('result').innerHTML=xmlHttp.responseText;
+document.getElementById('equation_'+i).innerHTML=equation;
+document.getElementById('roots_'+i).innerHTML=xmlHttp.responseText;
+document.getElementById('date_'+i).innerHTML=new Date();
+if (i==4) {i=1;}
+else {i=i+1;}
 }
 
 </script>

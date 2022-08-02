@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title>Форма решения квадратных уравнений</title>
-</head>
-<style>
+    <style>
    body {background-color: powderblue;}
    table {
     width: 100%; /* Ширина таблицы */
@@ -16,8 +16,9 @@
     padding: 5px; /* Поля вокруг текста */
 	border: 1px solid black;
    }
+    </style>
+</head>
 
-</style>
 <body>
 <form class="equation_form" name="eq" method="post">
     <div style="font-size:large;">Решение квадратных уравнений</div>
@@ -25,60 +26,42 @@
 
     <input type="text" id="inputEquation" name="equation" style="background-color: powderblue;"
            placeholder="Введите уравнение" required="required">
-    <input type="button" name="submit_btn" onclick="desicion()" value="Решить"><br>
+    <input type="button" name="submit_btn" onclick="decision()" value="Решить"><br>
 </form>
 <br>
 <div>Последние решения</div>
 <br>
 
-<table>
+<table id="myTable">
     <tr>
         <th>Номер</th>
         <th>Уравнение</th>
         <th>Корни</th>
         <th>Время</th>
     </tr>
-    <tr>
-        <th>1</th>
-        <th id="equation_1"></th>
-        <th id="roots_1"></th>
-        <th id="date_1"></th>
-    </tr>
-    <tr>
-        <th>2</th>
-        <th id="equation_2"></th>
-        <th id="roots_2"></th>
-        <th id="date_2"></th>
-    </tr>
-    <tr>
-        <th>3</th>
-        <th id="equation_3"></th>
-        <th id="roots_3"></th>
-        <th id="date_3"></th>
-    </tr>
-    <tr>
-        <th>4</th>
-        <th id="equation_4"></th>
-        <th id="roots_4"></th>
-        <th id="date_4"></th>
-    </tr>
 </table>
-</body>
-</html>
 
 <script>
-var i=1;
-function desicion(){
+var count = 1;
+function decision(){
 var equation=document.getElementById("inputEquation").value;
+if (equation==""){
+alert("Вы не ввели квадратное уравнение!");
+return;
+}
 console.log(equation);
 var xmlHttp=new XMLHttpRequest();
-xmlHttp.open( "GET", "http://localhost:8080/abc/"+equation, false ); // false for synchronous request
+xmlHttp.open( "GET", window.location.href+"quadratic/"+equation, false ); // false for synchronous request
 xmlHttp.send("")
-document.getElementById('equation_'+i).innerHTML=equation;
-document.getElementById('roots_'+i).innerHTML=xmlHttp.responseText;
-document.getElementById('date_'+i).innerHTML=new Date();
-if (i==4) {i=1;}
-else {i=i+1;}
+var str="<tr><td>"+count+"</td><td>"
+              +equation+"</td><td>"
+              +xmlHttp.responseText+"</td><td>"
+			  +new Date()+"</td></tr>";
+var tableObj=document.createElement('tbody');
+tableObj.innerHTML=str;
+document.getElementById('myTable').appendChild(tableObj);
+count++;
 }
-
 </script>
+</body>
+</html>

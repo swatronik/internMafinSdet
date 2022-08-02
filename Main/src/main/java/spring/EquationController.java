@@ -21,14 +21,14 @@ public class EquationController {
         return "equation";
     }
 
-    @GetMapping("/abc/{equals}")
-    public ResponseEntity<String> run(@PathVariable("equals") String equals) {
+    @GetMapping("/quadratic/{equals}")
+    public ResponseEntity<String> runQuadratic(@PathVariable(value = "equals") String equals) {
         try {
             Equation equation = parseEquation(equals);
-            Roots desicion = decision(equation);
-            return ResponseEntity.ok().body(desicion.toString());
+            Roots decision = decision(equation);
+            return ResponseEntity.ok().body(decision.toString());
         } catch (ParseException | NumberFormatException e) {
-            return ResponseEntity.ok().body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
     }

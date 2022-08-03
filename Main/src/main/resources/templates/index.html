@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Название страницы: Решение квадратных уравнений</title>
+<!--    <link href="/static/style.css" rel="stylesheet" type="text/css">-->
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
+</head>
+
+
+<body>  <!-- наконец открываем тело нашего документа. Здесь будет всё его содержание-->
+
+<!--начиная отсюда вставляем любые текст, заголовки, ссылки и тп-->
+<h1>Решение квадратных уравнений</h1>
+
+<form class="equation_form" name="feedback" method="POST" action="/feedback.php">
+
+    <input type="text" name="name" required placeholder="Введите уравнение">
+    <br>
+    <br>
+    <input type="submit" name="submit_btn" value="Отправить">
+    <br>
+    <br>
+    <div class="guruweba_example_infofield">Последнее уравнение</div>
+    <table id="model_table_id1231" class="model_table">
+        <tr>
+            <td>№</td> <!--<td>&nbsp;</td> - пустая клетка-->
+            <td>Уравнение</td>
+            <td>Корни</td>
+            <td>Время</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1x</td>
+            <td>x1=2</td>
+            <td>070</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2x</td>
+            <td>x1=2</td>
+            <td>070</td>
+        </tr>
+        <tr>
+            <td>33</td>
+            <td>3x+y</td>
+            <td>x1=2</td>
+            <td>070</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+</form>
+
+<!--<br>-->
+<!--<br>-->
+<!--<fieldset>-->
+<!--    <legend>Решение квадратных уравнений</legend>-->
+<!--    <div class="guruweba_example_infofield">Примеры уравнений</div>-->
+<!--    <select name="theme_id_12" required="required">-->
+<!--        <option value="">Выберите вариант</option>-->
+<!--        <option>Привер уравнения 1</option>-->
+<!--        <option>Привер уравнения 2</option>-->
+<!--    </select>-->
+<!--</fieldset>-->
+
+</body>
+</html>
+

@@ -43,24 +43,31 @@
 
 <script>
 var count = 1;
-function decision(){
-var equation=document.getElementById("inputEquation").value;
-if (equation==""){
-alert("Вы не ввели квадратное уравнение!");
-return;
-}
-console.log(equation);
-var xmlHttp=new XMLHttpRequest();
-xmlHttp.open( "GET", window.location.href+"quadratic/"+equation, false ); // false for synchronous request
-xmlHttp.send("")
-var str="<tr><td>"+count+"</td><td>"
-              +equation+"</td><td>"
-              +xmlHttp.responseText+"</td><td>"
-			  +new Date()+"</td></tr>";
-var tableObj=document.createElement('tbody');
-tableObj.innerHTML=str;
-document.getElementById('myTable').appendChild(tableObj);
-count++;
+
+function decision() {
+    var equation = document.getElementById("inputEquation").value;
+    if (equation == "") {
+        alert("Вы не ввели квадратное уравнение!");
+        return;
+    }
+    console.log(equation);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", window.location.href + "quadratic/" + equation, false); // false for synchronous request
+    xmlHttp.send("")
+    var obj = JSON.parse(xmlHttp.responseText);
+    console.log(obj);
+    if (obj.roots == null) {
+        alert(obj.error);
+        return;
+    }
+    var str = "<tr><td>" + count + "</td>" +
+        "<td>" + obj.equation + "</td>" +
+        "<td>" + obj.roots + "</td>" +
+        "<td>" + obj.date + "</td></tr>";
+    var tableObj = document.createElement('tbody');
+    tableObj.innerHTML = str;
+    document.getElementById('myTable').appendChild(tableObj);
+    count++;
 }
 </script>
 </body>

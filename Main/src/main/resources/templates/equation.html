@@ -61,6 +61,18 @@ function decision() {
         return;
     }
 
+    if (obj.roots == "") {
+        var str = "<tr><td>" + count + "</td>" +
+            "<td>" + obj.equation + "</td>" +
+            "<td> Корней нет </td>" +
+            "<td>" + obj.date + "</td></tr>";
+        var tableObj = document.createElement('tbody');
+        tableObj.innerHTML = str;
+        document.getElementById('myTable').appendChild(tableObj);
+        count++;
+        return;
+        }
+
     var str = "<tr><td>" + count + "</td>" +
         "<td>" + obj.equation + "</td>" +
         "<td>" + obj.roots + "</td>" +

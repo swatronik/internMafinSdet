@@ -3,12 +3,12 @@ package spring;
 import equations.Equation;
 import equations.Roots;
 import org.apache.commons.cli.ParseException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +39,16 @@ public class EquationController {
             Roots decision = decision(equation);
 
             JSONObject resultJson = new JSONObject();
+            JSONArray ar = new JSONArray();
+            if (decision.getCountRoot() == Roots.CountRoot.ONE_ROOT) {
+                ar.put(0, decision.getX1());
+            }
+            if (decision.getCountRoot() == Roots.CountRoot.TWO_ROOTS) {
+                ar.put(0, decision.getX1());
+                ar.put(1, decision.getX2());
+            }
             resultJson.put("equation", equation.toString());
-            resultJson.put("roots", decision.toString());
+            resultJson.put("roots", ar);
             resultJson.put("date", date);
 
             LOGGER.info(equation.toString());

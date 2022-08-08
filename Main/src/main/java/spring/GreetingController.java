@@ -27,19 +27,27 @@ public class GreetingController {
         return "index"; //возвращаем класс\тело хтмл страницы из templates
     }
 
-
-    @GetMapping(value = "/getV", headers = {"Accept=*/*"}) //Accept - без этого не работает
+    //добавили /getV/{equals} ??????
+    @GetMapping(value = "/getV/{equals}", headers = {"Accept=*/*"}) //Accept - без этого не работает
     public ResponseEntity<String> getMethod1(@PathVariable("equals") String equals) throws ExceptionMessage {
+
         System.out.println(equals);
 
-
-        //PatternEquation.getFullEquation(equals);
+        Equation equation = PatternEquation.getFullEquation(equals);
+        SolutionEquation.solution(equation.getA(), equation.getB(), equation.getC());
 
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body("some body from getMapping");
+                .body(SolutionEquation.solution(equation.getA(), equation.getB(), equation.getC()));
     }
+
+
+
+
+
+
+
 
 
     //для работы с джейсонами использовать либу Gson

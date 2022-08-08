@@ -25,7 +25,8 @@ public class ParserArgumentUtil {
         CommandLine cmd = parser.parse(options, args);
 
         if (cmd.hasOption("eq")) {
-            equation = PatternEquation.getFullEquation(cmd); //получили целое уравнение при eq
+            String eq = cmd.getOptionValue("eq");
+            equation = PatternEquation.getFullEquation(eq); //получили целое уравнение при eq
         } else if (cmd.hasOption("a") || cmd.hasOption("b") || cmd.hasOption("c")) {
             equation = PatternEquation.getArgs(cmd); //получили аргументы а-б-с при a
         } else

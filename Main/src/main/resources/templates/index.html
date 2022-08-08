@@ -14,17 +14,18 @@
 <!--начиная отсюда вставляем любые текст, заголовки, ссылки и тп-->
 <h1>Решение квадратных уравнений</h1>
 
-<form class="equation_form" name="feedback">
+<form class="equation_form" name="equation_form_name" method="post">
 
-<!--    присвоили полю для ввода айдишник id="inputEquationId" → по нему вытаскиваем элемент через метод гетЭлементБайИд -->
+    <!--    присвоили полю для ввода айдишник id="inputEquationId" → по нему вытаскиваем элемент через метод гетЭлементБайИд -->
     <input type="text" id="inputEquationId" name="name" required placeholder="Введите уравнение">
     <br>
     <br>
 
-<!--    привязали метод к кнопке - onclick="GetDecision()"-->
+    <!--    привязали метод к кнопке - onclick="GetDecision()"-->
     <input type="button" name="submit_btn" onclick="GetDecision()" value="Отправить">
+
     <br>
-    <br>
+
     <div class="guruweba_example_infofield">Последнее уравнение</div>
     <table id="model_table_id1231" class="model_table">
         <tr>
@@ -34,8 +35,8 @@
             <td>Время</td>
         </tr>
         <tr>
-            <td id="n_t1" > </td>
-            <td id="eq_t1"> </td>
+            <td id="n_t1"></td>
+            <td id="eq_t1"></td>
             <td id="root_t1"></td>
             <td id="time_t1"></td>
         </tr>
@@ -69,14 +70,19 @@
 
         //Создаем реквест хттп - отправляем апи запрос по указ эндпоинту - обрабатывать его обработка будет в гетМаппинг контроллере
         let xmlHttpRequest = new XMLHttpRequest();
-        xmlHttpRequest.open("GET", "http://localhost:8080/getV"+inputValue, false);
+
+        //window.location.href - ????
+        //было - xmlHttpRequest.open("GET", "http://localhost:8080/getV"+inputValue, false);
+        xmlHttpRequest.open("GET", window.location.href + "getV/" + inputValue, false);
 
 
-        //!!!!!!!!!!!!!!!!! тут ошибка
         xmlHttpRequest.send("");
+
+
         console.log(xmlHttpRequest.responseText)
 
-        document.getElementById("root_t1").value = xmlHttpRequest.responseText;
+//было велью
+        document.getElementById("n_t1").innerHTML = xmlHttpRequest.responseText;
 
 
 
@@ -86,6 +92,7 @@
         //    }
         //}
     }
+
 
 
 

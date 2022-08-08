@@ -23,4 +23,13 @@ public class Equation {
     public double getC() {
         return c;
     }
+
+    @Override
+    public String toString() {
+        return "Equation{" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                '}';
+    }
 }

@@ -21,10 +21,10 @@ public class PatternEquation {
 
     //было: заменили CommandLine на стринг ???? 
     //public static Equation getFullEquation(CommandLine cmd) throws ExceptionMessage {
-    public static Equation getFullEquation(CommandLine cmd) throws ExceptionMessage {
+    public static Equation getFullEquation(String eq) throws ExceptionMessage {
 
         Pattern pattern = Pattern.compile(PatternRegexp.patternEquation);
-        Matcher matcher = pattern.matcher(cmd.getOptionValue("eq"));
+        Matcher matcher = pattern.matcher(eq);
 
         if (matcher.matches()) {
             loggerPatternEquation.info("Введенное уравнение проходит проверку шаблона регулярки - ок");

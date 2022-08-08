@@ -32,7 +32,7 @@ public class EquationController {
     @PostMapping("/quadratic/{equals}")
     public ResponseEntity<String> runQuadratic(@PathVariable(value = "equals") String equals) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
             LocalDateTime localDateTime = LocalDateTime.now();
             String date = localDateTime.format(formatter);
             Equation equation = parseEquation(equals);

@@ -15,7 +15,12 @@ public class PatternEquation {
     //отдельный логгер для util.PatternEquation. Для каждого класса - отдельный логгер
     public static Logger loggerPatternEquation = LoggerFactory.getLogger(PatternEquation.class);
 
+
+
     //метод для парсинга значений целого уравнения и его проверки.
+
+    //было: заменили CommandLine на стринг ???? 
+    //public static Equation getFullEquation(CommandLine cmd) throws ExceptionMessage {
     public static Equation getFullEquation(CommandLine cmd) throws ExceptionMessage {
 
         Pattern pattern = Pattern.compile(PatternRegexp.patternEquation);

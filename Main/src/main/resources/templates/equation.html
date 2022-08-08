@@ -52,14 +52,15 @@ function decision() {
     }
     console.log(equation);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", window.location.href + "quadratic/" + equation, false); // false for synchronous request
-    xmlHttp.send("")
+    xmlHttp.open("POST", window.location.href + "quadratic/" + equation, false); // false for synchronous request
+    xmlHttp.send("equation:" + equation);
     var obj = JSON.parse(xmlHttp.responseText);
     console.log(obj);
     if (obj.roots == null) {
         alert(obj.error);
         return;
     }
+
     var str = "<tr><td>" + count + "</td>" +
         "<td>" + obj.equation + "</td>" +
         "<td>" + obj.roots + "</td>" +

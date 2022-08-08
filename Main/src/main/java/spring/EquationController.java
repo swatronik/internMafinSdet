@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class EquationController {
         return "equation";
     }
 
-    @GetMapping("/quadratic/{equals}")
+    @PostMapping("/quadratic/{equals}")
     public ResponseEntity<String> runQuadratic(@PathVariable(value = "equals") String equals) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss");

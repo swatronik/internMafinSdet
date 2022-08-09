@@ -51,11 +51,11 @@ function decision() {
     }
     console.log(equation);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", window.location.href + "quadratic/", false); // false for synchronous request
+    xmlHttp.open("POST", window.location.href + "quadratic", false); // false for synchronous request
     xmlHttp.send(equation);
     var obj = JSON.parse(xmlHttp.responseText);
     console.log(obj);
-    if (obj.roots == null) {
+    if (obj.error != null) {
         alert(obj.error);
         return;
     }

@@ -32,7 +32,7 @@ public class EquationController {
     }
 
 
-    @PostMapping("/quadratic/")
+    @PostMapping("/quadratic")
     public ResponseEntity<String> runQuadratic(@RequestBody String equals) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
@@ -42,10 +42,10 @@ public class EquationController {
             Roots decision = decision(equation);
 
             JSONObject resultJson = new JSONObject();
+            resultJson.put("count", count);
             resultJson.put("equation", equation.toString());
             resultJson.put("roots", decision.toString());
             resultJson.put("date", date);
-            resultJson.put("count", count);
 
             count++;
 

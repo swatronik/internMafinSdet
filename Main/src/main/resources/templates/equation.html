@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Форма решения квадратных уравнений</title>
+    <style>
+   body {background-color: powderblue;}
+   table {
+    width: 100%; /* Ширина таблицы */
+    background: powderblue; /* Цвет фона таблицы */
+    color: black; /* Цвет текста */
+   }
+   td, th {
+    background: powderblue; /* Цвет фона ячеек */
+    padding: 5px; /* Поля вокруг текста */
+	border: 1px solid black;
+   }
+    </style>
+</head>
+
+<body>
+<form class="equation_form" name="eq" method="post">
+    <div style="font-size:large;">Решение квадратных уравнений</div>
+    <br>
+
+    <input type="text" id="inputEquation" name="equation" style="background-color: powderblue;"
+           placeholder="Введите уравнение" required="required">
+    <input type="button" name="submit_btn" onclick="decision()" value="Решить"><br>
+</form>
+<br>
+<div>Последние решения</div>
+<br>
+
+<table id="myTable">
+    <tr>
+        <th>Номер</th>
+        <th>Уравнение</th>
+        <th>Корни</th>
+        <th>Время</th>
+    </tr>
+</table>
+
+<script>
+
+function decision() {
+    var equation = document.getElementById("inputEquation").value;
+    if (equation == "") {
+        alert("Вы не ввели квадратное уравнение!");
+        return;
+    }
+    console.log(equation);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", window.location.href + "quadratic", false); // false for synchronous request
+    xmlHttp.send(equation);
+    var obj = JSON.parse(xmlHttp.responseText);
+    console.log(obj);
+    if (obj.error != null) {
+        alert(obj.error);
+        return;
+    }
+
+    var str = "<tr><td>" + obj.count + "</td>" +
+        "<td>" + obj.equation + "</td>" +
+        "<td>" + obj.roots + "</td>" +
+        "<td>" + obj.date + "</td></tr>";
+
+    var tableObj = document.createElement('tbody');
+    tableObj.innerHTML = str;
+    document.getElementById('myTable').appendChild(tableObj);
+}
+</script>
+</body>
+</html>

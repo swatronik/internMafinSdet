@@ -43,13 +43,6 @@ public class GreetingController {
     }
 
 
-
-
-
-
-
-
-
     //для работы с джейсонами использовать либу Gson
     @PostMapping(value = "/postV", headers = {"Accept=*/*"})
     public ResponseEntity postMethod1(@RequestBody String body) {

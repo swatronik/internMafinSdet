@@ -42,7 +42,6 @@
 </table>
 
 <script>
-var count = 1;
 
 function decision() {
     var equation = document.getElementById("inputEquation").value;
@@ -52,8 +51,8 @@ function decision() {
     }
     console.log(equation);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", window.location.href + "quadratic/" + equation, false); // false for synchronous request
-    xmlHttp.send("equation:" + equation);
+    xmlHttp.open("POST", window.location.href + "quadratic/", false); // false for synchronous request
+    xmlHttp.send(equation);
     var obj = JSON.parse(xmlHttp.responseText);
     console.log(obj);
     if (obj.roots == null) {
@@ -61,23 +60,14 @@ function decision() {
         return;
     }
 
-    if (obj.roots == "") {
-        var str = "<tr><td>" + count + "</td>" +
-            "<td>" + obj.equation + "</td>" +
-            "<td> Корней нет </td>" +
-            "<td>" + obj.date + "</td></tr>";
-            }
-
-    else{
-        var str = "<tr><td>" + count + "</td>" +
-            "<td>" + obj.equation + "</td>" +
-            "<td>" + obj.roots + "</td>" +
-            "<td>" + obj.date + "</td></tr>";}
+    var str = "<tr><td>" + obj.count + "</td>" +
+        "<td>" + obj.equation + "</td>" +
+        "<td>" + obj.roots + "</td>" +
+        "<td>" + obj.date + "</td></tr>";
 
     var tableObj = document.createElement('tbody');
     tableObj.innerHTML = str;
     document.getElementById('myTable').appendChild(tableObj);
-    count++;
 }
 </script>
 </body>

@@ -3,24 +3,26 @@ package spring;
 import equations.Equation;
 import equations.Roots;
 import org.apache.commons.cli.ParseException;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static equations.EquationDecision.decision;
+import static java.time.ZoneOffset.UTC;
 import static util.Parser.parseEquation;
 
 @Controller
 public class EquationController {
+
+    private int count = 1;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquationController.class);
 
@@ -29,27 +31,23 @@ public class EquationController {
         return "equation";
     }
 
-    @PostMapping("/quadratic/{equals}")
-    public ResponseEntity<String> runQuadratic(@PathVariable(value = "equals") String equals) {
+
+    @PostMapping("/quadratic/")
+    public ResponseEntity<String> runQuadratic(@RequestBody String equals) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
-            LocalDateTime localDateTime = LocalDateTime.now();
+            LocalDateTime localDateTime = LocalDateTime.now(UTC);
             String date = localDateTime.format(formatter);
             Equation equation = parseEquation(equals);
             Roots decision = decision(equation);
 
             JSONObject resultJson = new JSONObject();
-            JSONArray ar = new JSONArray();
-            if (decision.getCountRoot() == Roots.CountRoot.ONE_ROOT) {
-                ar.put(0, decision.getX1());
-            }
-            if (decision.getCountRoot() == Roots.CountRoot.TWO_ROOTS) {
-                ar.put(0, decision.getX1());
-                ar.put(1, decision.getX2());
-            }
             resultJson.put("equation", equation.toString());
-            resultJson.put("roots", ar);
+            resultJson.put("roots", decision.toString());
             resultJson.put("date", date);
+            resultJson.put("count", count);
+
+            count++;
 
             LOGGER.info(equation.toString());
             LOGGER.info(decision.toString());

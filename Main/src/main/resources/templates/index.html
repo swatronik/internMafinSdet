@@ -64,54 +64,28 @@
 
         //Присваиваем переменной значение из поля inputEquationId
         let inputValue = document.getElementById("inputEquationId").value;
-
-        //Вывод в консоль лог
-        console.log(inputValue)
+               console.log(inputValue)
 
         //Создаем реквест хттп - отправляем апи запрос по указ эндпоинту - обрабатывать его обработка будет в гетМаппинг контроллере
         let xmlHttpRequest = new XMLHttpRequest();
 
-        //window.location.href - ????
-        //было - xmlHttpRequest.open("GET", "http://localhost:8080/getV"+inputValue, false);
-        xmlHttpRequest.open("GET", window.location.href + "getV/" + inputValue, false);
-
-
+        xmlHttpRequest.open("GET", window.location.href + "getEquals/" + inputValue, false);
         xmlHttpRequest.send("");
 
+        if (xmlHttpRequest.status != 200) {
+            // обработать ошибку
+            alert( xmlHttpRequest.status + ': ' + xmlHttpRequest.statusText ); // пример вывода: 404: Not Found
+        } else {
+            // вывести результат
+            alert( xmlHttpRequest.responseText ); // responseText -- текст ответа.
+        }
 
         console.log(xmlHttpRequest.responseText)
 
-//было велью
         document.getElementById("n_t1").innerHTML = xmlHttpRequest.responseText;
-
-
-
-        //xmlHttpRequest.onreadystatechange = function() {
-        //    if (xmlHttpRequest.readyState == XMLHttpRequest.DONE) {
-        //        alert(xmlHttpRequest.responseText);
-        //    }
-        //}
-    }
-
-
-
-
+     }
 
 </script>
-
-
-<!--<br>-->
-<!--<br>-->
-<!--<fieldset>-->
-<!--    <legend>Решение квадратных уравнений</legend>-->
-<!--    <div class="guruweba_example_infofield">Примеры уравнений</div>-->
-<!--    <select name="theme_id_12" required="required">-->
-<!--        <option value="">Выберите вариант</option>-->
-<!--        <option>Привер уравнения 1</option>-->
-<!--        <option>Привер уравнения 2</option>-->
-<!--    </select>-->
-<!--</fieldset>-->
-
 </body>
 </html>
 

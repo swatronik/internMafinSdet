@@ -12,22 +12,16 @@ import java.util.regex.Pattern;
 
 public class PatternEquation {
 
-    //отдельный логгер для util.PatternEquation. Для каждого класса - отдельный логгер
-    public static Logger loggerPatternEquation = LoggerFactory.getLogger(PatternEquation.class);
+    public static Logger logger = LoggerFactory.getLogger(PatternEquation.class);
 
-
-
-    //метод для парсинга значений целого уравнения и его проверки.
-
-    //было: заменили CommandLine на стринг ???? 
-    //public static Equation getFullEquation(CommandLine cmd) throws ExceptionMessage {
+    //метод для парсинга значений целого уравнения и его проверки через шаблон регексп
     public static Equation getFullEquation(String eq) throws ExceptionMessage {
 
         Pattern pattern = Pattern.compile(PatternRegexp.patternEquation);
         Matcher matcher = pattern.matcher(eq);
 
         if (matcher.matches()) {
-            loggerPatternEquation.info("Введенное уравнение проходит проверку шаблона регулярки - ок");
+            logger.info("Введенное уравнение проходит проверку шаблона регулярки - ок");
 
             double a = Double.parseDouble(matcher.group(5));
             double b = Double.parseDouble(matcher.group(7));

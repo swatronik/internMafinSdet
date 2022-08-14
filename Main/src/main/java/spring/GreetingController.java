@@ -31,7 +31,7 @@ public class GreetingController {
     public ResponseEntity<String> getEquals(@PathVariable("equals") String equals) throws ExceptionMessage {
 
         Equation equation = PatternEquation.getFullEquation(equals);
-        String solution = SolutionEquation.solution(equation);
+        String solution = String.valueOf(SolutionEquation.solution(equation));
 
         logger.info(equals);
         logger.info(String.valueOf(equation));

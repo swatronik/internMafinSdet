@@ -29,7 +29,7 @@
     <div class="guruweba_example_infofield">Последнее уравнение</div>
     <table id="model_table_id1231" class="model_table">
         <tr>
-            <td>№</td> <!--<td>&nbsp;</td> - пустая клетка-->
+            <td>№</td>
             <td>Уравнение</td>
             <td>Корни</td>
             <td>Время</td>
@@ -70,19 +70,29 @@
         let xmlHttpRequest = new XMLHttpRequest();
 
         xmlHttpRequest.open("GET", window.location.href + "getEquals/" + inputValue, false);
+
+
+        //xmlHttpRequest.responseType = 'json';
+
         xmlHttpRequest.send("");
 
-        if (xmlHttpRequest.status != 200) {
-            // обработать ошибку
-            alert( xmlHttpRequest.status + ': ' + xmlHttpRequest.statusText ); // пример вывода: 404: Not Found
-        } else {
-            // вывести результат
-            alert( xmlHttpRequest.responseText ); // responseText -- текст ответа.
+        if (xmlHttpRequest.status != 200) { // HTTP ошибка?
+            // обработаем ошибку
+            alert( 'Ошибка: ' + xhr.status);
+            return;
         }
 
-        console.log(xmlHttpRequest.responseText)
+        console.log(xmlHttpRequest.response)
 
-        document.getElementById("n_t1").innerHTML = xmlHttpRequest.responseText;
+        let date = new Date(2011, 0, 1, 0, 0, 0, 0);
+                console.log(date);
+
+
+        document.getElementById("n_t1").innerHTML = "1";
+        document.getElementById("eq_t1").innerHTML = inputValue;
+        document.getElementById("root_t1").innerHTML = xmlHttpRequest.responseText;
+        document.getElementById("time_t1").innerHTML = date;
+
      }
 
 </script>

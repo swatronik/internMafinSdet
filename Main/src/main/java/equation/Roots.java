@@ -1,6 +1,5 @@
 package equation;
 
-//дебажить, заучить
 public class Roots {
 
     public enum CountRoot {
@@ -60,6 +59,16 @@ public class Roots {
 
     @Override
     public String toString() {
-        return super.toString();
+
+        switch (countRoot) {
+            case NO_ROOTS:
+                return String.format("NO_ROOTS");
+            case ONE_ROOT:
+                return String.format("root = %s", x1);
+            case TWO_ROOTS:
+                return String.format("root 1 = %s root 2 = %s", x1, x2);
+            default:
+                return "default";
+        }
     }
 }

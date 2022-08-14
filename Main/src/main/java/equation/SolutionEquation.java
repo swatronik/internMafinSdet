@@ -9,7 +9,7 @@ public class SolutionEquation {
 
     public static Logger logger = LoggerFactory.getLogger(SolutionEquation.class);
 
-    public static String solution(Equation equation) {
+    public static Roots solution(Equation equation) {
 
         Double a = equation.getA();
         Double b = equation.getB();
@@ -19,22 +19,15 @@ public class SolutionEquation {
         logger.info("discriminant равен = " + discriminant);
 
         if (discriminant == 0) {
-            logger.info("discriminant равен = 0, получаем 1 корень");
-            Double x = -b / (2 * a);
-            logger.info("root = " + x);
-
-            return "root = " + x;
+            logger.debug("discriminant равен = 0, получаем 1 корень");
+            return new Roots(-b / (2 * a));
 
         } else if (discriminant > 0) {
-            logger.info("discriminant is positive, get two roots");
-            Double x1 = (-b + sqrt(discriminant)) / (2 * a);
-            Double x2 = (-b - sqrt(discriminant)) / (2 * a);
-            logger.info("root 1 = " + x1, "root 2 = " + x2);
-
-            return "root 1 = " + x1 + " root 2 = " + x2;
+            logger.debug("discriminant is positive, get two roots");
+            return new Roots((-b + sqrt(discriminant)) / (2 * a), (-b - sqrt(discriminant)) / (2 * a));
 
         } else
-            logger.info("discriminant is negative, no roots");
-        return "discriminant is negative, no roots";
+            logger.debug("discriminant is negative, no roots");
+            return new Roots();
     }
 }

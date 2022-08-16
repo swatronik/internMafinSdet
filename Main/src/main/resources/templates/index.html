@@ -8,24 +8,16 @@
     <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet"/>
 </head>
 
-
-<body>  <!-- наконец открываем тело нашего документа. Здесь будет всё его содержание-->
-
-<!--начиная отсюда вставляем любые текст, заголовки, ссылки и тп-->
+<body>
 <h1>Решение квадратных уравнений</h1>
-
 <form class="equation_form" name="equation_form_name" method="post">
-
     <!--    присвоили полю для ввода айдишник id="inputEquationId" → по нему вытаскиваем элемент через метод гетЭлементБайИд -->
-    <input type="text" id="inputEquationId" name="name" required placeholder="Введите уравнение">
+    <input type="text" id="inputEquationId" name="inputEquation" required placeholder="Введите уравнение">
     <br>
     <br>
-
     <!--    привязали метод к кнопке - onclick="GetDecision()"-->
     <input type="button" name="submit_btn" onclick="GetDecision()" value="Отправить">
-
     <br>
-
     <div class="guruweba_example_infofield">Последнее уравнение</div>
     <table id="model_table_id1231" class="model_table">
         <tr>
@@ -60,40 +52,30 @@
 
 <script>
 
+    //Присваиваем переменной значение из поля inputEquationId
+    //Создаем реквест хттп - отправляем апи запрос по указ эндпоинту - обрабатывать его обработка будет в гетМаппинг контроллере
+
     function GetDecision() {
+        let inputEquation = document.getElementById("inputEquationId").value;
+           console.log(inputEquation)
 
-        //Присваиваем переменной значение из поля inputEquationId
-        let inputValue = document.getElementById("inputEquationId").value;
-               console.log(inputValue)
-
-        //Создаем реквест хттп - отправляем апи запрос по указ эндпоинту - обрабатывать его обработка будет в гетМаппинг контроллере
         let xmlHttpRequest = new XMLHttpRequest();
-
-        xmlHttpRequest.open("GET", window.location.href + "getEquals/" + inputValue, false);
-
-
-        //xmlHttpRequest.responseType = 'json';
-
-        xmlHttpRequest.send("");
-
-        if (xmlHttpRequest.status != 200) { // HTTP ошибка?
-            // обработаем ошибку
-            alert( 'Ошибка: ' + xhr.status);
-            return;
-        }
+        xmlHttpRequest.open("POST", window.location.href + "postEqualsEquation", false);
+        xmlHttpRequest.send(inputEquation);
+            if (xmlHttpRequest.status != 200) {
+                alert( 'Ошибка: ' + xmlHttpRequest.status);
+                return;
+            }
 
         console.log(xmlHttpRequest.response)
 
-        let date = new Date(2011, 0, 1, 0, 0, 0, 0);
-                console.log(date);
-
-
         document.getElementById("n_t1").innerHTML = "1";
-        document.getElementById("eq_t1").innerHTML = inputValue;
+        document.getElementById("eq_t1").innerHTML = inputEquation;
         document.getElementById("root_t1").innerHTML = xmlHttpRequest.responseText;
         document.getElementById("time_t1").innerHTML = date;
 
      }
+
 
 </script>
 </body>

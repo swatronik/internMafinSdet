@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import util.ParserArgumentUtil;
 import util.PatternEquation;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class GreetingController {
 
@@ -27,8 +30,17 @@ public class GreetingController {
         return "index";
     }
 
+    private int count = 1;
+
     @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
+
+        Date dateNow = new Date();
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //SimpleDateFormat formatForDateNow = new SimpleDateFormat("E yyyy.MM.dd 'и время' hh:mm:ss a zzz");
+        String date = ("Текущая дата " + formater.format(dateNow));
+        logger.info(date);
+
 
         Equation equation = PatternEquation.getFullEquation(equals);
         String solution = String.valueOf(SolutionEquation.solution(equation));
@@ -36,14 +48,20 @@ public class GreetingController {
         logger.info(equals);
         logger.info(String.valueOf(equation));
         logger.info(solution);
+        logger.info(date);
 
         JSONObject responseJSON = new JSONObject();
+
+        responseJSON.put("number", count);
         responseJSON.put("equation", equation.toString());
+        responseJSON.put("roots", solution);
+        responseJSON.put("date", date);
+        count++;
 
         return ResponseEntity
                 .ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(solution);
+                //.contentType(MediaType.APPLICATION_JSON)
+                .body(responseJSON.toString());
     }
 }
 

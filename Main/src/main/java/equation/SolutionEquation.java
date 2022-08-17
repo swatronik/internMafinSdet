@@ -16,6 +16,7 @@ public class SolutionEquation {
         Double c = equation.getC();
 
         Double discriminant = b * b - 4 * a * c;
+
         logger.info("discriminant равен = " + discriminant);
 
         if (discriminant == 0) {

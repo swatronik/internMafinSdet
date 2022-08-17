@@ -18,35 +18,38 @@
     <!--    привязали метод к кнопке - onclick="GetDecision()"-->
     <input type="button" name="submit_btn" onclick="GetDecision()" value="Отправить">
     <br>
+    <br>
+    <br>
+    <br>
     <div class="guruweba_example_infofield">Последнее уравнение</div>
-    <table id="model_table_id1231" class="model_table">
+    <br>
+
+    <table id="table_id_001">
         <tr>
-            <td>№</td>
-            <td>Уравнение</td>
-            <td>Корни</td>
-            <td>Время</td>
+            <td>Number</td>
+            <td>Equation</td>
+            <td>Roots</td>
+            <td>Date</td>
         </tr>
-        <tr>
-            <td id="n_t1"></td>
-            <td id="eq_t1"></td>
-            <td id="root_t1"></td>
-            <td id="time_t1"></td>
-        </tr>
-        <tr>
-            <td id="n_t2"></td>
-            <td id="eq_t2"></td>
-            <td id="root_t2"></td>
-            <td id="time_t2"></td>
-        </tr>
-        <tr>
-            <td id="n_t3"></td>
-            <td id="eq_t3"></td>
-            <td id="root_t3"></td>
-            <td id="time_t3"></td>
-        </tr>
+        <!--        <tr>-->
+        <!--            <td id="n_t1"></td>-->
+        <!--            <td id="eq_t1"></td>-->
+        <!--            <td id="root_t1"></td>-->
+        <!--            <td id="time_t1"></td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--            <td id="n_t2"></td>-->
+        <!--            <td id="eq_t2"></td>-->
+        <!--            <td id="root_t2"></td>-->
+        <!--            <td id="time_t2"></td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--            <td id="n_t3"></td>-->
+        <!--            <td id="eq_t3"></td>-->
+        <!--            <td id="root_t3"></td>-->
+        <!--            <td id="time_t3"></td>-->
+        <!--        </tr>-->
     </table>
-    <br>
-    <br>
 </form>
 
 
@@ -66,15 +69,34 @@
                 alert( 'Ошибка: ' + xmlHttpRequest.status);
                 return;
             }
-
         console.log(xmlHttpRequest.response)
 
-        document.getElementById("n_t1").innerHTML = "1";
-        document.getElementById("eq_t1").innerHTML = inputEquation;
-        document.getElementById("root_t1").innerHTML = xmlHttpRequest.responseText;
-        document.getElementById("time_t1").innerHTML = date;
+        //response q responseText ?? - текст - это сырой текст, респонс - это от формата
 
+        let XmlResponseTextJsonParse = JSON.parse(xmlHttpRequest.responseText);
+            console.log(XmlResponseTextJsonParse);
+
+
+<!--        var tableModel = "<tr><td>" + XmlResponseTextJsonParse.number + "</td>" +-->
+<!--            "<td>" + XmlResponseTextJsonParse.equation + "</td>" +-->
+<!--            "<td>" + XmlResponseTextJsonParse.roots + "</td>" +-->
+<!--            "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";-->
+
+            var str = "<tr><td>" + XmlResponseTextJsonParse.number + "</td>" +
+        "<td>" + XmlResponseTextJsonParse.equation + "</td>" +
+        "<td>" + XmlResponseTextJsonParse.roots + "</td>" +
+        "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";
+
+        var tableObj = document.createElement('tbody');
+        tableObj.innerHTML = str;
+        document.getElementById('table_id_001').appendChild(tableObj);
+
+
+<!--        let tableObj = document.createElement('tableBody');-->
+<!--        tableObj.innerHTML = tableModel;-->
+<!--        document.getElementById('table_id_001').appendChild(tableObj);-->
      }
+
 
 
 </script>

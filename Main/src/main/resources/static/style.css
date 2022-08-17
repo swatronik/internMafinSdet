@@ -1,3 +1,4 @@
+/*
 legend {
     display: block;
     padding-inline-start: 2px;
@@ -7,17 +8,25 @@ legend {
     border-color: initial;
     border-image: initial;
 }
+*/
 
+/* */
 
 form {
   /* Just to center the form on the page */
   margin: 0 auto;
+  /*
+
   width: 900px;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+
+  */
+
 
   /* To see the limits of the form */
   padding: 1em;
-  border: 1px solid #CCC;
-  border-radius: 1em;
+
 }
 
 div + div {
@@ -38,13 +47,13 @@ text-align: center;
   font: 1em sans-serif;
 
   /* To give the same size to all text field */
-  width: 900px;
+  width: 500px;
 
   -moz-box-sizing: border-box;
        box-sizing: border-box;
 
   /* To harmonize the look & feel of text field border */
-  border: 1px solid #ff8c00;
+  border: 2px solid #ff8c00;
 }
 
 select {
@@ -97,7 +106,7 @@ table {
 
 td, th {
   border: 1px solid rgb(190,190,190);
-  padding: 10px 90px;
+  padding: 20px 120px;
 }
 
 h1{

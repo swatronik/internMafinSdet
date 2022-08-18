@@ -23,7 +23,7 @@ import static util.Parser.parseEquation;
 @Controller
 public class EquationController {
 
-    AtomicInteger count = new AtomicInteger(0);
+    private AtomicInteger count = new AtomicInteger(0);
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquationController.class);
 

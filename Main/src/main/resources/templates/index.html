@@ -71,33 +71,20 @@
             }
         console.log(xmlHttpRequest.response)
 
-        //response q responseText ?? - текст - это сырой текст, респонс - это от формата
-
         let XmlResponseTextJsonParse = JSON.parse(xmlHttpRequest.responseText);
             console.log(XmlResponseTextJsonParse);
 
+        var tableModel = "<tr><td>" + XmlResponseTextJsonParse.number + "</td>" +
+            "<td>" + XmlResponseTextJsonParse.equation + "</td>" +
+            "<td>" + XmlResponseTextJsonParse.roots + "</td>" +
+            "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";
+            console.log(tableModel);
 
-<!--        var tableModel = "<tr><td>" + XmlResponseTextJsonParse.number + "</td>" +-->
-<!--            "<td>" + XmlResponseTextJsonParse.equation + "</td>" +-->
-<!--            "<td>" + XmlResponseTextJsonParse.roots + "</td>" +-->
-<!--            "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";-->
-
-            var str = "<tr><td>" + XmlResponseTextJsonParse.number + "</td>" +
-        "<td>" + XmlResponseTextJsonParse.equation + "</td>" +
-        "<td>" + XmlResponseTextJsonParse.roots + "</td>" +
-        "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";
-
+        //'tbody' - часть xmlHttpRequest
         var tableObj = document.createElement('tbody');
-        tableObj.innerHTML = str;
+        tableObj.innerHTML = tableModel;
         document.getElementById('table_id_001').appendChild(tableObj);
-
-
-<!--        let tableObj = document.createElement('tableBody');-->
-<!--        tableObj.innerHTML = tableModel;-->
-<!--        document.getElementById('table_id_001').appendChild(tableObj);-->
      }
-
-
 
 </script>
 </body>

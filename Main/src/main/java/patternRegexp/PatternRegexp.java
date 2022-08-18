@@ -22,10 +22,11 @@ public class PatternRegexp {
         [0-9]+ - 1 и более цифр
         $ - конец строки.
 
-0 roots
-4x^2+2x+1=0
-1 roots
-1x^2-6x+9=0
-2 roots
-4x^2+2x-1=0
+    Примеры уравнений.
+        0 roots
+        4x^2+2x+1=0
+        1 roots
+        1x^2-6x+9=0
+        2 roots
+        4x^2+2x-1=0
 */

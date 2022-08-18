@@ -3,18 +3,16 @@ package spring;
 import equation.Equation;
 import equation.SolutionEquation;
 import exception.ExceptionMessage;
-import netscape.javascript.JSObject;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import util.ParserArgumentUtil;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import util.PatternEquation;
 
 import java.text.SimpleDateFormat;
@@ -41,7 +39,6 @@ public class GreetingController {
         String date = ("Текущая дата " + formater.format(dateNow));
         logger.info(date);
 
-
         Equation equation = PatternEquation.getFullEquation(equals);
         String solution = String.valueOf(SolutionEquation.solution(equation));
 
@@ -51,7 +48,6 @@ public class GreetingController {
         logger.info(date);
 
         JSONObject responseJSON = new JSONObject();
-
         responseJSON.put("number", count);
         responseJSON.put("equation", equation.toString());
         responseJSON.put("roots", solution);
@@ -64,25 +60,6 @@ public class GreetingController {
                 .body(responseJSON.toString());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Кусок работоспособного кода на метод GET

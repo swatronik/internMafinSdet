@@ -24,7 +24,6 @@ public class Roots {
         return countRoot;
     }
 
-
     private final Double x1;
     private final Double x2;
 
@@ -36,7 +35,6 @@ public class Roots {
     public Double getX2() {
         return x2;
     }
-
 
     public Roots() {
 
@@ -65,8 +63,6 @@ public class Roots {
                 return String.format("NO_ROOTS");
             case ONE_ROOT:
                 return String.format("root = %.2f", x1);
-            //return String.format("root = %s", x1);
-            //String formattedDouble = String.format("%.2f", 0.1321231);
             case TWO_ROOTS:
                 return String.format("root 1 = %.2f , root 2 = %.2f", x1, x2);
 

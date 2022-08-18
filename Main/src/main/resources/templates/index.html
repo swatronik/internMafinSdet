@@ -4,12 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Название страницы: Решение квадратных уравнений</title>
-    <!--    <link href="/static/style.css" rel="stylesheet" type="text/css">-->
+    <!-- привязали ксс стили-->
     <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet"/>
 </head>
 
 <body>
+
 <h1>Решение квадратных уравнений</h1>
+
 <form class="equation_form" name="equation_form_name" method="post">
     <!--    присвоили полю для ввода айдишник id="inputEquationId" → по нему вытаскиваем элемент через метод гетЭлементБайИд -->
     <input type="text" id="inputEquationId" name="inputEquation" required placeholder="Введите уравнение">
@@ -23,7 +25,6 @@
     <br>
     <div class="guruweba_example_infofield">Последнее уравнение</div>
     <br>
-
     <table id="table_id_001">
         <tr>
             <td>Number</td>
@@ -31,27 +32,10 @@
             <td>Roots</td>
             <td>Date</td>
         </tr>
-        <!--        <tr>-->
-        <!--            <td id="n_t1"></td>-->
-        <!--            <td id="eq_t1"></td>-->
-        <!--            <td id="root_t1"></td>-->
-        <!--            <td id="time_t1"></td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--            <td id="n_t2"></td>-->
-        <!--            <td id="eq_t2"></td>-->
-        <!--            <td id="root_t2"></td>-->
-        <!--            <td id="time_t2"></td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--            <td id="n_t3"></td>-->
-        <!--            <td id="eq_t3"></td>-->
-        <!--            <td id="root_t3"></td>-->
-        <!--            <td id="time_t3"></td>-->
-        <!--        </tr>-->
     </table>
 </form>
 
+<!--<script src="C:\Users\Vitalii\IdeaProjects\internMafinSdet\Main\src\main\resources\templates\getDecision.js"></script>-->
 
 <script>
 
@@ -80,7 +64,7 @@
             "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";
             console.log(tableModel);
 
-        //'tbody' - часть xmlHttpRequest
+        //'tbody' - часть xmlHttpRequest ???
         var tableObj = document.createElement('tbody');
         tableObj.innerHTML = tableModel;
         document.getElementById('table_id_001').appendChild(tableObj);

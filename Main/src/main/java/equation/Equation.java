@@ -26,6 +26,6 @@ public class Equation {
 
     @Override
     public String toString() {
-        return String.format("%sx^2%sx%s=0", a , (b<0?b:"+"+b), (c<0?c:"+"+c));
+        return String.format("%sx^2%sx%s=0", a, (b < 0 ? b : "+" + b), (c < 0 ? c : "+" + c));
     }
 }

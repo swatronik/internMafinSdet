@@ -29,6 +29,6 @@ public class SolutionEquation {
 
         } else
             logger.debug("discriminant is negative, no roots");
-            return new Roots();
+        return new Roots();
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static equations.EquationDecision.decision;
 import static java.time.ZoneOffset.UTC;
@@ -22,7 +23,7 @@ import static util.Parser.parseEquation;
 @Controller
 public class EquationController {
 
-    private int count = 1;
+    AtomicInteger count = new AtomicInteger(0);
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquationController.class);
 
@@ -42,16 +43,12 @@ public class EquationController {
             Roots decision = decision(equation);
 
             JSONObject resultJson = new JSONObject();
-            resultJson.put("count", count);
+            resultJson.put("count", count.incrementAndGet());
             resultJson.put("equation", equation.toString());
             resultJson.put("roots", decision.toString());
             resultJson.put("date", date);
 
-            count++;
-
-            LOGGER.info(equation.toString());
-            LOGGER.info(decision.toString());
-            LOGGER.info(date);
+            LOGGER.info(String.format("equation - %s, roots - %s, date - %s, count - %s", equation.toString(), decision.toString(), date, count.toString()));
             return ResponseEntity.ok().body(resultJson.toString());
         } catch (ParseException | NumberFormatException e) {
             LOGGER.error(e.getMessage());

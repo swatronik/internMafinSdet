@@ -48,7 +48,7 @@ public class EquationController {
             resultJson.put("roots", decision.toString());
             resultJson.put("date", date);
 
-            LOGGER.info(String.format("equation - %s, roots - %s, date - %s, count - %s", equation.toString(), decision.toString(), date, count.toString()));
+            LOGGER.info(String.format("Request POST /quadratic sent: equation - %s, roots - %s, date - %s, count - %s", equation.toString(), decision.toString(), date, count.toString()));
             return ResponseEntity.ok().body(resultJson.toString());
         } catch (ParseException | NumberFormatException e) {
             LOGGER.error(e.getMessage());

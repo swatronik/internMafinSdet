@@ -37,7 +37,7 @@ public class SprController {
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
 
         DateTimeFormatter formatter =
-                DateTimeFormatter.ofPattern("Дата: dd.MM.yyyy Время: HH:mm:ss");
+                DateTimeFormatter.ofPattern("Время: HH:mm:ss Дата: dd.MM.yyyy");
         LocalDateTime localDateTime = LocalDateTime.now();
         String date = localDateTime.format(formatter);
         logger.debug("DateTimeFormatter выводит дату: " + date);
@@ -59,25 +59,6 @@ public class SprController {
 
         return ResponseEntity
                 .ok()
-                //.contentType(MediaType.APPLICATION_JSON)
                 .body(responseJSON.toString());
     }
 }
-
-
-// Кусок работоспособного кода на метод GET
-//    @GetMapping(value = "/getEquals/{equals}", headers = {"Accept=*/*"}) //Accept - без этого не работает
-//    public ResponseEntity<String> getEquals(@PathVariable("equals") String equals) throws ExceptionMessage {
-//
-//        Equation equation = PatternEquation.getFullEquation(equals);
-//        String solution = String.valueOf(SolutionEquation.solution(equation));
-//
-//        logger.info(equals);
-//        logger.info(String.valueOf(equation));
-//        logger.info(solution);
-//
-//        return ResponseEntity
-//                .ok()
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .body(solution);
-//    }

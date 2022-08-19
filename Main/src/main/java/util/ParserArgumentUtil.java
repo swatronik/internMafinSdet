@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class ParserArgumentUtil {
 
-    public static Logger logger = LoggerFactory.getLogger(SolutionEquation.class);
+    public static Logger logger = LoggerFactory.getLogger(ParserArgumentUtil.class);
 
     public static Equation parserArgument(String[] args) throws ExceptionMessage, ParseException {
 
@@ -27,9 +27,6 @@ public class ParserArgumentUtil {
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
-
-        logger.info(String.valueOf(parser));
-        logger.info(String.valueOf(cmd));
 
         if (cmd.hasOption("eq")) {
             String eq = cmd.getOptionValue("eq");

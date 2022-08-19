@@ -9,7 +9,7 @@ public class Roots {
 
         private final int amount;
 
-        CountRoot(int amount) {
+        private CountRoot(int amount) {
             this.amount = amount;
         }
 

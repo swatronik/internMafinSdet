@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import util.PatternEquation;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
-@Controller
-public class GreetingController {
+@org.springframework.stereotype.Controller
+public class SprController {
 
-    public static Logger logger = LoggerFactory.getLogger(SolutionEquation.class);
+    public static Logger logger = LoggerFactory.getLogger(SprController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String greetingSubmit(Model model) {
@@ -33,11 +36,11 @@ public class GreetingController {
     @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
 
-        Date dateNow = new Date();
-        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        //SimpleDateFormat formatForDateNow = new SimpleDateFormat("E yyyy.MM.dd 'и время' hh:mm:ss a zzz");
-        String date = ("Текущая дата " + formater.format(dateNow));
-        logger.info(date);
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("Дата: dd.MM.yyyy Время: HH:mm:ss");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String date = localDateTime.format(formatter);
+        logger.debug("DateTimeFormatter выводит дату: " + date);
 
         Equation equation = PatternEquation.getFullEquation(equals);
         String solution = String.valueOf(SolutionEquation.solution(equation));

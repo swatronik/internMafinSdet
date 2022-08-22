@@ -16,16 +16,20 @@ public class SolutionEquation {
         Double c = equation.getC();
 
         Double discriminant = b * b - 4 * a * c;
-
         logger.info("discriminant равен = " + discriminant);
 
         if (discriminant == 0) {
             logger.debug("discriminant равен = 0, получаем 1 корень");
-            return new Roots(-b / (2 * a));
+            Double x1 = -b / (2 * a);
+            logger.info("root = " + x1);
+            return new Roots(x1);
 
         } else if (discriminant > 0) {
             logger.debug("discriminant is positive, get two roots");
-            return new Roots((-b + sqrt(discriminant)) / (2 * a), (-b - sqrt(discriminant)) / (2 * a));
+            Double x1 = (-b + sqrt(discriminant)) / (2 * a);
+            Double x2 = (-b - sqrt(discriminant)) / (2 * a);
+            logger.info(String.format("Root 1: %s Root 2: ", x1, x2));
+            return new Roots(x1, x2);
 
         } else
             logger.debug("discriminant is negative, no roots");

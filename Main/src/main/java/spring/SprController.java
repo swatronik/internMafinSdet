@@ -1,6 +1,7 @@
 package spring;
 
 import equation.Equation;
+import equation.Roots;
 import equation.SolutionEquation;
 import exception.ExceptionMessage;
 import org.json.JSONObject;
@@ -20,6 +21,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static sun.security.ssl.SSLLogger.info;
 
 @org.springframework.stereotype.Controller
 public class SprController {
@@ -31,7 +35,7 @@ public class SprController {
         return "index";
     }
 
-    private int count = 1;
+    public AtomicInteger atomicInteger = new AtomicInteger(0);
 
     @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
@@ -43,19 +47,19 @@ public class SprController {
         logger.debug("DateTimeFormatter выводит дату: " + date);
 
         Equation equation = PatternEquation.getFullEquation(equals);
-        String solution = String.valueOf(SolutionEquation.solution(equation));
+        Roots solution = SolutionEquation.solution(equation);
 
-        logger.info(equals);
-        logger.info(String.valueOf(equation));
-        logger.info(solution);
-        logger.info(date);
+        logger.info("Получено уравнение на вход: " + equals,
+                "Распарсили уравнение на вход: " + equation.toString(),
+                "Получено решение уравнения: " + solution.toString(),
+                "Генерируем текущую дату по шаблону: " + date);
 
         JSONObject responseJSON = new JSONObject();
-        responseJSON.put("number", count);
+        responseJSON.put("number", atomicInteger.incrementAndGet());
+        logger.debug("атомик пишет: " + atomicInteger);
         responseJSON.put("equation", equation.toString());
         responseJSON.put("roots", solution);
         responseJSON.put("date", date);
-        count++;
 
         return ResponseEntity
                 .ok()

@@ -1,22 +1,27 @@
 package db;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import static baseConfig.Config.*;
+import java.sql.Statement;
 
 public class DataBaseMySql {
 
-    Connection dbConnection;
+    public static void main(String[] args) {
+        try {
+            JDBC db = new JDBC();
+            Connection dbConnection = db.getDbConnection();
+            Statement statement = dbConnection.createStatement();
+            ResultSet set = statement.executeQuery("select * from equation.staff");
+            while (set.next()) {
+                System.out.println(set.getString(2));
+            }
+            set.close();
+            dbConnection.close();
+            statement.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
-        String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
-
-        Class.forName("com.mysql.jdbc.Driver");
-
-        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPassword);
-
-        return dbConnection;
     }
 }

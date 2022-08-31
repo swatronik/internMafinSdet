@@ -1,5 +1,7 @@
 package spring;
 
+import db.DataBaseMySql;
+import db.entity.DataBaseEquationModel;
 import equations.Equation;
 import equations.Roots;
 import org.apache.commons.cli.ParseException;
@@ -16,6 +18,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static db.DataBaseMySql.getNumber;
+import static db.DataBaseMySql.insertRow;
 import static equations.EquationDecision.decision;
 import static java.time.ZoneOffset.UTC;
 import static util.Parser.parseEquation;
@@ -23,7 +27,8 @@ import static util.Parser.parseEquation;
 @Controller
 public class EquationController {
 
-    private AtomicInteger count = new AtomicInteger(0);
+
+    private AtomicInteger count = new AtomicInteger(getNumber());
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquationController.class);
 
@@ -42,8 +47,11 @@ public class EquationController {
             Equation equation = parseEquation(equals);
             Roots decision = decision(equation);
 
+            DataBaseEquationModel dataBaseEquationModel = new DataBaseEquationModel(count.incrementAndGet(), equation.toString(), date, decision.toString());
+            insertRow(dataBaseEquationModel);
+
             JSONObject resultJson = new JSONObject();
-            resultJson.put("count", count.incrementAndGet());
+            resultJson.put("count", count.get());
             resultJson.put("equation", equation.toString());
             resultJson.put("roots", decision.toString());
             resultJson.put("date", date);

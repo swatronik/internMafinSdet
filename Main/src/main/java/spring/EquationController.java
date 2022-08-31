@@ -1,25 +1,26 @@
 package spring;
 
-import db.DataBaseMySql;
 import db.entity.DataBaseEquationModel;
 import equations.Equation;
 import equations.Roots;
 import org.apache.commons.cli.ParseException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static db.DataBaseMySql.getNumber;
-import static db.DataBaseMySql.insertRow;
+import static db.DataBaseMySql.*;
 import static equations.EquationDecision.decision;
 import static java.time.ZoneOffset.UTC;
 import static util.Parser.parseEquation;
@@ -27,8 +28,7 @@ import static util.Parser.parseEquation;
 @Controller
 public class EquationController {
 
-
-    private AtomicInteger count = new AtomicInteger(getNumber());
+    private final AtomicInteger count = new AtomicInteger(getNumber());
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EquationController.class);
 
@@ -64,6 +64,26 @@ public class EquationController {
             resultJson.put("error", e.getMessage());
             return ResponseEntity.badRequest().body(resultJson.toString());
         }
+
+    }
+
+    @GetMapping("/getAllQuadratic")
+    public ResponseEntity<String> getQuadratic() {
+        JSONArray jsonArray = new JSONArray();
+        int amountOfEquations = 100;
+        ArrayList<DataBaseEquationModel> allEquations = getNumberRows(amountOfEquations);
+
+        for (DataBaseEquationModel dataBaseEquationModel : allEquations) {
+            JSONObject resultJson = new JSONObject();
+            resultJson.put("count", dataBaseEquationModel.number);
+            resultJson.put("equation", dataBaseEquationModel.quadratic);
+            resultJson.put("roots", dataBaseEquationModel.roots);
+            resultJson.put("date", dataBaseEquationModel.date);
+
+            jsonArray.put(resultJson);
+
+        }
+        return ResponseEntity.ok().body(jsonArray.toString());
 
     }
 }

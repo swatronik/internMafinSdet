@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Название страницы: Решение квадратных уравнений</title>
+    <!-- привязали ксс стили-->
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<h1>Решение квадратных уравнений</h1>
+
+<form class="equation_form" name="equation_form_name" method="post">
+    <!--    присвоили полю для ввода айдишник id="inputEquationId" → по нему вытаскиваем элемент через метод гетЭлементБайИд -->
+    <input type="text" id="inputEquationId" name="inputEquation" required placeholder="Введите уравнение">
+    <br>
+    <br>
+    <!--    привязали метод к кнопке - onclick="GetDecision()"-->
+    <input type="button" name="submit_btn" onclick="GetDecision()" value="Отправить">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="guruweba_example_infofield">Последнее уравнение</div>
+    <br>
+    <table id="table_id_001">
+        <tr>
+            <td>Number</td>
+            <td>Equation</td>
+            <td>Roots</td>
+            <td>Date</td>
+        </tr>
+    </table>
+</form>
+
+<!--<script src="C:\Users\Vitalii\IdeaProjects\internMafinSdet\Main\src\main\resources\templates\getDecision.js"></script>-->
+
+<script>
+
+    //Присваиваем переменной значение из поля inputEquationId
+    //Создаем реквест хттп - отправляем апи запрос по указ эндпоинту - обрабатывать его обработка будет в гетМаппинг контроллере
+
+    function GetDecision() {
+        let inputEquation = document.getElementById("inputEquationId").value;
+           console.log(inputEquation)
+
+        let xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open("POST", window.location.href + "postEqualsEquation", false);
+        xmlHttpRequest.send(inputEquation);
+            if (xmlHttpRequest.status != 200) {
+                alert( 'Ошибка: ' + xmlHttpRequest.status);
+                return;
+            }
+        console.log(xmlHttpRequest.response)
+
+        let XmlResponseTextJsonParse = JSON.parse(xmlHttpRequest.responseText);
+            console.log(XmlResponseTextJsonParse);
+
+        var tableModel = "<tr><td>" + XmlResponseTextJsonParse.number + "</td>" +
+            "<td>" + XmlResponseTextJsonParse.equation + "</td>" +
+            "<td>" + XmlResponseTextJsonParse.roots + "</td>" +
+            "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";
+            console.log(tableModel);
+
+        //'tbody' - часть xmlHttpRequest ???
+        var tableObj = document.createElement('tbody');
+        tableObj.innerHTML = tableModel;
+        document.getElementById('table_id_001').appendChild(tableObj);
+     }
+
+</script>
+</body>
+</html>
+

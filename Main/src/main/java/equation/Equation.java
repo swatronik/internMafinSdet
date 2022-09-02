@@ -2,25 +2,30 @@ package equation;
 
 public class Equation {
 
-    private double a;
-    private double b;
-    private double c;
+    private final Double a;
+    private final Double b;
+    private final Double c;
 
-    public Equation(double a, double b, double c) {
+    public Equation(Double a, Double b, Double c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
-    public double getA() {
+    public Double getA() {
         return a;
     }
 
-    public double getB() {
+    public Double getB() {
         return b;
     }
 
-    public double getC() {
+    public Double getC() {
         return c;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%sx^2%sx%s=0", a, (b < 0 ? b : "+" + b), (c < 0 ? c : "+" + c));
     }
 }

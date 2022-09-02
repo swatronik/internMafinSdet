@@ -1,14 +1,18 @@
 package util;
 
 import equation.Equation;
+import equation.SolutionEquation;
 import exception.ExceptionMessage;
 import org.apache.commons.cli.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ParserArgumentUtil {
 
+    public static Logger logger = LoggerFactory.getLogger(ParserArgumentUtil.class);
+
     public static Equation parserArgument(String[] args) throws ExceptionMessage, ParseException {
 
-        Equation equation;
         Options options = new Options();
 
         Option argA = new Option("a", "value a", true, "select argument a");
@@ -25,13 +29,15 @@ public class ParserArgumentUtil {
         CommandLine cmd = parser.parse(options, args);
 
         if (cmd.hasOption("eq")) {
-            equation = PatternEquation.getFullEquation(cmd); //получили целое уравнение при eq
-        } else if (cmd.hasOption("a") || cmd.hasOption("b") || cmd.hasOption("c")) {
-            equation = PatternEquation.getArgs(cmd); //получили аргументы а-б-с при a
-        } else
+            String eq = cmd.getOptionValue("eq");
+            logger.info("Получили целое уравнение при eq " + eq);
+            return PatternEquation.getFullEquation(eq);
+        } else if (cmd.hasOption("a") && cmd.hasOption("b") && cmd.hasOption("c")) {
+            logger.info("Получили аргументы а-б-с");
+            return PatternEquation.getArgs(cmd);
+        } else {
             throw new ExceptionMessage("неверный аргумент, надо а - б - с или eq");
-
-        return equation;
+        }
     }
 }
 

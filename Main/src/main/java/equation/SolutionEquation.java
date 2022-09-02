@@ -9,21 +9,30 @@ public class SolutionEquation {
 
     public static Logger logger = LoggerFactory.getLogger(SolutionEquation.class);
 
-    public static void solution(double a, double b, double c) {
-        double discriminant = b * b - 4 * a * c;
-        logger.info("discriminant = " + discriminant);
+    public static Roots solution(Equation equation) {
+
+        Double a = equation.getA();
+        Double b = equation.getB();
+        Double c = equation.getC();
+
+        Double discriminant = b * b - 4 * a * c;
+        logger.info("discriminant равен = " + discriminant);
 
         if (discriminant == 0) {
-            logger.info("discriminant = 0, get one root");
-            double x = -b / (2 * a);
-            logger.info("root = " + x);
+            logger.debug("discriminant равен = 0, получаем 1 корень");
+            Double x1 = -b / (2 * a);
+            logger.info("root = " + x1);
+            return new Roots(x1);
+
         } else if (discriminant > 0) {
-            logger.info("discriminant is positive, get two roots");
-            double x1 = (-b + sqrt(discriminant)) / (2 * a);
-            double x2 = (-b - sqrt(discriminant)) / (2 * a);
-            logger.info("root 1 = " + x1);
-            logger.info("root 2 = " + x2);
+            logger.debug("discriminant is positive, get two roots");
+            Double x1 = (-b + sqrt(discriminant)) / (2 * a);
+            Double x2 = (-b - sqrt(discriminant)) / (2 * a);
+            logger.info(String.format("Root 1: %s Root 2: ", x1, x2));
+            return new Roots(x1, x2);
+
         } else
-            logger.info("discriminant is negative, no roots");
+            logger.debug("discriminant is negative, no roots");
+        return new Roots();
     }
 }

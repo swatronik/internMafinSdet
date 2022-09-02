@@ -42,7 +42,7 @@ public class DataBaseMySql {
         ArrayList<DataBaseEquationModel> arrayList = new ArrayList<DataBaseEquationModel>();
         try (Connection dbConnection = db.getDbConnection()) {
             Statement statement = dbConnection.createStatement();
-            ResultSet set = statement.executeQuery(String.format("SELECT Numb,Equation,Roots,DateEq from equations ORDER BY Numb limit %d", number));
+            ResultSet set = statement.executeQuery(String.format("SELECT Numb,Equation,Roots,DateEq from equations ORDER BY Numb DESC limit %d", number));
             while (set.next()) {
                 DataBaseEquationModel dataBaseEquationModel = new DataBaseEquationModel();
                 dataBaseEquationModel.number = set.getInt(1);

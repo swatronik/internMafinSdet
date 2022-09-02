@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static db.DataBaseMySql.*;
 import static equations.EquationDecision.decision;
-import static java.time.ZoneOffset.UTC;
 import static util.Parser.parseEquation;
 
 @Controller
@@ -42,7 +42,7 @@ public class EquationController {
     public ResponseEntity<String> runQuadratic(@RequestBody String equals) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
-            LocalDateTime localDateTime = LocalDateTime.now(UTC);
+            LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Europe/Moscow"));
             String date = localDateTime.format(formatter);
             Equation equation = parseEquation(equals);
             Roots decision = decision(equation);

@@ -19,7 +19,7 @@
     </style>
 </head>
 
-<body onload="foo()">
+<body onload="getAllEquations()">
 <form class="equation_form" name="eq" method="post">
     <div style="font-size:large;">Решение квадратных уравнений</div>
     <br>
@@ -65,11 +65,12 @@ function decision() {
         "<td>" + obj.roots + "</td>" +
         "<td>" + obj.date + "</td></tr>";
 
+    var children = document.getElementById('myTable').childNodes;
     var tableObj = document.createElement('tbody');
     tableObj.innerHTML = str;
-    document.getElementById('myTable').appendChild(tableObj);
+    document.getElementById('myTable').insertBefore(tableObj, children[2]);
 }
-function foo() {
+function getAllEquations() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", window.location.href + "getAllQuadratic", false); // false for synchronous request
     xmlHttp.send("");

@@ -60,17 +60,14 @@ function decision() {
         return;
     }
 
-    var str = "<tr><td>" + obj.count + "</td>" +
-        "<td>" + obj.equation + "</td>" +
-        "<td>" + obj.roots + "</td>" +
-        "<td>" + obj.date + "</td></tr>";
-
-    var children = document.getElementById('myTable').childNodes;
-    var tableObj = document.createElement('tbody');
-    tableObj.innerHTML = str;
-    document.getElementById('myTable').insertBefore(tableObj, children[2]);
+    getAllEquations();
 }
 function getAllEquations() {
+    const myNode = document.getElementById("myTable");
+    while (myNode.childNodes.length > 2) {
+    myNode.removeChild(myNode.lastChild);
+    }
+
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", window.location.href + "getAllQuadratic", false); // false for synchronous request
     xmlHttp.send("");
@@ -85,7 +82,7 @@ function getAllEquations() {
 
         var tableObj = document.createElement('tbody');
         tableObj.innerHTML = str;
-        document.getElementById('myTable').appendChild(tableObj);
+        myNode.appendChild(tableObj);
     }
 }
 </script>

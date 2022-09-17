@@ -15,7 +15,6 @@ public class MyClass3 {
 
     public Double func(Function<Integer, Double> function, Integer k) {
         Double apply = function.apply(k);
-        System.out.println(apply);
         return apply;
     }
 }

@@ -19,7 +19,7 @@
     </style>
 </head>
 
-<body>
+<body onload="getAllEquations()">
 <form class="equation_form" name="eq" method="post">
     <div style="font-size:large;">Решение квадратных уравнений</div>
     <br>
@@ -60,14 +60,30 @@ function decision() {
         return;
     }
 
-    var str = "<tr><td>" + obj.count + "</td>" +
-        "<td>" + obj.equation + "</td>" +
-        "<td>" + obj.roots + "</td>" +
-        "<td>" + obj.date + "</td></tr>";
+    getAllEquations();
+}
+function getAllEquations() {
+    const myNode = document.getElementById("myTable");
+    while (myNode.childNodes.length > 2) {
+    myNode.removeChild(myNode.lastChild);
+    }
 
-    var tableObj = document.createElement('tbody');
-    tableObj.innerHTML = str;
-    document.getElementById('myTable').appendChild(tableObj);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", window.location.href + "getAllQuadratic", false); // false for synchronous request
+    xmlHttp.send("");
+    var obj = JSON.parse(xmlHttp.responseText);
+    console.log(obj)
+
+    for (var i = 0; i < obj.length; i++) {
+        var str = "<tr><td>" + obj[i].count + "</td>" +
+            "<td>" + obj[i].equation + "</td>" +
+            "<td>" + obj[i].roots + "</td>" +
+            "<td>" + obj[i].date + "</td></tr>";
+
+        var tableObj = document.createElement('tbody');
+        tableObj.innerHTML = str;
+        myNode.appendChild(tableObj);
+    }
 }
 </script>
 </body>

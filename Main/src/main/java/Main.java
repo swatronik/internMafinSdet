@@ -1,27 +1,24 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import org.apache.commons.cli.*;
 
 public class Main {
 
-    public static void main(String[] args) throws InputMismatchException {
+    public static void main(String[] args) throws ParseException {
         double a, b, c;
-        Scanner scanner = new Scanner(System.in);
 
-        try {
-            System.out.print("Введите коэффициент \"a\": ");
-            a = scanner.nextDouble();
-            while (a == 0) {
-                System.out.print("Введите коэффициент \"a\" не равный нулю: ");
-                a = scanner.nextDouble();
-            }
-            System.out.print("Введите коэффициент \"b\": ");
-            b = scanner.nextDouble();
-            System.out.print("Введите коэффициент \"c\": ");
-            c = scanner.nextDouble();
-        } catch (RuntimeException e) {
-            System.out.println("Ошибка: неверный тип данных. Перезапустите программу.");
-            throw e;
+        Options options = new Options();
+        options.addOption("a",true, "Коэффициент a");
+        options.addOption("b", true,"Коэффициент b");
+        options.addOption("c", true,"Коэффициент c");
+
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd = parser.parse(options, args);
+
+        a = Double.parseDouble(cmd.getOptionValue("a"));
+        if (a == 0) {
+            throw new ParseException("Коэффициент \"a\" равен нулю. Данное уравнение не является квадратным.");
         }
+        b = Double.parseDouble(cmd.getOptionValue("b"));
+        c = Double.parseDouble(cmd.getOptionValue("c"));
 
         System.out.printf("\nВаше квадратное уравнение: (%f)x^2+(%f)x+(%f)=0\n%n", a, b, c);
 

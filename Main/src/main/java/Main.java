@@ -1,4 +1,6 @@
 import org.apache.commons.cli.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
 
@@ -20,7 +22,8 @@ public class Main {
         b = Double.parseDouble(cmd.getOptionValue("b"));
         c = Double.parseDouble(cmd.getOptionValue("c"));
 
-        System.out.printf("\nВаше квадратное уравнение: (%f)x^2+(%f)x+(%f)=0\n%n", a, b, c);
+        Logger logger = LoggerFactory.getLogger(Main.class);
+        logger.info("Ваше квадратное уравнение: ({})x^2+({})x+({})=0", a, b, c);
 
         double discr = b * b - 4 * a * c;
         double x1, x2;
@@ -28,12 +31,12 @@ public class Main {
         if (discr > 0) {
             x1 = (b * (-1) + Math.sqrt(discr)) / (2 * a);
             x2 = (b * (-1) - Math.sqrt(discr)) / (2 * a);
-            System.out.printf("Решение: x1 = %f, x2 = %f.", x1, x2);
+            logger.info("Решение: x1 = {}, x2 = {}.", x1, x2);
         } else if (discr == 0) {
             x1 = (b * (-1)) / (2 * a);
-            System.out.printf("Решение: x = %f", x1);
+            logger.info("Решение: x = {}", x1);
         } else {
-            System.out.print("Уравнение не имеет корней.");
+            logger.info("Уравнение не имеет корней.");
         }
     }
 }

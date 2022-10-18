@@ -4,6 +4,8 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
 
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) throws ParseException {
         double a, b, c;
 
@@ -22,7 +24,6 @@ public class Main {
         b = Double.parseDouble(cmd.getOptionValue("b"));
         c = Double.parseDouble(cmd.getOptionValue("c"));
 
-        Logger logger = LoggerFactory.getLogger(Main.class);
         logger.info("Ваше квадратное уравнение: ({})x^2+({})x+({})=0", a, b, c);
 
         double discr = b * b - 4 * a * c;

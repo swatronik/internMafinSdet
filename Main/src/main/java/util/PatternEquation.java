@@ -14,7 +14,9 @@ public class PatternEquation {
 
     public static Logger logger = LoggerFactory.getLogger(PatternEquation.class);
 
-    //метод для парсинга значений целого уравнения и его проверки через шаблон регексп
+    /**
+     * Метод для парсинга значений целого уравнения и его проверки через шаблон регексп
+     */
     public static Equation getFullEquation(String eq) throws ExceptionMessage {
 
         Pattern pattern = Pattern.compile(PatternRegexp.patternEquation);

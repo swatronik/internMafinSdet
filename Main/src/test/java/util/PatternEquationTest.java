@@ -1,8 +1,10 @@
 package util;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import patternRegexp.PatternRegexp;
 
 import java.util.stream.Stream;
@@ -48,11 +50,6 @@ class PatternEquationTest {
     }
 
 
-    @Test
-    void getFullEquation() {
-    }
 
-    @Test
-    void getArgs() {
-    }
+
 }

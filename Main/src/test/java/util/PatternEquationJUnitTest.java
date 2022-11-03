@@ -2,9 +2,6 @@ package util;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 import patternRegexp.PatternRegexp;
 
 import java.util.stream.Stream;
@@ -12,7 +9,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class PatternEquationTest {
+class PatternEquationJUnitTest {
 
     @ParameterizedTest(name = "#{index} - Run test with equation = {0}")
     @MethodSource("equationExamplePositive")
@@ -48,8 +45,4 @@ class PatternEquationTest {
                 "11y2+2x+1=0"
         );
     }
-
-
-
-
 }

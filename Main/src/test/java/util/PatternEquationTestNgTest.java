@@ -2,6 +2,7 @@ package util;
 
 import com.sun.org.glassfish.gmbal.Description;
 import equation.Equation;
+import exception.ExceptionMessage;
 import org.apache.commons.cli.CommandLine;
 import org.junit.jupiter.api.DisplayName;
 import org.slf4j.Logger;
@@ -12,14 +13,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import patternRegexp.PatternRegexp;
 
+import static util.PatternEquation.getFullEquation;
+
 public class PatternEquationTestNgTest {
 
     public static Logger logger = LoggerFactory.getLogger(PatternEquationTestNgTest.class);
-
-    @BeforeMethod
-    public void initialize() {
-
-    }
 
     @DataProvider(name = "patternEquationPositive")
     public static Object[][] patternEquationPositive() {
@@ -37,9 +35,10 @@ public class PatternEquationTestNgTest {
         };
     }
 
-    @DisplayName("Позитивный тест 1 ???? не выводится")
-    @Description("Позитивный тест 2 ???? не выводится")
-    @Test(dataProvider = "patternEquationPositive")
+
+
+    @Test(description = "Подаем уравнение на вход и проверяем что оно проходит регулярное выражение",
+            dataProvider = "patternEquationPositive")
     public void patternEquationPositive(String inputEquation) {
         boolean result = inputEquation.matches(PatternRegexp.patternEquation);
         Assert.assertEquals(result, true, "Должно быть true");
@@ -57,39 +56,53 @@ public class PatternEquationTestNgTest {
         };
     }
 
-    @Test(dataProvider = "equationExampleNegative")
+    @Test(description = "Подаем уравнение на вход и проверяем что оно НЕ проходит регулярное выражение",
+            dataProvider = "equationExampleNegative")
     public void equationExampleNegative(String inputEquation) {
-        coeffToLog(logger, inputEquation);
         boolean result = inputEquation.matches(PatternRegexp.patternEquation);
         Assert.assertEquals(result, false, "Должно быть false");
     }
 
 
 
-    @DataProvider(name = "getArgs")
-    public static Object[][] getArgs() {
+    @DataProvider(name = "getArgsParemeters")
+    public static Object[][] getArgsParemeters() {
         return new Object[][]{
-                {1.1, 2.2, 3.3}
+                {1.1, 2.2, 3.3},
+                {0.1, 0.2, 0.3},
+                {-1.1, -2.2, -3.3},
+                {1.0, 2.0, 3.0},
+                {1.11, 2.22, +3.33},
+//                {1, 2, 3} ошибка??
         };
     }
 
-//    @Test(dataProvider = "getArgs")
-//    public void getArgs() {
-//       Equation equation1 = cmd.getArgs();
-//    }
-//        Double a = equation.getA();
-//        Double b = equation.getB();
-//        Double c = equation.getC();
-//
-//        Assert.assertEquals(a, false);
-//    }
-//
-//
-//    public static Equation getArgs(CommandLine cmd) {
-//
-//        double a = Double.parseDouble(cmd.getOptionValue("a"));
-//        double b = Double.parseDouble(cmd.getOptionValue("b"));
-//        double c = Double.parseDouble(cmd.getOptionValue("c"));
-//
-//        return new Equation(a, b, c);
+    @Test(description = "Проверяет позитивные значения аргументов на вход",
+            dataProvider = "getArgsParemeters")
+    public void testGetArgs(Double a, Double b, Double c) {
+        Equation equation = new Equation(a, b, c);
+
+        Assert.assertEquals(a, equation.getA(), "Какая-то ошибка");
+        Assert.assertEquals(b, equation.getB());
+        Assert.assertEquals(c, equation.getC());
+    }
+
+    @DataProvider
+    public Object[][] tablesDataNegative() {
+        return new Object[][]{
+                {"111x^2+222x+335g3=0"},
+                {"bad test3"},
+                {"11y2+2x+1=0"},
+                {"ololo"},
+                {"5675.3243x^2-8x+12=0"},
+                {""}
+        };
+    }
+
+    @Test(description = "Проверяем регулярное выражение, подавая недопустимые уравнения на вход",
+            dataProvider = "tablesDataNegative")
+    void equationValidatorTestNegative(String equation) throws ExceptionMessage {
+        getFullEquation(equation);
+    }
+
 }

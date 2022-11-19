@@ -1,5 +1,7 @@
 package equation;
 
+import java.util.Objects;
+
 public class Roots {
 
     public enum CountRoot {
@@ -53,6 +55,27 @@ public class Roots {
         this.x1 = x1;
         this.x2 = x2;
         countRoot = CountRoot.TWO_ROOTS;
+    }
+
+    //солюшен это this - obj это то что передаем, с чем сравниваем (руутс)
+    @Override
+    public boolean equals(Object obj) {
+
+        Roots roots = (Roots) obj;
+
+        if (!this.countRoot.equals(roots.countRoot))
+            return false;
+
+        if (this.countRoot.equals(CountRoot.NO_ROOTS))
+            return true;
+
+        if (this.countRoot.equals(CountRoot.ONE_ROOT) && this.x1.equals(roots.x1))
+            return true;
+
+        if (this.countRoot.equals(CountRoot.TWO_ROOTS) && this.x1.equals(roots.x1)
+                && this.x2.equals(roots.x2) || this.x1.equals(roots.x2) && this.x2.equals(roots.x1))
+            return true;
+        return false;
     }
 
     @Override

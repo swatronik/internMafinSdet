@@ -29,6 +29,9 @@ public class SolutionEquation {
             Double x1 = (-b + sqrt(discriminant)) / (2 * a);
             Double x2 = (-b - sqrt(discriminant)) / (2 * a);
             logger.info(String.format("Root 1: %s Root 2: %s", x1, x2));
+            logger.debug("Temperature set to {}. Old value was {}.", x1, x2);
+
+
             return new Roots(x1, x2);
 
         } else

@@ -21,7 +21,7 @@ public class SolutionEquationTest {
         };
     }
 
-    @Test(description = "Проверяем входящее уравнение и кол-во корней",
+    @Test(description = "Проверка решения уравнения",
             dataProvider = "patternEquationPositive")
     public void patternEquationPositive(Equation equation, Roots roots) {
 

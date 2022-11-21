@@ -60,6 +60,7 @@ public class PatternEquationTestNgTest {
         };
     }
 
+    //Оставить для примера. Заметка: Текст обычно не проверяем, потому что текст могут поменять
     @Test(description = "Проверяем текст ExceptionMessage если уравнение на вход не проходит проверку регурярки",
             dataProvider = "tablesDataNegativeText",
             expectedExceptions = ExceptionMessage.class,

@@ -2,7 +2,9 @@ package patternRegexp;
 
 public class PatternRegexp {
 
-    public static final String patternEquation = "((((-|\\+)?)(\\d+(?:[\\.,]\\d+)?)x\\^2)(((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))x)((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))=0){1}";
+    //public static final String patternEquation = "((((-|\\+)?)(\\d+(?:[\\.,]\\d+)?)x\\^2)(((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))x)((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))=0){1}";
+    // 11 public static final String patternEquation = "(((-|\+)?(\d+(?:[\.,]\d+)?))x\^2((-|\+){1}(\d+(?:[\.,]\d+|)?))x((-|\+){1}(\d+(?:[\.,]\d+|)?))=0){1}";
+    public static final String patternEquation = "(((-|\\+)?(\\d+(?:[\\.,]\\d+)?))x\\^2((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))x((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))=0){1}";
 }
 
 /*

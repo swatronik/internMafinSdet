@@ -29,7 +29,7 @@ public class PatternEquationTestNgTest {
                 {"4x^2+0x+1=0", new Equation(4.0, 0.0, 1.0)},
                 {"-4x^2+2x+1=0", new Equation(-4.0, 2.0, 1.0)},
                 {"4x^2+2x+1=0", new Equation(4.0, 2.0, 1.0)},
-                {"-4x^2-2x-1=0", new Equation(-4.0, 2.0, -1.0)},
+                {"-4x^2-2x-1=0", new Equation(-4.0, 2.0, -1.0)}, //-
                 {"44x^2+2x+1=0", new Equation(44.0, 2.0, 1.0)},
                 {"111x^2-222x-333=0", new Equation(111.0, -222.0, -333.0)},
                 {"111x^2+222x+333=0", new Equation(111.0, 222.0, 333.0)},
@@ -55,7 +55,7 @@ public class PatternEquationTestNgTest {
                 {"bad test3"},
                 {"11y2+2x+1=0"},
                 {"ololo"},
-                {"4x^2+0x+1=0"}, //+
+                {"4x^2+0x+1=0"}, //-
                 {""}
         };
     }
@@ -76,7 +76,7 @@ public class PatternEquationTestNgTest {
                 {"bad test3"},
                 {"11y2+2x+1=0"},
                 {"ololo"},
-                {"4x^2+0x+1=0"}, //+
+                {"4x^2+0x+1=0"}, //-
                 {""}
         };
     }

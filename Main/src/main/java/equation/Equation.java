@@ -31,6 +31,10 @@ public class Equation {
 
         if (this.a.equals(equation.a) && this.b.equals(equation.b) && this.c.equals(equation.c))
             return true;
+
+        if ((this.a.equals(null)) || (this.b.equals(null)) || (this.c.equals(null)))
+            return false;
+
         return false;
     }
 

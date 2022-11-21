@@ -25,9 +25,9 @@ public class PatternEquation {
         if (matcher.matches()) {
             logger.info("Введенное уравнение проходит проверку шаблона регулярки - ок");
 
-            double a = Double.parseDouble(matcher.group(5));
-            double b = Double.parseDouble(matcher.group(7));
-            double c = Double.parseDouble(matcher.group(10));
+            double a = Double.parseDouble(matcher.group(2));
+            double b = Double.parseDouble(matcher.group(5));
+            double c = Double.parseDouble(matcher.group(8));
 
             return new Equation(a, b, c);
 

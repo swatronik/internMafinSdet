@@ -63,18 +63,15 @@ public class Roots {
 
         Roots roots = (Roots) obj;
 
-        if (!this.countRoot.equals(roots.countRoot))
-            return false;
+        if (!this.countRoot.equals(roots.countRoot)) return false;
 
-        if (this.countRoot.equals(CountRoot.NO_ROOTS))
-            return true;
+        if (this.countRoot.equals(CountRoot.NO_ROOTS)) return true;
 
-        if (this.countRoot.equals(CountRoot.ONE_ROOT) && this.x1.equals(roots.x1))
-            return true;
+        if (this.countRoot.equals(CountRoot.ONE_ROOT) && this.x1.equals(roots.x1)) return true;
 
         if (this.countRoot.equals(CountRoot.TWO_ROOTS) && this.x1.equals(roots.x1)
-                && this.x2.equals(roots.x2) || this.x1.equals(roots.x2) && this.x2.equals(roots.x1))
-            return true;
+                && this.x2.equals(roots.x2) || this.x2.equals(roots.x1) && this.x1.equals(roots.x2)) return true;
+
         return false;
     }
 
@@ -94,3 +91,8 @@ public class Roots {
         }
     }
 }
+
+
+
+
+

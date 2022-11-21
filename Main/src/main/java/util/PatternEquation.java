@@ -32,7 +32,9 @@ public class PatternEquation {
             return new Equation(a, b, c);
 
         } else {
-            throw new ExceptionMessage("Введенное уравнение НЕ проходит проверку шаблона регулярки");
+            logger.info("Введенное уравнение НЕ проходит проверку шаблона регулярки - не ок");
+            throw new ExceptionMessage("The equation you entered does NOT pass the regExp pattern test");
+
         }
     }
 

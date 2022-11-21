@@ -25,6 +25,16 @@ public class Equation {
     }
 
     @Override
+    public boolean equals(Object obj) {
+
+        Equation equation = (Equation) obj;
+
+        if (this.a.equals(equation.a) && this.b.equals(equation.b) && this.c.equals(equation.c)) return true;
+
+        return false;
+    }
+
+    @Override
     public String toString() {
         return String.format("%sx^2%sx%s=0", a, (b < 0 ? b : "+" + b), (c < 0 ? c : "+" + c));
     }

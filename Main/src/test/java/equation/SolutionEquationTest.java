@@ -1,34 +1,32 @@
 package equation;
 
-import exception.ExceptionMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SolutionEquationTest {
 
-    @DataProvider(name = "solutionEquation")
-    public static Object[][] solutionEquation() {
+    public static Logger logger = LoggerFactory.getLogger(SolutionEquationTest.class);
+
+    @DataProvider(name = "patternEquationPositive")
+    public static Object[][] patternEquationPositive() {
         return new Object[][]{
-
-                {2.0, -11.2, 15.5, 3.1, 2.5},
-
-//                {1.1, 2.2, 3.3, 0.31, -0.81},
-//                {4.0, 2.0, -1.0, 0.31, -0.81, Roots.CountRoot.TWO_ROOTS},
-//                {"1x^2-6x+9=0", 1.1, 2.2, 3.3, 3.00, null},
-//                {"4x^2+0x+1=0", 1.1, 2.2, 3.3, null, null}
+                {new Equation(4.0, 2.0, 1.0), new Roots()},
+                {new Equation(1.0, -6.0, 9.0), new Roots(3.0)},
+                {new Equation(1.0, -7.0, -30.0), new Roots(10.0, -3.0)},
+                {new Equation(1.0, -7.0, -30.0), new Roots(-3.0, 10.0)},
+                {new Equation(1.0, -7.0, -30.0), new Roots()}
         };
     }
 
-    @Test(description = "Проверка решения уравнения на получение разных видов корней",
-            dataProvider = "solutionEquation",
-            expectedExceptions = {ExceptionMessage.class})
-    public void testSolutionEquation(Double a, Double b, Double c, Double x1, Double x2) {
+    @Test(description = "Проверяем входящее уравнение и кол-во корней",
+            dataProvider = "patternEquationPositive")
+    public void patternEquationPositive(Equation equation, Roots roots) {
 
-        Equation equation = new Equation(a, b, c);
-        Roots roots = SolutionEquation.solution(equation);
-
-        Assert.assertEquals(roots.getX1(), x1);
-        Assert.assertEquals(roots.getX2(), x2);
+        Roots solution = SolutionEquation.solution(equation);
+        Assert.assertEquals(solution, roots);
+        logger.info(String.format("Solution = %s, Roots = %s", solution, roots));
     }
 }

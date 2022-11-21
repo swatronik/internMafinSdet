@@ -21,7 +21,7 @@ public class SolutionEquationTest {
         };
     }
 
-    @Test(description = "Проверяем входящее уравнение и кол-во корней",
+    @Test(description = "РџСЂРѕРІРµСЂСЏРµРј РІС…РѕРґСЏС‰РµРµ СѓСЂР°РІРЅРµРЅРёРµ Рё РєРѕР»-РІРѕ РєРѕСЂРЅРµР№",
             dataProvider = "patternEquationPositive")
     public void patternEquationPositive(Equation equation, Roots roots) {
 

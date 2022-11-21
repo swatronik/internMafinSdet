@@ -14,7 +14,7 @@ public class PatternEquationTestNgTest {
 
     public static Logger logger = LoggerFactory.getLogger(PatternEquationTestNgTest.class);
 
-    @Test(description = "Подаем уравнение на вход и проверяем что оно проходит регулярное выражение",
+    @Test(description = "РџРѕРґР°РµРј СѓСЂР°РІРЅРµРЅРёРµ РЅР° РІС…РѕРґ Рё РїСЂРѕРІРµСЂСЏРµРј С‡С‚Рѕ РѕРЅРѕ РїСЂРѕС…РѕРґРёС‚ СЂРµРіСѓР»СЏСЂРЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ",
             dataProvider = "patternEquationPositive")
     public void patternEquationPositive(String inputEquation, Equation equation) throws ExceptionMessage {
 
@@ -40,7 +40,7 @@ public class PatternEquationTestNgTest {
     }
 
 
-    @Test(description = "Проверяем выпадение ExceptionMessage если уравнение на вход не проходит проверку регурярки",
+    @Test(description = "РџСЂРѕРІРµСЂСЏРµРј РІС‹РїР°РґРµРЅРёРµ ExceptionMessage РµСЃР»Рё СѓСЂР°РІРЅРµРЅРёРµ РЅР° РІС…РѕРґ РЅРµ РїСЂРѕС…РѕРґРёС‚ РїСЂРѕРІРµСЂРєСѓ СЂРµРіСѓСЂСЏСЂРєРё",
             dataProvider = "tablesDataException",
             expectedExceptions = ExceptionMessage.class)
     void equationExceptionMessageTest(String inputEquation) throws ExceptionMessage {
@@ -60,7 +60,7 @@ public class PatternEquationTestNgTest {
         };
     }
 
-    @Test(description = "Проверяем текст ExceptionMessage если уравнение на вход не проходит проверку регурярки",
+    @Test(description = "РџСЂРѕРІРµСЂСЏРµРј С‚РµРєСЃС‚ ExceptionMessage РµСЃР»Рё СѓСЂР°РІРЅРµРЅРёРµ РЅР° РІС…РѕРґ РЅРµ РїСЂРѕС…РѕРґРёС‚ РїСЂРѕРІРµСЂРєСѓ СЂРµРіСѓСЂСЏСЂРєРё",
             dataProvider = "tablesDataNegativeText",
             expectedExceptions = ExceptionMessage.class,
             expectedExceptionsMessageRegExp = "Bad value: The equation you entered does NOT pass the regExp pattern test")

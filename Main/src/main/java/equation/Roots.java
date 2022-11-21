@@ -63,6 +63,8 @@ public class Roots {
 
         Roots roots = (Roots) obj;
 
+        if (this.countRoot==null) return false;
+
         if (!this.countRoot.equals(roots.countRoot)) return false;
 
         if (this.countRoot.equals(CountRoot.NO_ROOTS)) return true;

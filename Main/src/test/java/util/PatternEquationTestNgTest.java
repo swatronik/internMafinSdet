@@ -62,23 +62,11 @@ public class PatternEquationTestNgTest {
 
     //Оставить для примера. Заметка: Текст обычно не проверяем, потому что текст могут поменять
     @Test(description = "Проверяем текст ExceptionMessage если уравнение на вход не проходит проверку регурярки",
-            dataProvider = "tablesDataNegativeText",
+            dataProvider = "tablesDataException",
             expectedExceptions = ExceptionMessage.class,
             expectedExceptionsMessageRegExp = "Bad value: The equation you entered does NOT pass the regExp pattern test")
     void equationExceptionMessageTextTest(String inputEquation) throws ExceptionMessage {
 
         getFullEquation(inputEquation);
-    }
-
-    @DataProvider
-    public Object[][] tablesDataNegativeText() {
-        return new Object[][]{
-                {"111x^2+222x+335g3=0"},
-                {"bad test3"},
-                {"11y2+2x+1=0"},
-                {"ololo"},
-                {"4x^2+0x+1=0"}, //-
-                {""}
-        };
     }
 }

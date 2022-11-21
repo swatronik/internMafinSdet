@@ -29,8 +29,8 @@ public class Equation {
 
         Equation equation = (Equation) obj;
 
-        if (this.a.equals(equation.a) && this.b.equals(equation.b) && this.c.equals(equation.c)) return true;
-
+        if (this.a.equals(equation.a) && this.b.equals(equation.b) && this.c.equals(equation.c))
+            return true;
         return false;
     }
 

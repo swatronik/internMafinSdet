@@ -69,8 +69,8 @@ public class Roots {
 
         if (this.countRoot.equals(CountRoot.ONE_ROOT) && this.x1.equals(roots.x1)) return true;
 
-        if (this.countRoot.equals(CountRoot.TWO_ROOTS) && this.x1.equals(roots.x1)
-                && this.x2.equals(roots.x2) || this.x2.equals(roots.x1) && this.x1.equals(roots.x2)) return true;
+        if (this.countRoot.equals(CountRoot.TWO_ROOTS) && ((this.x1.equals(roots.x1))
+                && (this.x2.equals(roots.x2))) || (this.x2.equals(roots.x1) && this.x1.equals(roots.x2))) return true;
 
         return false;
     }
@@ -91,8 +91,3 @@ public class Roots {
         }
     }
 }
-
-
-
-
-

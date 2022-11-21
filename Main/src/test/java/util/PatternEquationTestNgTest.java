@@ -80,26 +80,4 @@ public class PatternEquationTestNgTest {
                 {""}
         };
     }
-
-    //Вероятно лишний тест, так как првоеряем эксепшен выше
-    @Test(description = "Подаем уравнение на вход и проверяем что оно НЕ проходит регулярное выражение",
-            dataProvider = "equationExampleNegative")
-    public void equationExampleNegative(String inputEquation) throws ExceptionMessage {
-
-        Equation fullEquation = getFullEquation(inputEquation);
-        Assert.assertEquals(fullEquation, false);
-        logger.info(String.format("InputEquation = %s, Equation = %s", fullEquation, false));
-    }
-
-    @DataProvider(name = "equationExampleNegative")
-    public static Object[][] equationExampleNegative() {
-        return new Object[][]{
-                {"111x^2+222x+335g3=0"},
-                {"bad test3"},
-                {"11y2+2x+1=0"},
-                {"ololo"},
-                {"5675.3243x^2-8x+12=0"},
-                {""}
-        };
-    }
 }

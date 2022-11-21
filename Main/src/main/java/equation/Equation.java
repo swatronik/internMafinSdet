@@ -29,13 +29,10 @@ public class Equation {
 
         Equation equation = (Equation) obj;
 
-        if (this.a.equals(equation.a) && this.b.equals(equation.b) && this.c.equals(equation.c))
-            return true;
-
-        if ((this.a.equals(null)) || (this.b.equals(null)) || (this.c.equals(null)))
+        if ((this.a==(null)) || (this.b==(null)) || (this.c==(null)))
             return false;
 
-        return false;
+        return (this.a.equals(equation.a) && this.b.equals(equation.b) && this.c.equals(equation.c));
     }
 
     @Override

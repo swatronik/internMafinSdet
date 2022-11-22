@@ -42,7 +42,7 @@ public class EquationController {
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("number", numberDecision);
         responseJSON.put("equation", equation.toString());
-        responseJSON.put("roots", solution);
+        responseJSON.put("roots", solution.toString()); //это пздц. 3ч
         responseJSON.put("date", date);
 
         return ResponseEntity

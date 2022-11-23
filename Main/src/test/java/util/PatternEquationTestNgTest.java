@@ -17,7 +17,6 @@ public class PatternEquationTestNgTest {
     @Test(description = "Подаем уравнение на вход и проверяем что оно проходит регулярное выражение",
             dataProvider = "patternEquationPositive")
     public void patternEquationPositive(String inputEquation, Equation equation) throws ExceptionMessage {
-
         Equation fullEquation = getFullEquation(inputEquation);
         Assert.assertEquals(fullEquation, equation);
         logger.info(String.format("InputEquation = %s, Equation = %s", fullEquation, equation));
@@ -39,12 +38,10 @@ public class PatternEquationTestNgTest {
         };
     }
 
-
     @Test(description = "Проверяем выпадение ExceptionMessage если уравнение на вход не проходит проверку регурярки",
             dataProvider = "tablesDataException",
             expectedExceptions = ExceptionMessage.class)
     void equationExceptionMessageTest(String inputEquation) throws ExceptionMessage {
-
         getFullEquation(inputEquation);
     }
 
@@ -60,13 +57,15 @@ public class PatternEquationTestNgTest {
         };
     }
 
-    //Оставить для примера. Заметка: Текст обычно не проверяем, потому что текст могут поменять
-    @Test(description = "Проверяем текст ExceptionMessage если уравнение на вход не проходит проверку регурярки",
-            dataProvider = "tablesDataException",
-            expectedExceptions = ExceptionMessage.class,
-            expectedExceptionsMessageRegExp = "Bad value: The equation you entered does NOT pass the regExp pattern test")
-    void equationExceptionMessageTextTest(String inputEquation) throws ExceptionMessage {
-
-        getFullEquation(inputEquation);
-    }
+    /**
+     * Оставить для примера. Заметка: Текст обычно не проверяем, потому что текст могут поменять
+     * @Test(description = "Проверяем текст ExceptionMessage если уравнение на вход не проходит проверку регурярки",
+     *             dataProvider = "tablesDataException",
+     *             expectedExceptions = ExceptionMessage.class,
+     *             expectedExceptionsMessageRegExp = "Bad value: The equation you entered does NOT pass the regExp pattern test")
+     *     void equationExceptionMessageTextTest(String inputEquation) throws ExceptionMessage {
+     *
+     *         getFullEquation(inputEquation);
+     *     }
+     */
 }

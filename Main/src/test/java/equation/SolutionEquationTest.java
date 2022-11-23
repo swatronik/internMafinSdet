@@ -24,7 +24,6 @@ public class SolutionEquationTest {
     @Test(description = "Проверка решения уравнения",
             dataProvider = "patternEquationPositive")
     public void patternEquationPositive(Equation equation, Roots roots) {
-
         Roots solution = SolutionEquation.solution(equation);
         Assert.assertEquals(solution, roots);
         logger.info(String.format("Solution = %s, Roots = %s", solution, roots));

@@ -1,7 +1,6 @@
 package util;
 
 import equation.Equation;
-import equation.SolutionEquation;
 import exception.ExceptionMessage;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
@@ -12,9 +11,7 @@ public class ParserArgumentUtil {
     public static Logger logger = LoggerFactory.getLogger(ParserArgumentUtil.class);
 
     public static Equation parserArgument(String[] args) throws ExceptionMessage, ParseException {
-
         Options options = new Options();
-
         Option argA = new Option("a", "value a", true, "select argument a");
         Option argB = new Option("b", "value b", true, "select argument b");
         Option argC = new Option("c", "value c", true, "select argument c");

@@ -26,11 +26,9 @@ public class Equation {
 
     @Override
     public boolean equals(Object obj) {
-
         Equation equation = (Equation) obj;
 
-        if ((this.a==(null)) || (this.b==(null)) || (this.c==(null)))
-            return false;
+        if ((this.a == (null)) || (this.b == (null)) || (this.c == (null))) return false;
 
         return (this.a.equals(equation.a) && this.b.equals(equation.b) && this.c.equals(equation.c));
     }

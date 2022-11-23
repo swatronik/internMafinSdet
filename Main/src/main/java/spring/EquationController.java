@@ -26,9 +26,7 @@ public class EquationController {
 
     @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
-
-        DateTimeFormatter formatter =
-                DateTimeFormatter.ofPattern("Время: HH:mm:ss Дата: dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("Время: HH:mm:ss Дата: dd.MM.yyyy");
         LocalDateTime localDateTime = LocalDateTime.now();
         String date = localDateTime.format(formatter);
         Equation equation = PatternEquation.getFullEquation(equals);
@@ -42,11 +40,9 @@ public class EquationController {
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("number", numberDecision);
         responseJSON.put("equation", equation.toString());
-        responseJSON.put("roots", solution);
+        responseJSON.put("roots", solution.toString());
         responseJSON.put("date", date);
 
-        return ResponseEntity
-                .ok()
-                .body(responseJSON.toString());
+        return ResponseEntity.ok().body(responseJSON.toString());
     }
 }

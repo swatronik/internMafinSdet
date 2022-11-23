@@ -2,7 +2,7 @@ package patternRegexp;
 
 public class PatternRegexp {
 
-    public static final String patternEquation = "((((-|\\+)?)(\\d+(?:[\\.,]\\d+)?)x\\^2)(((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))x)((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))=0){1}";
+    public static final String patternEquation = "(((-|\\+)?(\\d+(?:[\\.,]\\d+)?))x\\^2((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))x((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))=0){1}";
 }
 
 /*
@@ -29,4 +29,8 @@ public class PatternRegexp {
         1x^2-6x+9=0
         2 roots
         4x^2+2x-1=0
+
+    //приверы ранее использованных выражений.
+    //public static final String patternEquation = "((((-|\\+)?)(\\d+(?:[\\.,]\\d+)?)x\\^2)(((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))x)((-|\\+){1}(\\d+(?:[\\.,]\\d+|)?))=0){1}";
+    // 11 public static final String patternEquation = "(((-|\+)?(\d+(?:[\.,]\d+)?))x\^2((-|\+){1}(\d+(?:[\.,]\d+|)?))x((-|\+){1}(\d+(?:[\.,]\d+|)?))=0){1}";
 */

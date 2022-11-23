@@ -49,7 +49,7 @@
         let xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.open("POST", window.location.href + "postEqualsEquation", false);
         xmlHttpRequest.send(inputEquation);
-            if (xmlHttpRequest.status != 200) {
+            if (xmlHttpRequest.status !== 200) {
                 alert( 'Ошибка: ' + xmlHttpRequest.status);
                 return;
             }

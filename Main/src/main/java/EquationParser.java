@@ -7,7 +7,7 @@ public class EquationParser {
     public static EquationParser parse;
     private static Double a, b, c;
 
-    public String parse(String[] args) throws ParseException {
+    public static String parse(String[] args) throws ParseException {
 
         Options options = new Options();
         options.addOption("a",true, "Коэффициент a");

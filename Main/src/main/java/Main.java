@@ -17,7 +17,6 @@ public class Main {
         System.out.print("D = ");
         System.out.println(res1);
 
-
         double d = Math.sqrt(res1);
         System.out.println("Корень D = " + d);
         if (d > 0)

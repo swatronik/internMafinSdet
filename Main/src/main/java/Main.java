@@ -13,29 +13,21 @@ public class Main {
         System.out.println("Введите число c");
         int c = scan.nextInt();
 
-        int res1 = (b * b) - (4 * a * c);
+        int discriminant = (b * b) - (4 * a * c);
         System.out.print("D = ");
-        System.out.println(res1);
+        System.out.println(discriminant);
 
-        double d = Math.sqrt(res1);
+        double d = Math.sqrt(discriminant);
         System.out.println("Корень D = " + d);
-        if (d > 0)
-        {
-
-            double res2 = (-b + d) / 2 * a;
-            System.out.println("x1 = " + res2);
-
-            double res3 = (-b - d) / 2 * a;
-            System.out.println("x2 = " + res3);
-        }
-        else if (d == 0)
-        {
-            int res3 = -b / (2 * a);
-            System.out.println("x3 = " + res3);
-
-        }
-        else
-        {
+        if (d > 0) {
+            double x1 = (-b + d) / (2 * a);
+            System.out.println("x1 = " + x1);
+            double x2 = (-b - d) / (2 * a);
+            System.out.println("x2 = " + x2);
+        } else if (d == 0) {
+            int x = -b / (2 * a);
+            System.out.println("x = " + x);
+        } else {
             System.out.println("нет корней");
         }
     }

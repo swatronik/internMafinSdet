@@ -1,5 +1,6 @@
 package ConnectionDB;
 
+import ch.qos.logback.core.db.ConnectionSource;
 import exception.ExceptionMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,18 +11,14 @@ import java.sql.Statement;
 
 public class CreateNewTable {
     public static Logger logger = LoggerFactory.getLogger(CreateNewTable.class);
-    private static final GetJdbcConnection getJdbcConnection = new GetJdbcConnection();
 
-    public static void main(String[] args) {
+    //Создать новую таблицу в БД если такой нет
+    public void createNewTableInDB() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            try (Connection connect = getJdbcConnection.getConnection()){
+            try (Connection connect = GetJdbcConnection.getConnection()) {
                 logger.info("Database connect has been created - ok");
-
-                // Для взаимодействия с базой данных\выполнения комманд - используем statement
                 Statement statement = connect.createStatement();
-
-                // команда создания таблицы + создание таблицы
                 String createNewSqlTable =
                         "CREATE TABLE IF NOT EXISTS `SolutionEquation` (" +
                                 "`Number` INT PRIMARY KEY AUTO_INCREMENT," +
@@ -30,10 +27,6 @@ public class CreateNewTable {
                                 "`Date` VARCHAR(200))";
                 statement.executeUpdate(createNewSqlTable);
                 logger.info("New SqlTable table was created - successful - ok");
-
-                // Добавляем данные в таблицу
-                String addDataInToTable = "INSERT INTO SolutionEquation(`Number`, `Equation`, `Roots`, `Date`) VALUES (4, 'x1', 1, 25)";
-                statement.executeUpdate(addDataInToTable);
             } catch (SQLException e) {
                 throw new ExceptionMessage(e.getMessage());
             }

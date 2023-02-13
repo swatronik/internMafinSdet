@@ -1,20 +1,20 @@
 package ConnectionDB;
 
 import ConnectionDB.entity.DataRowList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class GetDataFromDB {
+    public static Logger logger = LoggerFactory.getLogger(GetDataFromDB.class);
 
-    private final GetJdbcConnection getJdbcConnection = new GetJdbcConnection();
-
-    public ArrayList<DataRowList> getDataFromDB()  {
+    public ArrayList<DataRowList> getAllDataFromDB() {
         ArrayList<DataRowList> dataRowsArrayList = new ArrayList<>();
-        try (Connection connect = getJdbcConnection.getConnection()) {
+        try (Connection connect = GetJdbcConnection.getConnection()) {
             Statement statement = connect.createStatement();
             ResultSet setResult = statement.executeQuery("SELECT number, equation, roots, date FROM solutionEquation");
             while (setResult.next()) {
@@ -22,12 +22,33 @@ public class GetDataFromDB {
                 dataRowList.number = setResult.getInt(1);
                 dataRowList.equation = setResult.getString(2);
                 dataRowList.roots = setResult.getString(3);
-                dataRowList.date = setResult.getDate(4);
+                dataRowList.date = setResult.getString(4);
                 dataRowsArrayList.add(dataRowList);
+                logger.info((String.format("%d %s %s %s", dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)));
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (Exception ex) {
+            logger.error("getDataOnNumber - error: " + ex);
         }
         return dataRowsArrayList;
+    }
+
+    public DataRowList getDataOnNumber(Integer number) {
+        try (Connection connect = GetJdbcConnection.getConnection()) {
+            Statement statement = connect.createStatement();
+            ResultSet setResult = statement.executeQuery(
+                    String.format("SELECT number, equation, roots, date FROM solutionEquation WHERE number = %s", number));
+            if (setResult.next()) {
+                DataRowList dataRowList = new DataRowList();
+                dataRowList.number = setResult.getInt(1);
+                dataRowList.equation = setResult.getString(2);
+                dataRowList.roots = setResult.getString(3);
+                dataRowList.date = setResult.getString(4);
+                logger.info((String.format("%d %s %s %s", dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)));
+                return dataRowList;
+            }
+        } catch (Exception ex) {
+            logger.error("getDataOnNumber - error: " + ex);
+        }
+        return null;
     }
 }

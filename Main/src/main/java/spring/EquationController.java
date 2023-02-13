@@ -1,5 +1,7 @@
 package spring;
 
+import ConnectionDB.InsertDataToDB;
+import ConnectionDB.entity.DataRowList;
 import equation.Equation;
 import equation.Roots;
 import equation.SolutionEquation;
@@ -36,6 +38,9 @@ public class EquationController {
                 equals, equation, solution, date));
 
         int numberDecision = countRequest.incrementAndGet();
+
+        //вставка метода из JDBC для записи в БД новых данных
+        InsertDataToDB.insertData(new DataRowList(numberDecision, equation.toString(), solution.toString(), date));
 
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("number", numberDecision);

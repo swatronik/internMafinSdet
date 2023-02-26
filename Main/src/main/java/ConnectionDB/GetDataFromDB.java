@@ -12,7 +12,8 @@ import java.util.ArrayList;
 public class GetDataFromDB {
     public static Logger logger = LoggerFactory.getLogger(GetDataFromDB.class);
 
-    public ArrayList<DataRowList> getAllDataFromDB() {
+    //получаем все данные из БД
+    public static ArrayList<DataRowList> getAllDataFromDB() {
         ArrayList<DataRowList> dataRowsArrayList = new ArrayList<>();
         try (Connection connect = GetJdbcConnection.getConnection()) {
             Statement statement = connect.createStatement();
@@ -32,6 +33,7 @@ public class GetDataFromDB {
         return dataRowsArrayList;
     }
 
+    //получаем данные по номеру строки
     public DataRowList getDataOnNumber(Integer number) {
         try (Connection connect = GetJdbcConnection.getConnection()) {
             Statement statement = connect.createStatement();

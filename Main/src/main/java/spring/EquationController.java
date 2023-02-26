@@ -1,22 +1,27 @@
 package spring;
 
+import ConnectionDB.GetDataFromDB;
 import ConnectionDB.InsertDataToDB;
 import ConnectionDB.entity.DataRowList;
+import com.mysql.cj.xdevapi.JsonArray;
 import equation.Equation;
 import equation.Roots;
 import equation.SolutionEquation;
 import exception.ExceptionMessage;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import util.PatternEquation;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
@@ -26,6 +31,7 @@ public class EquationController {
 
     public AtomicInteger countRequest = new AtomicInteger(0);
 
+    //метод для расчета уравнения и записи ответа в БД
     @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("Время: HH:mm:ss Дата: dd.MM.yyyy");
@@ -40,7 +46,7 @@ public class EquationController {
         int numberDecision = countRequest.incrementAndGet();
 
         //вставка метода из JDBC для записи в БД новых данных
-        InsertDataToDB.insertData(new DataRowList(numberDecision, equation.toString(), solution.toString(), date));
+        InsertDataToDB.insertData(new DataRowList(numberDecision, equation.toString(), solution.toString(), date))
 
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("number", numberDecision);
@@ -49,5 +55,22 @@ public class EquationController {
         responseJSON.put("date", date);
 
         return ResponseEntity.ok().body(responseJSON.toString());
+    }
+
+    //Метод для получения данных из БД
+    @GetMapping(value = "/getAllDataFromDB", headers = {"Accept=*/*"})
+    public ResponseEntity<String> getAllDataFromDB(@RequestBody String equals) {
+        JSONArray jsonArray = new JSONArray();
+        ArrayList<DataRowList> allData = GetDataFromDB.getAllDataFromDB();
+
+        for (DataRowList dataRowList : allData) {
+            JSONObject responseJSON = new JSONObject();
+            responseJSON.put("number", dataRowList.number);
+            responseJSON.put("equation", dataRowList.equation);
+            responseJSON.put("roots", dataRowList.roots);
+            responseJSON.put("date", dataRowList.date);
+            jsonArray.put(responseJSON);
+        }
+        return ResponseEntity.ok().body(jsonArray.toString());
     }
 }

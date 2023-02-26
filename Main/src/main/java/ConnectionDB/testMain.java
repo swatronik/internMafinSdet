@@ -1,12 +1,7 @@
 package ConnectionDB;
 
-import ConnectionDB.entity.DataRowList;
-import equation.Equation;
-import equation.Roots;
-import equation.SolutionEquation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import util.PatternEquation;
 
 public class testMain {
 
@@ -18,10 +13,15 @@ public class testMain {
         InsertDataToDB insertDataToDB = new InsertDataToDB();
 
 
-
+        //создание таблицы в бд - работает
         //createNewTable.createNewTableInDB();
-        insertDataToDB.insertData(new DataRowList( ));
+
+        //insertDataToDB.insertData(new DataRowList( ));
+
+        //получить все данные из БД - работает
         //getDataFromDB.getAllDataFromDB();
+
+        //получить данные из БД по номеру строки - работает
         //getDataFromDB.getDataOnNumber(3);
 
     }

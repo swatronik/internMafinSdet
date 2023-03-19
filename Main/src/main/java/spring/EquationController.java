@@ -24,12 +24,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static ConnectionDB.GetDataFromDB.getDataOnNumberRows;
+import static ConnectionDB.GetDataFromDB.getNumber;
+
 @Controller
 public class EquationController {
 
     public static Logger logger = LoggerFactory.getLogger(EquationController.class);
 
-    public AtomicInteger countRequest = new AtomicInteger(0);
+    public AtomicInteger countRequest = new AtomicInteger(getNumber());
+
+    //как загружать данные из базы и продолжать с последнего числа
 
     //метод для расчета уравнения и записи ответа в БД
     @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
@@ -46,7 +51,7 @@ public class EquationController {
         int numberDecision = countRequest.incrementAndGet();
 
         //вставка метода из JDBC для записи в БД новых данных
-        InsertDataToDB.insertData(new DataRowList(numberDecision, equation.toString(), solution.toString(), date))
+        InsertDataToDB.insertData(new DataRowList(numberDecision, equation.toString(), solution.toString(), date));
 
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("number", numberDecision);
@@ -58,10 +63,10 @@ public class EquationController {
     }
 
     //Метод для получения данных из БД
-    @GetMapping(value = "/getAllDataFromDB", headers = {"Accept=*/*"})
-    public ResponseEntity<String> getAllDataFromDB(@RequestBody String equals) {
+    @GetMapping("/getAllDataFromDB")
+    public ResponseEntity<String> getAllDataFromDB() {
         JSONArray jsonArray = new JSONArray();
-        ArrayList<DataRowList> allData = GetDataFromDB.getAllDataFromDB();
+        ArrayList<DataRowList> allData = getDataOnNumberRows(getNumber());
 
         for (DataRowList dataRowList : allData) {
             JSONObject responseJSON = new JSONObject();

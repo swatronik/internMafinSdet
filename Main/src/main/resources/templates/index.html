@@ -8,7 +8,8 @@
     <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet"/>
 </head>
 
-<body>
+
+<body onload="getAllDataFromDB()">
 
 <h1>Решение квадратных уравнений</h1>
 
@@ -49,28 +50,52 @@
         let xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.open("POST", window.location.href + "postEqualsEquation", false);
         xmlHttpRequest.send(inputEquation);
-        if (xmlHttpRequest.status !== 200) {
-            alert('Ошибка: ' + xmlHttpRequest.status);
-            return;
-        }
+        // if (xmlHttpRequest.status !== 200) {
+        //     alert('Ошибка: ' + xmlHttpRequest.status);
+        //     return;
+        // }
         console.log(xmlHttpRequest.response)
-
         let XmlResponseTextJsonParse = JSON.parse(xmlHttpRequest.responseText);
         console.log(XmlResponseTextJsonParse);
 
+        //Эту часть мы удалили и заменили на функцию getAllDataFromDB()
         var tableModel = "<tr><td>" + XmlResponseTextJsonParse.number + "</td>" +
             "<td>" + XmlResponseTextJsonParse.equation + "</td>" +
             "<td>" + XmlResponseTextJsonParse.roots + "</td>" +
             "<td>" + XmlResponseTextJsonParse.date + "</td></tr>";
         console.log(tableModel);
-
         //'tbody' - часть xmlHttpRequest ???
         var tableObj = document.createElement('tbody');
         tableObj.innerHTML = tableModel;
         document.getElementById('table_id_001').appendChild(tableObj);
+
+        //getAllDataFromDB();
     }
 
-    func
+    //Тут надо написать скрипт
+
+    function getAllDataFromDB() {
+
+        let xmlHttpRequestGetAllDataFromDB = new XMLHttpRequest();
+        xmlHttpRequestGetAllDataFromDB.open("GET", window.location.href + "getAllDataFromDB", false);
+        xmlHttpRequestGetAllDataFromDB.send(""); //всё же эта штука важна блэд
+        console.log(xmlHttpRequestGetAllDataFromDB.response)
+        let responseJsonParse = JSON.parse(xmlHttpRequestGetAllDataFromDB.responseText);
+        console.log(responseJsonParse);
+
+        for (let i = 0; i < responseJsonParse.length; i++) {
+            let tableModel = "<tr>" +
+                "<td>" + responseJsonParse[i].number + "</td>" +
+                "<td>" + responseJsonParse[i].equation + "</td>" +
+                "<td>" + responseJsonParse[i].roots + "</td>" +
+                "<td>" + responseJsonParse[i].date + "</td></tr>";
+
+            //'tbody' - часть xmlHttpRequestGetAllDataFromDB ???
+            let tableObj = document.createElement('tbody');
+            tableObj.innerHTML = tableModel;
+            document.getElementById('table_id_001').appendChild(tableObj);
+        }
+    }
 
 </script>
 </body>

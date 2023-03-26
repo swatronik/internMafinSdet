@@ -14,12 +14,14 @@
 <h1>Решение квадратных уравнений</h1>
 
 <form class="equation_form" name="equation_form_name" method="post">
-<!--    <label for="inputEquationId">Введите уравнение:</label>-->
+    <!--    <label for="inputEquationId">Введите уравнение:</label>-->
     <!-- Присвоили полю для ввода айдишник id="inputEquationId", что позволяет вытащить элемент через метод getElementById() -->
-    <input type="text" id="inputEquationId" name="inputEquation" required placeholder="Введите уравнение: например: 2x^2+5x+3=0">
-    <!-- Привязали метод GetDecision() к кнопке -->
+    <input type="text" id="inputEquationId" name="inputEquation" required
+           placeholder="Введите уравнение. Например: 2x^2+5x+3=0">
+    <!-- Кнопка расчета уравнения. Привязан метод для решения уравнения GetDecision() -->
     <input type="button" name="submit_btn" onclick="GetDecision()" value="Решить">
     <div class="guruweba_example_infofield">Решение уравнения</div>
+    <!-- Попытка сделать независимые клонки которые не изменяются (на потом) -->
     <table class="equation_table" id="table_id_000">
         <tr>
             <td>Number</td>
@@ -36,7 +38,10 @@
             <td>Date</td>
         </tr>
     </table>
-    <button class="delete_btn" type="button" onclick="deleteLastDataFromDB()" style="background-color: #ffcccc;">Удалить последнюю запись</button>
+    <!-- Кнопка удаления последней записи с пирвязанным к ней методом-->
+    <button class="delete_btn" type="button" onclick="deleteLastDataFromDB()" style="background-color: #ffcccc;">Удалить
+        последнюю запись
+    </button>
 </form>
 
 <script>
@@ -71,7 +76,6 @@
         getAllDataFromDB();
     }
 
-
     //функция получение всех данных из БД
     function getAllDataFromDB() {
 
@@ -103,18 +107,15 @@
         }
     }
 
-
     //тут мы пытаемся написать метод который будет удалять последнюю запись из таблицы
     //функция получение всех данных из БД
     function deleteLastDataFromDB() {
-
         let deleteLastDataFromDB = new XMLHttpRequest();
         deleteLastDataFromDB.open("DELETE", window.location.href + "deleteLastDataFromDB", false);
         deleteLastDataFromDB.send(""); //важно. отправляем запрос
         console.log(deleteLastDataFromDB.response)
         let responseJsonParse = JSON.parse(deleteLastDataFromDB.responseText);
         console.log(responseJsonParse);
-
         getAllDataFromDB();
     }
 

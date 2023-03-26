@@ -35,10 +35,6 @@ public class EquationController {
 
     public static Logger logger = LoggerFactory.getLogger(EquationController.class);
 
-    public AtomicInteger countRequest = new AtomicInteger(getNumber());
-
-    //как загружать данные из базы и продолжать с последнего числа
-
     //метод для расчета уравнения и записи ответа в БД
     @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
@@ -48,13 +44,13 @@ public class EquationController {
         Equation equation = PatternEquation.getFullEquation(equals);
         Roots solution = SolutionEquation.solution(equation);
 
-        logger.info(String.format("Получено уравнение на вход: %s Распарсили уравнение на вход: %s Получено решение уравнения: %s Генерируем текущую дату по шаблону: %s",
-                equals, equation, solution, date));
+        logger.info(String.format("Получено уравнение на вход: %s " +
+                "Распарсили уравнение на вход: %s " +
+                "Получено решение уравнения: %s " +
+                "Генерируем текущую дату по шаблону: %s", equals, equation, solution, date));
 
-
-        //получаем данные из базы и увеличиваем значение на 1
-        DeleteDataFromDB deleteDataFromDB = new DeleteDataFromDB();
-        int lastDataNumberFromDB = deleteDataFromDB.getLastDataFromBase();
+        //спрятали атомик в метод, подтягивает наибольшее значение из колнки Number из БД, увеличиваем это значение атомиком
+        AtomicInteger countRequest = new AtomicInteger(getNumber());
         int numberDecision = countRequest.incrementAndGet();
 
         //вставка метода из JDBC для записи в БД новых данных

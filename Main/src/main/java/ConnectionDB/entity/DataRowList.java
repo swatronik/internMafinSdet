@@ -1,7 +1,5 @@
 package ConnectionDB.entity;
 
-import java.util.Date;
-
 public class DataRowList {
 
     public Integer number;

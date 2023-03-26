@@ -3,15 +3,23 @@ package ConnectionDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
+
 public class testMain {
 
     public static Logger logger = LoggerFactory.getLogger(testMain.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         CreateNewTable createNewTable = new CreateNewTable();
         GetDataFromDB getDataFromDB = new GetDataFromDB();
         InsertDataToDB insertDataToDB = new InsertDataToDB();
+        DeleteDataFromDB deleteDataFromDB = new DeleteDataFromDB();
 
+        //deleteDataFromDB.getLastDataFromBase();
+
+        //GetDataFromDB.getNumber();
+
+        //deleteDataFromDB.deleteLastData();
 
         //создание таблицы в бд - работает
         //createNewTable.createNewTableInDB();
@@ -22,7 +30,7 @@ public class testMain {
         //getDataFromDB.getAllDataFromDB();
 
         //получить данные из БД по номеру строки - работает
-        //getDataFromDB.getDataOnNumber(3);
+        //getDataFromDB.getDataOnNumberRows(4);
 
     }
 }

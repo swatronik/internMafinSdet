@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class GetDataFromDB {
     public static Logger logger = LoggerFactory.getLogger(GetDataFromDB.class);
 
-    //получаем все данные из БД - неактивно
+    //получаем все данные из БД - неактивно, сохранено как пример
     public static ArrayList<DataRowList> getAllDataFromDB() {
         ArrayList<DataRowList> dataRowsArrayList = new ArrayList<>();
         try (Connection connect = GetJdbcConnection.getConnection()) {
@@ -62,10 +62,9 @@ public class GetDataFromDB {
         try (Connection connect = GetJdbcConnection.getConnection()) {
             Statement statement = connect.createStatement();
             ResultSet setResult = statement.executeQuery("select MAX(Number) from solutionequation");
-            while (setResult.next()) {
-                number = setResult.getInt(1);
-                logger.info((String.format("Кол-во колонок равно(исправить) = " + number)));
-            }
+            setResult.next();
+            number = setResult.getInt(1);
+            logger.info((String.format("Последняя строка Number в БД = " + number)));
             return number;
         } catch (SQLException e) {
             throw new RuntimeException(e);

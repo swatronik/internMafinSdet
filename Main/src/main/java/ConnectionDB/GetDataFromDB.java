@@ -61,9 +61,11 @@ public class GetDataFromDB {
         int number = 0;
         try (Connection connect = GetJdbcConnection.getConnection()) {
             Statement statement = connect.createStatement();
-            ResultSet setResult = statement.executeQuery("select count(Number) from solutionequation");
-            setResult.next();
-            number = setResult.getInt(1);
+            ResultSet setResult = statement.executeQuery("select MAX(Number) from solutionequation");
+            while (setResult.next()) {
+                number = setResult.getInt(1);
+                logger.info((String.format("Кол-во колонок равно(исправить) = " + number)));
+            }
             return number;
         } catch (SQLException e) {
             throw new RuntimeException(e);

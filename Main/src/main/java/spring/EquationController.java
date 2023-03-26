@@ -1,5 +1,6 @@
 package spring;
 
+import ConnectionDB.DeleteDataFromDB;
 import ConnectionDB.GetDataFromDB;
 import ConnectionDB.InsertDataToDB;
 import ConnectionDB.entity.DataRowList;
@@ -14,11 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import util.PatternEquation;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -48,6 +51,10 @@ public class EquationController {
         logger.info(String.format("Получено уравнение на вход: %s Распарсили уравнение на вход: %s Получено решение уравнения: %s Генерируем текущую дату по шаблону: %s",
                 equals, equation, solution, date));
 
+
+        //получаем данные из базы и увеличиваем значение на 1
+        DeleteDataFromDB deleteDataFromDB = new DeleteDataFromDB();
+        int lastDataNumberFromDB = deleteDataFromDB.getLastDataFromBase();
         int numberDecision = countRequest.incrementAndGet();
 
         //вставка метода из JDBC для записи в БД новых данных
@@ -78,4 +85,27 @@ public class EquationController {
         }
         return ResponseEntity.ok().body(jsonArray.toString());
     }
+
+    //Метод для удаления данных из БД
+    @DeleteMapping("/deleteLastDataFromDB")
+    public ResponseEntity<String> deleteLastDataFromDB() throws SQLException {
+
+        DeleteDataFromDB deleteDataFromDB = new DeleteDataFromDB();
+        deleteDataFromDB.deleteLastData();
+
+        JSONArray jsonArray = new JSONArray();
+        ArrayList<DataRowList> allData = getDataOnNumberRows(getNumber());
+
+        for (DataRowList dataRowList : allData) {
+            JSONObject responseJSON = new JSONObject();
+            responseJSON.put("number", dataRowList.number);
+            responseJSON.put("equation", dataRowList.equation);
+            responseJSON.put("roots", dataRowList.roots);
+            responseJSON.put("date", dataRowList.date);
+            jsonArray.put(responseJSON);
+        }
+        return ResponseEntity.ok().body(jsonArray.toString());
+    }
+
+
 }

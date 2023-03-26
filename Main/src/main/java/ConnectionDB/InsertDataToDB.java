@@ -15,18 +15,13 @@ public class InsertDataToDB {
         try (Connection connect = GetJdbcConnection.getConnection()) {
             Statement statement = connect.createStatement();
 
-//            для тест запуска
-//            int den = statement.executeUpdate("INSERT INTO SolutionEquation(`Number`, `Equation`, `Roots`, `Date`) " +
-//                    "VALUES (7, 'x1', 1, 25)");
-
             int den = statement.executeUpdate(String.format("INSERT INTO SolutionEquation(Number, Equation, Roots, Date) VALUES (%d,'%s','%s','%s')",
                     dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date));
-
-//            //старый варик для примера оставить
-//            int den = statement.executeUpdate("INSERT INTO SolutionEquation(`Number`, `Equation`, `Roots`, `Date`) " +
-//                    "VALUES (dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)");
-
             logger.info("Добавлено строк в БД: " + den);
+
+/**            //старый варик для примера оставить
+            int den = statement.executeUpdate("INSERT INTO SolutionEquation(`Number`, `Equation`, `Roots`, `Date`) " +
+                    "VALUES (dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)");*/
 
         } catch (Exception ex) {
             logger.error("InsertDataToDB - error - ошибка добавления данных в ДБ");

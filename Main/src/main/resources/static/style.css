@@ -1,134 +1,170 @@
-/*
-legend {
-    display: block;
-    padding-inline-start: 2px;
-    padding-inline-end: 2px;
-    border-width: initial;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
-}
-*/
+/* Глобальные стили */
 
-/* */
-
-form {
-  /* Just to center the form on the page */
-  margin: 0 auto;
-  /*
-
-  width: 900px;
-  border: 1px solid #CCC;
-  border-radius: 1em;
-
-  */
-
-
-  /* To see the limits of the form */
-  padding: 1em;
-
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-div + div {
-  margin-top: 1em;
-}
+/* Стили для h1 заголовка */
 
-label {
-  /* To make sure that all label have the same size and are properly align */
-  display: inline-block;
-  width: 90px;
-  text-align: right;
-}
-
-input, textarea {
-text-align: center;
-  /* To make sure that all text field have the same font settings
-     By default, textarea are set with a monospace font */
-  font: 1em sans-serif;
-
-  /* To give the same size to all text field */
-  width: 500px;
-
-  -moz-box-sizing: border-box;
-       box-sizing: border-box;
-
-  /* To harmonize the look & feel of text field border */
-  border: 2px solid #ff8c00;
-}
-
-select {
-  width: 400px;
-  text-align-last: center;
-}
-
-input:focus, textarea:focus {
-  /* To give a little highligh on active elements */
-  border-color: #000;
-}
-
-textarea {
-  /* To properly align multiline text field with their label */
-  vertical-align: top;
-  margin-left: auto;
-  margin-right: auto;
-
-  /* To give enough room to type some text */
-  height: 5em;
-
-  /* To allow users to resize any textarea vertically
-     It works only on Chrome, Firefox and Safari */
-  resize: vertical;
-}
-
-.button {
-  /* To position the buttons to the same position of the text fields */
-  padding-left: 90px; /* same size as the label elements */
-}
-
-button {
-  /* This extra margin represent the same space as the space between
-     the labels and their text fields */
-  margin-left: .5em;
-}
-
-/* вставка для таблицы */
-
-html {
-  font-family: sans-serif;
-}
-
-table {
-  border-collapse: collapse;
-  border: 2px solid rgb(200,200,200);
-  letter-spacing: 1px;
-  font-size: 0.8rem;
-}
-
-td, th {
-  border: 1px solid rgb(190,190,190);
-  padding: 10px 50px;
-}
-
-h1{
-text-align: center;
-}
-
-th {
-  background-color: rgb(235,235,235);
-}
-
-td {
+h1 {
   text-align: center;
 }
 
-tr:nth-child(even) td {
-  background-color: rgb(250,250,250);
+/* Стили для формы */
+
+.equation_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
-tr:nth-child(odd) td {
-  background-color: rgb(245,245,245);
+/* Стили для label */
+
+label {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
 }
+
+/* Стили для input */
+
+input[type="text"], input[type="button"] {
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Стили для кнопки */
+
+input[type="button"] {
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Стили для таблицы */
+
+
+
+ table {
+   border-collapse: collapse;
+   width: 100%;
+   margin-bottom: 20px;
+ }
+
+th, td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+th {
+  background-color: #ccc;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+#table_id_000 th {
+  background-color: #99CCFF;
+}
+
+#table_id_000 tbody tr:nth-child(odd) {
+  background-color: #F8E8FF;
+}
+
+
+    /*#table_id_001 {*/
+/*  border-collapse: collapse;*/
+/*  width: 100%;*/
+/*  margin-top: 20px;*/
+/*}*/
+
+/*#table_id_001 th {*/
+/*  background-color: #4CAF50;*/
+/*  color: white;*/
+/*  font-weight: bold;*/
+/*  padding: 8px;*/
+/*  text-align: center;*/
+/*  border: 1px solid #ddd;*/
+/*}*/
+
+/*#table_id_001 td {*/
+/*  padding: 8px;*/
+/*  text-align: center;*/
+/*  border: 1px solid #ddd;*/
+/*}*/
+
+/*#table_id_001 {*/
+/*  width: 100%;*/
+/*  border-collapse: collapse;*/
+/*}*/
+
+/*#table_id_001 thead th {*/
+/*  position: sticky;*/
+/*  top: 0;*/
+/*  background-color: #fff;*/
+/*}*/
+
+/*#table_id_001 tbody td {*/
+/*  border: 1px solid #ddd;*/
+/*  padding: 8px;*/
+/*}*/
+
+
+/*table {*/
+/*  width: 100%;*/
+/*  border-collapse: collapse;*/
+/*  margin-top: 20px;*/
+/*}*/
+
+/*th, td {*/
+/*  padding: 10px;*/
+/*  text-align: center;*/
+/*  border: 1px solid #ccc;*/
+/*}*/
+
+/*th {*/
+/*  background-color: #eee;*/
+/*}*/
+
+/* Стили для div элемента */
+
+.guruweba_example_infofield {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* Стили для tbody */
+
+tbody {
+  text-align: center;
+}
+
+/* Стили для caption */
 
 caption {
-  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Стили для кнопки удаления */
+.delete_btn {
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
 }

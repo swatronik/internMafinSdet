@@ -16,9 +16,8 @@ public class GetDataFromDB {
     //получаем все данные из БД - неактивно, сохранено как пример
     public static ArrayList<DataRowList> getAllDataFromDB() {
         ArrayList<DataRowList> dataRowsArrayList = new ArrayList<>();
-        try (Connection connect = GetJdbcConnection.getConnection()) {
-            Statement statement = connect.createStatement();
-            ResultSet setResult = statement.executeQuery("SELECT number, equation, roots, date FROM solutionEquation");
+        try {
+            ResultSet setResult = GetJdbcConnection.getStatement().executeQuery(SQLQueries.GET_ALL_DATA_FROM_DB);
             while (setResult.next()) {
                 DataRowList dataRowList = new DataRowList();
                 dataRowList.number = setResult.getInt("number");
@@ -37,10 +36,8 @@ public class GetDataFromDB {
     //получаем данные из БД и выводим кол-во строк из БД (указывая в number)
     public static ArrayList<DataRowList> getDataOnNumberRows(Integer number) {
         ArrayList<DataRowList> dataRowListArrayList = new ArrayList<>();
-        try (Connection connect = GetJdbcConnection.getConnection()) {
-            Statement statement = connect.createStatement();
-            ResultSet setResult = statement.executeQuery(
-                    String.format("SELECT number, equation, roots, date FROM solutionEquation ORDER BY number LIMIT %d", number));
+        try {
+            ResultSet setResult = GetJdbcConnection.getStatement().executeQuery(String.format(SQLQueries.GET_DATA_ON_NUMBER_ROWS, number));
             while (setResult.next()) {
                 DataRowList dataRowList = new DataRowList();
                 dataRowList.number = setResult.getInt(1);
@@ -48,7 +45,8 @@ public class GetDataFromDB {
                 dataRowList.roots = setResult.getString(3);
                 dataRowList.date = setResult.getString(4);
                 dataRowListArrayList.add(dataRowList);
-                logger.info((String.format("%d %s %s %s", dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)));
+                logger.info((String.format("%d %s %s %s",
+                        dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)));
             }
         } catch (Exception ex) {
             logger.error("getDataOnNumber - error: " + ex);
@@ -59,9 +57,8 @@ public class GetDataFromDB {
     //получаем кол-во записей из бд, чтобы начать отсчет с последняя запись +1
     public static int getNumber() {
         int number = 0;
-        try (Connection connect = GetJdbcConnection.getConnection()) {
-            Statement statement = connect.createStatement();
-            ResultSet setResult = statement.executeQuery("select MAX(Number) from solutionequation");
+        try {
+            ResultSet setResult = GetJdbcConnection.getStatement().executeQuery(SQLQueries.SELECT_MAX_NUMBER_FROM_TABLE);
             setResult.next();
             number = setResult.getInt(1);
             logger.info((String.format("Последняя строка Number в БД = " + number)));

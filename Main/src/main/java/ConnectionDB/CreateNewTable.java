@@ -14,20 +14,11 @@ public class CreateNewTable {
     //Создать новую таблицу в БД если такой нет
     public void createNewTableInDB() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            try (Connection connect = GetJdbcConnection.getConnection()) {
-                logger.info("Database connect has been created - ok");
-                Statement statement = connect.createStatement();
-                String createNewSqlTable =
-                        "CREATE TABLE IF NOT EXISTS `SolutionEquation` (" +
-                                "`Number` INT PRIMARY KEY AUTO_INCREMENT," +
-                                "`Equation` VARCHAR(200)," +
-                                "`Roots` VARCHAR(200)," +
-                                "`Date` VARCHAR(200))";
-                statement.executeUpdate(createNewSqlTable);
-                logger.info("New SqlTable table was created - successful - ok");
+            try {
+                GetJdbcConnection.getStatement().executeUpdate(SQLQueries.CREATE_NEW_SQL_TABLE);
+                logger.info("New Sql_Table successfully created");
             } catch (SQLException e) {
-                throw new ExceptionMessage(e.getMessage());
+                logger.error(String.valueOf(e));
             }
         } catch (Exception ex) {
             logger.error("Connection failed - error");

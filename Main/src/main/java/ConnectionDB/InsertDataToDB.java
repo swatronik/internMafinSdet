@@ -12,17 +12,14 @@ public class InsertDataToDB {
 
     //Добавляем данные в таблицу
     public static DataRowList insertData(DataRowList dataRowList) {
-        try (Connection connect = GetJdbcConnection.getConnection()) {
-            Statement statement = connect.createStatement();
-            int den = statement.executeUpdate(String.format
-                    ("INSERT INTO SolutionEquation(Number, Equation, Roots, Date) VALUES (%d,'%s','%s','%s')",
-                            dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date));
+        try {
+            int den = GetJdbcConnection.getStatement().executeUpdate(String.format(SQLQueries.INSERT_DATA_INTO_TABLE,
+                    dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date));
             logger.info("Добавлено строк в БД: " + den);
         } catch (Exception ex) {
-            logger.error("InsertDataToDB - error - ошибка добавления данных в ДБ");
             ex.printStackTrace();
+            logger.error("Ошибка добавления данных в ДБ");
         }
         return dataRowList;
     }
 }
-

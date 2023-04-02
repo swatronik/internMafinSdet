@@ -13,9 +13,8 @@ public class DeleteDataFromDB {
 
     public int getLastNumberFromBase() {
         int id = 0;
-        try (Connection connect = GetJdbcConnection.getConnection()) {
-            Statement statement = connect.createStatement();
-            ResultSet setResult = statement.executeQuery("select MAX(Number) from solutionequation");
+        try {
+            ResultSet setResult = GetJdbcConnection.getStatement().executeQuery(SQLQueries.SELECT_MAX_NUMBER_FROM_TABLE);
             while (setResult.next()) {
                 id = setResult.getInt(1);
                 logger.info((String.format("Максимальное значение в колонке Number = " + id)));
@@ -27,11 +26,13 @@ public class DeleteDataFromDB {
     }
 
     public void deleteLastDataFromBase(int number) throws SQLException {
-        try (Connection connect = GetJdbcConnection.getConnection()) {
-            Statement statement = connect.createStatement();
-            int rows = statement.executeUpdate(
-                    String.format("delete from solutionequation where Number = %d", number));
+        try {
+            int rows = GetJdbcConnection.getStatement().executeUpdate(
+                    String.format(SQLQueries.DELETE_LAST_DATA_FROM_DB, number));
             logger.info((String.format("%d row(s) deleted", rows)));
+        } catch (Exception ex) {
+            logger.error("Ошибка удаления данных из БД");
+            logger.error(String.valueOf(ex));
         }
     }
 

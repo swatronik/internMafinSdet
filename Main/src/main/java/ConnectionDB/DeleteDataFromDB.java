@@ -3,10 +3,8 @@ package ConnectionDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DeleteDataFromDB {
     public static Logger logger = LoggerFactory.getLogger(DeleteDataFromDB.class);

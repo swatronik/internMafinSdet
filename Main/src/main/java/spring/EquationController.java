@@ -1,10 +1,8 @@
 package spring;
 
 import ConnectionDB.DeleteDataFromDB;
-import ConnectionDB.GetDataFromDB;
 import ConnectionDB.InsertDataToDB;
 import ConnectionDB.entity.DataRowList;
-import com.mysql.cj.xdevapi.JsonArray;
 import equation.Equation;
 import equation.Roots;
 import equation.SolutionEquation;
@@ -36,7 +34,7 @@ public class EquationController {
     public static Logger logger = LoggerFactory.getLogger(EquationController.class);
 
     //метод для расчета уравнения и записи ответа в БД
-    @PostMapping(value = "/postEqualsEquation", headers = {"Accept=*/*"})
+    @PostMapping(value = "/post-equals-equation", headers = {"Accept=*/*"})
     public ResponseEntity<String> postEqualsEquation(@RequestBody String equals) throws ExceptionMessage {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("Время: HH:mm:ss Дата: dd.MM.yyyy");
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -55,35 +53,33 @@ public class EquationController {
 
         //вставка метода из JDBC для записи в БД новых данных
         InsertDataToDB.insertData(new DataRowList(numberDecision, equation.toString(), solution.toString(), date));
-
         JSONObject responseJSON = new JSONObject();
         responseJSON.put("number", numberDecision);
         responseJSON.put("equation", equation.toString());
         responseJSON.put("roots", solution.toString());
         responseJSON.put("date", date);
-
         return ResponseEntity.ok().body(responseJSON.toString());
     }
 
     //Метод для получения данных из БД
-    @GetMapping("/getAllDataFromDB")
+    @GetMapping("/get-all-data-db")
     public ResponseEntity<String> getAllDataFromDB() {
         JSONArray jsonArray = new JSONArray();
         ArrayList<DataRowList> allData = getDataOnNumberRows(getNumber());
 
         for (DataRowList dataRowList : allData) {
             JSONObject responseJSON = new JSONObject();
-            responseJSON.put("number", dataRowList.number);
-            responseJSON.put("equation", dataRowList.equation);
-            responseJSON.put("roots", dataRowList.roots);
-            responseJSON.put("date", dataRowList.date);
+            responseJSON.put("number", dataRowList.getNumber());
+            responseJSON.put("equation", dataRowList.getEquation());
+            responseJSON.put("roots", dataRowList.getRoots());
+            responseJSON.put("date", dataRowList.getDate());
             jsonArray.put(responseJSON);
         }
         return ResponseEntity.ok().body(jsonArray.toString());
     }
 
     //Метод для удаления данных из БД
-    @DeleteMapping("/deleteLastDataFromDB")
+    @DeleteMapping("/delete-last-data-db")
     public ResponseEntity<String> deleteLastDataFromDB() throws SQLException {
 
         DeleteDataFromDB deleteDataFromDB = new DeleteDataFromDB();
@@ -94,14 +90,12 @@ public class EquationController {
 
         for (DataRowList dataRowList : allData) {
             JSONObject responseJSON = new JSONObject();
-            responseJSON.put("number", dataRowList.number);
-            responseJSON.put("equation", dataRowList.equation);
-            responseJSON.put("roots", dataRowList.roots);
-            responseJSON.put("date", dataRowList.date);
+            responseJSON.put("number", dataRowList.getNumber());
+            responseJSON.put("equation", dataRowList.getEquation());
+            responseJSON.put("roots", dataRowList.getRoots());
+            responseJSON.put("date", dataRowList.getDate());
             jsonArray.put(responseJSON);
         }
         return ResponseEntity.ok().body(jsonArray.toString());
     }
-
-
 }

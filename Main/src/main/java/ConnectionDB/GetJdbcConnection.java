@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 public class GetJdbcConnection {
@@ -16,12 +18,7 @@ public class GetJdbcConnection {
     //Подключение к БД используя проперти
     public static Connection getConnection() throws SQLException {
         Properties propertiesDB = new Properties();
-//        try (InputStream in = Files.newInputStream(Paths.get("C:\\Users\\Vitalii\\IdeaProjects\\internMafinSdet\\Main\\src\\main\\resources\\database.properties"))) {
-
-        //Path path = Paths.get("Main", "Main", "src", "resources", "database.properties");
-
-
-        try (InputStream in = Files.newInputStream(Paths.get("C:\\Users\\Vitalii\\IdeaProjects\\internMafinSdet\\Main\\src\\main\\resources\\database.properties"))) {
+        try (InputStream in = Files.newInputStream(Paths.get("Main", "src", "main", "resources", "application.properties"))) { //универсальный путь проперти
             propertiesDB.load(in);
         } catch (Exception ex) {
             logger.error(String.valueOf(ex));

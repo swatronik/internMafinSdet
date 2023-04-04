@@ -4,10 +4,8 @@ import ConnectionDB.entity.DataRowList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class GetDataFromDB {
@@ -20,12 +18,12 @@ public class GetDataFromDB {
             ResultSet setResult = GetJdbcConnection.getStatement().executeQuery(SQLQueries.GET_ALL_DATA_FROM_DB);
             while (setResult.next()) {
                 DataRowList dataRowList = new DataRowList();
-                dataRowList.number = setResult.getInt("number");
-                dataRowList.equation = setResult.getString("equation");
-                dataRowList.roots = setResult.getString("roots");
-                dataRowList.date = setResult.getString(4);
+                dataRowList.setNumber(setResult.getInt("number"));
+                dataRowList.setEquation(setResult.getString("equation"));
+                dataRowList.setRoots(setResult.getString("roots"));
+                dataRowList.setDate(setResult.getString(4));
                 dataRowsArrayList.add(dataRowList);
-                logger.info((String.format("%d %s %s %s", dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)));
+                logger.info((String.format("%d %s %s %s", dataRowList.getNumber(), dataRowList.getEquation(), dataRowList.getRoots(), dataRowList.getDate())));
             }
         } catch (Exception ex) {
             logger.error("getAllDataFromDB - error: " + ex);
@@ -40,13 +38,13 @@ public class GetDataFromDB {
             ResultSet setResult = GetJdbcConnection.getStatement().executeQuery(String.format(SQLQueries.GET_DATA_ON_NUMBER_ROWS, number));
             while (setResult.next()) {
                 DataRowList dataRowList = new DataRowList();
-                dataRowList.number = setResult.getInt(1);
-                dataRowList.equation = setResult.getString(2);
-                dataRowList.roots = setResult.getString(3);
-                dataRowList.date = setResult.getString(4);
+                dataRowList.setNumber(setResult.getInt(1));
+                dataRowList.setEquation(setResult.getString(2));
+                dataRowList.setRoots(setResult.getString(3));
+                dataRowList.setDate(setResult.getString(4));
                 dataRowListArrayList.add(dataRowList);
                 logger.info((String.format("%d %s %s %s",
-                        dataRowList.number, dataRowList.equation, dataRowList.roots, dataRowList.date)));
+                        dataRowList.getNumber(), dataRowList.getEquation(), dataRowList.getRoots(), dataRowList.getDate())));
             }
         } catch (Exception ex) {
             logger.error("getDataOnNumber - error: " + ex);

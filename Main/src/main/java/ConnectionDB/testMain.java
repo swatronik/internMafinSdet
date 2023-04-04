@@ -3,8 +3,6 @@ package ConnectionDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 
 /**
@@ -31,9 +29,7 @@ public class testMain {
         //getDataFromDB.getAllDataFromDB();
         //получить данные из БД по номеру строки - работает
         //getDataFromDB.getDataOnNumberRows(4);
-
-        Path path = Paths.get("Main", "Main", "src", "resources", "database.properties");
-        logger.info(path.toString());
-
+        //Path path = Paths.get("Main", "Main", "src", "resources", "application.properties");
+        //logger.info(path.toString());
     }
 }

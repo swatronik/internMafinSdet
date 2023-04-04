@@ -21,15 +21,6 @@
     <!-- Кнопка расчета уравнения. Привязан метод для решения уравнения GetDecision() -->
     <input type="button" name="submit_btn" onclick="GetDecision()" value="Решить">
     <div class="guruweba_example_infofield">Решение уравнения</div>
-    <!-- Попытка сделать независимые клонки которые не изменяются (на потом) -->
-<!--    <table class="equation_table" id="table_id_000">-->
-<!--        <tr>-->
-<!--            <td>Number</td>-->
-<!--            <td>Equation</td>-->
-<!--            <td>Roots</td>-->
-<!--            <td>Date</td>-->
-<!--        </tr>-->
-<!--    </table>-->
     <table class="equation_table" id="table_id_001">
 <!--        <tr>-->
         <!--            <th scope="col">Номер</th>-->
@@ -45,12 +36,12 @@
             <th scope="col">Дата</th>
         </tr>
         </thead>
-        <tr>
-            <td>Number</td>
-            <td>Equation</td>
-            <td>Roots</td>
-            <td>Date</td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>Number</td>-->
+<!--            <td>Equation</td>-->
+<!--            <td>Roots</td>-->
+<!--            <td>Date</td>-->
+<!--        </tr>-->
     </table>
     <!-- Кнопка удаления последней записи с пирвязанным к ней методом-->
     <button class="delete_btn" type="button" onclick="deleteLastDataFromDB()" style="background-color: #ffcccc;">Удалить
@@ -67,7 +58,7 @@
         console.log(inputEquation)
 
         let xmlHttpRequest = new XMLHttpRequest();
-        xmlHttpRequest.open("POST", window.location.href + "postEqualsEquation", false);
+        xmlHttpRequest.open("POST", window.location.href + "post-equals-equation", false);
         xmlHttpRequest.send(inputEquation);
         if (xmlHttpRequest.status !== 200) {
             alert('Ошибка: ' + xmlHttpRequest.status + "\n" + "Введите уравнение");
@@ -102,7 +93,7 @@
         }
 
         let xmlHttpRequestGetAllDataFromDB = new XMLHttpRequest();
-        xmlHttpRequestGetAllDataFromDB.open("GET", window.location.href + "getAllDataFromDB", false);
+        xmlHttpRequestGetAllDataFromDB.open("GET", window.location.href + "get-all-data-db", false);
         xmlHttpRequestGetAllDataFromDB.send(""); //важно. отправляем запрос
         console.log(xmlHttpRequestGetAllDataFromDB.response)
         let responseJsonParse = JSON.parse(xmlHttpRequestGetAllDataFromDB.responseText);
@@ -125,7 +116,7 @@
     //функция получение всех данных из БД
     function deleteLastDataFromDB() {
         let deleteLastDataFromDB = new XMLHttpRequest();
-        deleteLastDataFromDB.open("DELETE", window.location.href + "deleteLastDataFromDB", false);
+        deleteLastDataFromDB.open("DELETE", window.location.href + "delete-last-data-db", false);
         deleteLastDataFromDB.send(""); //важно. отправляем запрос
         console.log(deleteLastDataFromDB.response)
         let responseJsonParse = JSON.parse(deleteLastDataFromDB.responseText);

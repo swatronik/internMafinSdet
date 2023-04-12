@@ -43,8 +43,16 @@
             <version>7.1.0</version>
             <scope>test</scope>
         </dependency>
+        <!--зависимость rest-assured-->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.5.1</version>
+            <scope>test</scope>
+        </dependency>
 
-<!--зависимость чтобы нормально выводить ответ в джейсоне-->
+
+        <!--зависимость чтобы нормально выводить ответ в джейсоне-->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -69,6 +77,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
 

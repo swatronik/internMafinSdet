@@ -1,0 +1,62 @@
+version: '3'
+services:
+
+  api-ui:
+    image: mysql:8.0
+    hostname: equation
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile'
+    container_name: 'equation-ui'
+    environment:
+      - dburl=jdbc:mysql://db:3306/QuadEquation
+    networks:
+      - gateway
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+
+
+  db:
+    image: mysql:8.0
+    restart: always
+    container_name: db_mysql
+    environment:
+      MYSQL_DATABASE: 'QuadEquation'
+      MYSQL_ROOT_PASSWORD: '12345678'
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '3307:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
+
+volumes:
+  my-db:
+
+networks:
+  gateway: { }
+
+
+
+  #  db:
+  #    image: postgres:15.2
+  #    container_name: 'postgres'
+  #    environment:
+  #      - POSTGRES_DB=QuadEquation
+  #      - POSTGRES_USER=root
+  #      - POSTGRES_PASSWORD=12345678
+  #      - PGDATA=/var/lib/postgresql/data/pgdata
+  #      - TZ='GMT+3'
+  #      - PGTZ='GMT+3'
+  #    networks:
+  #      - gateway
+  #    restart: always
+  #    ports:
+  #      - '5432:5432'
+  #    volumes:
+  #      - postgresdb:/var/lib/postgresql/data

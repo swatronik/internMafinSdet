@@ -19,17 +19,19 @@ public class testMain {
         GetDataFromDB getDataFromDB = new GetDataFromDB();
         InsertDataToDB insertDataToDB = new InsertDataToDB();
         DeleteDataFromDB deleteDataFromDB = new DeleteDataFromDB();
-        //deleteDataFromDB.getLastDataFromBase();
-        //GetDataFromDB.getNumber();
-        //deleteDataFromDB.deleteLastData();
-        //создание таблицы в бд - работает
-        //createNewTable.createNewTableInDB();
-        //insertDataToDB.insertData(new DataRowList( ));
-        //получить все данные из БД - работает
-        //getDataFromDB.getAllDataFromDB();
-        //получить данные из БД по номеру строки - работает
-        //getDataFromDB.getDataOnNumberRows(4);
-        //Path path = Paths.get("Main", "Main", "src", "resources", "application.properties");
-        //logger.info(path.toString());
+
+//        deleteDataFromDB.getLastDataFromBase();
+//        GetDataFromDB.getNumber();
+//        deleteDataFromDB.deleteLastData();
+//        создание таблицы в бд - работает
+//        createNewTable.createNewTableInDB();
+//        insertDataToDB.insertData(new DataRowList( ));
+
+//        получить все данные из БД - работает
+//        getDataFromDB.getAllDataFromDB();
+
+//        получить данные из БД по номеру строки - работает
+//        getDataFromDB.getDataOnNumberRows(4);
+
     }
 }

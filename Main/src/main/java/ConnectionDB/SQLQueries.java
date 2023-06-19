@@ -7,7 +7,7 @@ public interface SQLQueries {
             "`Roots` VARCHAR(200)," +
             "`Date` VARCHAR(200))";
 
-    String SELECT_MAX_NUMBER_FROM_TABLE = "SELECT MAX(Number) FROM solutionequation";
+    String SELECT_MAX_NUMBER_FROM_TABLE = "SELECT MAX(solutionequation.Number) FROM solutionequation";
     String DELETE_LAST_DATA_FROM_DB = "delete from solutionequation where Number = %d";
     String GET_DATA_ON_NUMBER_ROWS = "SELECT number, equation, roots, date FROM solutionEquation ORDER BY number LIMIT %d";
     String GET_ALL_DATA_FROM_DB = "SELECT number, equation, roots, date FROM solutionEquation";

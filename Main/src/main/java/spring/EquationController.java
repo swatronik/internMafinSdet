@@ -1,5 +1,6 @@
 package spring;
 
+import ConnectionDB.CreateNewTable;
 import ConnectionDB.DeleteDataFromDB;
 import ConnectionDB.InsertDataToDB;
 import ConnectionDB.entity.DataRowList;
@@ -97,5 +98,14 @@ public class EquationController {
             jsonArray.put(responseJSON);
         }
         return ResponseEntity.ok().body(jsonArray.toString());
+    }
+
+    //Метод для создания таблиц в базе данных если таких ещё нет.
+    @PostMapping("/create-table-in-postgres-db")
+    public void createNewTableInPostgresDB() throws SQLException {
+
+        CreateNewTable createNewTable = new CreateNewTable();
+        createNewTable.createNewTableInDB();
+        logger.info(String.format("Новая таблица успешно создана - метод PostMapping - createNewTableInPostgresDB() отработал нормально"));
     }
 }

@@ -22,12 +22,6 @@
     <input type="button" name="submit_btn" onclick="GetDecision()" value="Решить">
     <div class="guruweba_example_infofield">Решение уравнения</div>
     <table class="equation_table" id="table_id_001">
-<!--        <tr>-->
-        <!--            <th scope="col">Номер</th>-->
-        <!--            <th scope="col">Уравнение</th>-->
-        <!--            <th scope="col">Корни</th>-->
-        <!--            <th scope="col">Дата</th>-->
-        <!--        </tr>-->
         <thead>
         <tr>
             <th scope="col">Номер</th>
@@ -36,12 +30,6 @@
             <th scope="col">Дата</th>
         </tr>
         </thead>
-<!--        <tr>-->
-<!--            <td>Number</td>-->
-<!--            <td>Equation</td>-->
-<!--            <td>Roots</td>-->
-<!--            <td>Date</td>-->
-<!--        </tr>-->
     </table>
     <!-- Кнопка удаления последней записи с пирвязанным к ней методом-->
     <button class="delete_btn" type="button" onclick="deleteLastDataFromDB()" style="background-color: #ffcccc;">Удалить
@@ -52,6 +40,14 @@
 <script>
     /** Присваиваем переменной значение из поля inputEquationId
      Создаем HttpRequest - отправляем апи запрос по указ эндпоинту - его обработка будет в гетМаппинг контроллере*/
+
+    PostNewTableInPostgress();
+
+    function PostNewTableInPostgress() {
+        let xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open("POST", window.location.href + "create-table-in-postgres-db", false);
+        xmlHttpRequest.send("");
+    }
 
     function GetDecision() {
         let inputEquation = document.getElementById("inputEquationId").value;

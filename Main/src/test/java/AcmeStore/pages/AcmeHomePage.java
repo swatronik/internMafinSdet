@@ -12,19 +12,18 @@ public class AcmeHomePage {
     public static final String RUBBER_DUCKS_LINK = "https://litecart.stqa.ru/en/rubber-ducks-c-1/";
     public static final String SUBCATEGORY_LINK = "https://litecart.stqa.ru/en/rubber-ducks-c-1/subcategory-c-2/";
 
-    public SelenideElement
-            selectHomePageBottom = $("nav#site-menu a i"),
-            selectHomePageFooterBottom = $("nav#breadcrumbs ul li a"),
-            selectRubberDuckBottom = $(".category-1 a"),
-            checkRubberDuckElementList = $x("//ul[@class=\"list-horizontal\"]/li[3]"),
-            selectSubcategoryBottom = $("ul li .category-2 a"),
-            checkSubcategoryElementList = $x("//ul[@class=\"list-horizontal\"]/li[4]");
+    public SelenideElement selectHomePageBottom = $("nav#site-menu a i");
+    public SelenideElement selectHomePageFooterBottom = $("nav#breadcrumbs ul li a");
+    public SelenideElement selectRubberDuckBottom = $(".category-1 a");
+    public SelenideElement checkRubberDuckElementList = $x("//ul[@class=\"list-horizontal\"]/li[3]");
+    public SelenideElement selectSubcategoryBottom = $("ul li .category-2 a");
+    public SelenideElement checkSubcategoryElementList = $x("//ul[@class=\"list-horizontal\"]/li[4]");
 
-    public static void openPage() {
+    public void openPage() {
         open(HOME_PAGE_LINK);
     }
 
-    public static String getMainPageLink() {
+    public String getMainPageLink() {
         return HOME_PAGE_LINK;
     }
 

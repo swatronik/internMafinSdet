@@ -2,7 +2,9 @@ package AcmeStore.tests;
 
 import AcmeStore.pages.AcmeHomePage;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 abstract public class BaseTest {                                                                                        //класс с общими методами от которого будем наследоваться другими тестовыми классами
@@ -20,5 +22,10 @@ abstract public class BaseTest {                                                
     @BeforeTest
     public void init() {
         setUp();
+    }
+
+    @AfterTest
+    public void tearDown() {
+        Selenide.closeWebDriver();
     }
 }

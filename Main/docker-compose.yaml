@@ -1,0 +1,85 @@
+version: '4'
+services:
+
+  db:
+    image: postgres:15.3
+    container_name: 'postgres'
+    environment:
+      - POSTGRES_DB=QuadEquation
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=12345678
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - TZ='GMT+3'
+      - PGTZ='GMT+3'
+    networks:
+      - gateway
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+#      - postgresdb:/var/lib/postgresql/data
+      - my-db:/var/lib/postgresql/data
+
+  api-ui:
+    image: docker-spring-boot-postgres:latest
+    hostname: equation
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile'
+    container_name: 'equation-ui'
+    environment:
+      - dburl=jdbc:postgresql://db:5432/QuadEquation
+    networks:
+      - gateway
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+
+volumes:
+  my-db:
+
+networks:
+  gateway: { }
+
+
+
+
+  # не работает mySql - пробуем поменять на постгресс
+  #  db:
+  #    image: mysql:8.0.33
+  #    restart: on-failure
+  #    container_name: db_mysql
+  #    environment:
+  #      MYSQL_DATABASE: 'QuadEquation'
+  #      MYSQL_ROOT_PASSWORD: '12345678'
+  #    ports:
+  #      - '3306:3306'
+  #    expose:
+  #      - '3306'
+  #    volumes:
+  #      - my-db:/var/lib/mysql
+
+
+
+
+
+
+  #  db:
+  #    image: postgres:15.2
+  #    container_name: 'postgres'
+  #    environment:
+  #      - POSTGRES_DB=QuadEquation
+  #      - POSTGRES_USER=root
+  #      - POSTGRES_PASSWORD=12345678
+  #      - PGDATA=/var/lib/postgresql/data/pgdata
+  #      - TZ='GMT+3'
+  #      - PGTZ='GMT+3'
+  #    networks:
+  #      - gateway
+  #    restart: always
+  #    ports:
+  #      - '5432:5432'
+  #    volumes:
+  #      - postgresdb:/var/lib/postgresql/data

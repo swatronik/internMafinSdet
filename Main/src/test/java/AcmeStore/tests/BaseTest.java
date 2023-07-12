@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeTest;
 
 abstract public class BaseTest {                                                                                        //класс с общими методами от которого будем наследоваться другими тестовыми классами
 
-    AcmeHomePage acmeHomePage = new AcmeHomePage();
+//    AcmeHomePage acmeHomePage = new AcmeHomePage();
 
     public void setUp() {                                                                                               //метод настройки и инициализации браузера
         WebDriverManager.chromedriver().setup();                                                                        //скачивает драйвер, прописывает путь, и осн. настройки.

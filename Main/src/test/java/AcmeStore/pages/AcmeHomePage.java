@@ -3,6 +3,7 @@ package AcmeStore.pages;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
@@ -31,4 +32,18 @@ public class AcmeHomePage {
         String currentLink = getWebDriver().getCurrentUrl();
         Assert.assertEquals(currentLink, link);
     }
+
+    public void homePageBottomClick() {
+        selectHomePageBottom.click();
+    }
+
+    public void rubberDuckBottomClick() {
+        selectRubberDuckBottom.shouldHave(text("Rubber Ducks")).click();
+    }
+
+    public void subcategoryBottomClick() {
+        selectSubcategoryBottom.shouldHave(text("Subcategory")).click();
+    }
+
+
 }

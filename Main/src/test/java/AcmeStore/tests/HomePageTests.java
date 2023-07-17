@@ -14,20 +14,18 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class HomePageTests extends BaseTest {
 
-    //какой нормальный логгер взять. Непонятно что происходит в логах теста?
     public static Logger logger = LoggerFactory.getLogger(HomePageTests.class);
 
 
     @BeforeMethod
     public void openMainPage() {
-        acmeHomePage.openPage();
+        acmeHomePage.openMainPage();
     }
     AcmeHomePage acmeHomePage = new AcmeHomePage();
 
-    @Test(description = "тест проверяет ссылку на главной странице")
+    @Test(description = "тест проверяет ссылку на главной странице Home")
     public void HomePageLinkTest() {
-        String currentLink = getWebDriver().getCurrentUrl();
-        Assert.assertEquals(currentLink, acmeHomePage.getMainPageLink());
+        assertLink(HOME_PAGE_LINK);
         logger.info(acmeHomePage.getMainPageLink());
     }
 

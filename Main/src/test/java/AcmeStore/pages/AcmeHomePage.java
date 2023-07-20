@@ -44,6 +44,4 @@ public class AcmeHomePage {
     public void subcategoryBottomClick() {
         selectSubcategoryBottom.shouldHave(text("Subcategory")).click();
     }
-
-
 }

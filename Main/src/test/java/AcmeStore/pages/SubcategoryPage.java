@@ -1,11 +1,10 @@
 package AcmeStore.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.testng.Assert;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 public class SubcategoryPage {
     public static final String SUBCATEGORY_PAGE_LINK = "https://litecart.stqa.ru/en/rubber-ducks-c-1/subcategory-c-2/";
@@ -16,23 +15,15 @@ public class SubcategoryPage {
     public SelenideElement popularityButton = $x("//nav/a[text()='Popularity']");
     public SelenideElement dateButton = $x("//nav/a[text()='Date']");
 
-//    public SelenideElement greenDuckLink = $x("//*[@id=\"box-category\"]/div/ul/li[1]");
-//    public SelenideElement yellowDuckLink = $x("//*[@id=\"box-category\"]/div/ul/li[2]");
+    public SelenideElement greenDuckLinkPositionOne = $x("//*[@id=\"box-category\"]/div/ul/li[1]");
+    public SelenideElement greenDuckLinkPositionTwo = $x("//*[@id=\"box-category\"]/div/ul/li[2]");
+    public SelenideElement yellowDuckLinkPositionOne = $x("//*[@id=\"box-category\"]/div/ul/li[1]");
+    public SelenideElement yellowDuckLinkPositionTwo = $x("//*[@id=\"box-category\"]/div/ul/li[2]");
 
     public SelenideElement yellowDuckLabelSale = $x("//div/ul/li[1]/a[1]/div[1]/div");
 
-
     public void openSubcategoryPage() {
         open(SUBCATEGORY_PAGE_LINK);
-    }
-
-    public String getMainPageLink() {
-        return SUBCATEGORY_PAGE_LINK;
-    }
-
-    public static void assertLink(String link) {
-        String currentLink = getWebDriver().getCurrentUrl();
-        Assert.assertEquals(currentLink, link);
     }
 
     public void subcategoryPageTitleCheck() {

@@ -21,6 +21,7 @@ public class HomePageTests extends BaseTest {
     public void openMainPage() {
         acmeHomePage.openMainPage();
     }
+
     AcmeHomePage acmeHomePage = new AcmeHomePage();
 
     @Test(description = "тест проверяет ссылку на главной странице Home")

@@ -36,11 +36,11 @@ public class SubcategoryPageTests extends BaseTest {
     @Test(description = "тест проходит по кнопкам сортировки нажимая их и проверяя порядок сортировки")
     public void SortButtonsCheckTest() {
         subcategoryPage.nameButtonClick();
-        $(By.xpath("//*[@id=\"box-category\"]/div/ul/li[1]")).shouldHave(Condition.text("Green Duck"));
-        $(By.xpath("//*[@id=\"box-category\"]/div/ul/li[2]")).shouldHave(Condition.text("Yellow Duck"));
+        subcategoryPage.greenDuckLinkPositionOne.shouldHave(Condition.text("Green Duck"));
+        subcategoryPage.yellowDuckLinkPositionTwo.shouldHave(Condition.text("Yellow Duck"));
         subcategoryPage.priceButtonClick();
-        $(By.xpath("//*[@id=\"box-category\"]/div/ul/li[2]")).shouldHave(Condition.text("Green Duck"));
-        $(By.xpath("//*[@id=\"box-category\"]/div/ul/li[1]")).shouldHave(Condition.text("Yellow Duck"));
+        subcategoryPage.greenDuckLinkPositionTwo.shouldHave(Condition.text("Green Duck"));
+        subcategoryPage.yellowDuckLinkPositionOne.shouldHave(Condition.text("Yellow Duck"));
         subcategoryPage.popularityButtonClick();
         subcategoryPage.dateButtonClick();
     }

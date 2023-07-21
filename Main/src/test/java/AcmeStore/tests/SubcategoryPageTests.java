@@ -3,14 +3,19 @@ package AcmeStore.tests;
 import AcmeStore.pages.AcmeHomePage;
 import AcmeStore.pages.SubcategoryPage;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 import static AcmeStore.pages.SubcategoryPage.SUBCATEGORY_PAGE_LINK;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class SubcategoryPageTests extends BaseTest {
 
@@ -36,11 +41,11 @@ public class SubcategoryPageTests extends BaseTest {
     @Test(description = "тест проходит по кнопкам сортировки нажимая их и проверяя порядок сортировки")
     public void SortButtonsCheckTest() {
         subcategoryPage.nameButtonClick();
-        subcategoryPage.greenDuckLinkPositionOne.shouldHave(Condition.text("Green Duck"));
-        subcategoryPage.yellowDuckLinkPositionTwo.shouldHave(Condition.text("Yellow Duck"));
+        subcategoryPage.ducksList.get(0).shouldHave(text(subcategoryPage.getListDuck().get(0)));
+        subcategoryPage.ducksList.get(1).shouldHave(text(subcategoryPage.getListDuck().get(1)));
         subcategoryPage.priceButtonClick();
-        subcategoryPage.greenDuckLinkPositionTwo.shouldHave(Condition.text("Green Duck"));
-        subcategoryPage.yellowDuckLinkPositionOne.shouldHave(Condition.text("Yellow Duck"));
+        subcategoryPage.ducksList.get(0).shouldHave(text(subcategoryPage.getListDuck().get(1)));
+        subcategoryPage.ducksList.get(1).shouldHave(text(subcategoryPage.getListDuck().get(0)));
         subcategoryPage.popularityButtonClick();
         subcategoryPage.dateButtonClick();
     }

@@ -1,4 +1,4 @@
-package RestAssuredApi.Reqres;
+package RestAssuredApi.Reqres.withoutPojo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

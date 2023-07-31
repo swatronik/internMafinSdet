@@ -1,4 +1,4 @@
-package RestAssuredApi.Reqres;
+package RestAssuredApi.Reqres.withoutPojo;
 
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;

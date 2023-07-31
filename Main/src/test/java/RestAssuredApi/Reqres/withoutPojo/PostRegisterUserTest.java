@@ -1,4 +1,4 @@
-package RestAssuredApi.Reqres;
+package RestAssuredApi.Reqres.withoutPojo;
 
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -10,7 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 public class PostRegisterUserTest {
 

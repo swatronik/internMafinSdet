@@ -1,10 +1,8 @@
-package RestAssuredApi.Reqres.withPojo;
+package RestAssuredApi.Reqres.withPojo.GetListUsers;
 
-import java.util.ArrayList;
+//это в будещем переделать с помощью аннотаций lombok
 
-//это упрощается с помощью аннотаций lombok
-
-public class UserDataPojo {
+public class GetListUsersPojo {
 
     public String URL_MAIN = "https://reqres.in/";
     public String USERS_LIST_PAGE1 = "/api/users?page=1";

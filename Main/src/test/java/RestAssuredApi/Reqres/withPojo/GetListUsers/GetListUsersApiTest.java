@@ -1,34 +1,31 @@
-package RestAssuredApi.Reqres.withPojo;
+package RestAssuredApi.Reqres.withPojo.GetListUsers;
 
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class GetListUsersTest {
+public class GetListUsersApiTest {
 
-    UserDataPojo userDataPojo = new UserDataPojo();
+    GetListUsersPojo getListUsersPojo = new GetListUsersPojo();
 
     @Test
     @Description("Тест проверяет поля Json файла, полученного в ответе")
     public void getAndCheckUsersListTest() {
 
         //проверка части json с Data
-        List<UserDataPojo.UserData> usersData = given()
-                .baseUri(userDataPojo.URL_MAIN)
+        List<GetListUsersPojo.UserData> usersData = given()
+                .baseUri(getListUsersPojo.URL_MAIN)
                 .contentType(ContentType.JSON)
                 .when()
-                .get(userDataPojo.USERS_LIST_PAGE1)
+                .get(getListUsersPojo.USERS_LIST_PAGE1)
                 .then().log().all()
                 .statusCode(200)
-                .extract().body().jsonPath().getList("data", UserDataPojo.UserData.class);
+                .extract().body().jsonPath().getList("data", GetListUsersPojo.UserData.class);
 
         //проверка что у аватара есть ид
         usersData.stream().forEach(x -> Assert.assertTrue(x.getAvatar().contains(x.getId().toString()))); //стрим проверки(разобрать)
@@ -36,14 +33,14 @@ public class GetListUsersTest {
         Assert.assertTrue(usersData.stream().allMatch(x -> x.getEmail().endsWith("@reqres.in")));
 
         //проверка части Json с Root
-        UserDataPojo.Root rootData = given()
-                .baseUri(userDataPojo.URL_MAIN)
+        GetListUsersPojo.Root rootData = given()
+                .baseUri(getListUsersPojo.URL_MAIN)
                 .contentType(ContentType.JSON)
                 .when()
-                .get(userDataPojo.USERS_LIST_PAGE1)
+                .get(getListUsersPojo.USERS_LIST_PAGE1)
                 .then().log().all()
                 .statusCode(200)
-                .extract().body().as(UserDataPojo.Root.class);
+                .extract().body().as(GetListUsersPojo.Root.class);
 
         Integer page = 1;
         Integer per_page = 6;

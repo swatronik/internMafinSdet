@@ -1,5 +1,6 @@
 package RestAssuredApi.Reqres.withPojo.GetSingleUser;
 
+import RestAssuredApi.Reqres.withPojo.Specification;
 import io.restassured.http.ContentType;
 import jdk.jfr.Description;
 import org.testng.Assert;
@@ -14,14 +15,11 @@ public class GetSingleUserApiTest {
     @Test
     @Description("Тест проверяет поля Json в ответе")
     public void getSingleUserTest() {
-
+        Specification.InstallSpecification(Specification.requestSpec(getSingleUserPojo.URL_MAIN), Specification.responseSpecOK200());
         GetSingleUserPojo.Root getDataSingleUser = given()
-                .baseUri(getSingleUserPojo.URL_MAIN)
-                .contentType(ContentType.JSON)
                 .when()
                 .get(getSingleUserPojo.USER_ONE)
                 .then().log().all()
-                .statusCode(200)
                 .extract().body().as(GetSingleUserPojo.Root.class);
 
         //тестовые данные: ожидаемые результаты (куда спрятать?)

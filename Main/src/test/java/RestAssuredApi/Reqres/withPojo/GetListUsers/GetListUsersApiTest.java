@@ -1,5 +1,6 @@
 package RestAssuredApi.Reqres.withPojo.GetListUsers;
 
+import RestAssuredApi.Reqres.withPojo.Specification;
 import io.restassured.http.ContentType;
 import jdk.jfr.Description;
 import org.testng.Assert;
@@ -16,15 +17,13 @@ public class GetListUsersApiTest {
     @Test
     @Description("Тест проверяет поля Json файла, полученного в ответе")
     public void getAndCheckUsersListTest() {
+        Specification.InstallSpecification(Specification.requestSpec(getListUsersPojo.URL_MAIN), Specification.responseSpecOK200());
 
         //проверка части json с Data
         List<GetListUsersPojo.UserData> usersData = given()
-                .baseUri(getListUsersPojo.URL_MAIN)
-                .contentType(ContentType.JSON)
                 .when()
                 .get(getListUsersPojo.USERS_LIST_PAGE1)
                 .then().log().all()
-                .statusCode(200)
                 .extract().body().jsonPath().getList("data", GetListUsersPojo.UserData.class);
 
         //проверка что у аватара есть ид
@@ -34,12 +33,9 @@ public class GetListUsersApiTest {
 
         //проверка части Json с Root
         GetListUsersPojo.Root rootData = given()
-                .baseUri(getListUsersPojo.URL_MAIN)
-                .contentType(ContentType.JSON)
                 .when()
                 .get(getListUsersPojo.USERS_LIST_PAGE1)
                 .then().log().all()
-                .statusCode(200)
                 .extract().body().as(GetListUsersPojo.Root.class);
 
         Integer page = 1;

@@ -1,4 +1,4 @@
-package AcmeStore.pages;
+package AcmeStoreUI.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
@@ -44,6 +44,4 @@ public class AcmeHomePage {
     public void subcategoryBottomClick() {
         selectSubcategoryBottom.shouldHave(text("Subcategory")).click();
     }
-
-
 }

@@ -15,6 +15,7 @@
 
 
     <dependencies>
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -26,36 +27,33 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.26</version>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>4.8.3</version>
-        </dependency>
 
-<!--либа которыя решает проблему с разными версиями хрома и хромдрайвера-->
-<!--библиотека, которая умеет автоматически скачивать свежий бинарник вебдрайвера для разн.браузеров-->
+        <!--либа которыя решает проблему с разными версиями хрома и хромдрайвера-->
+        <!--библиотека, которая умеет автоматически скачивать свежий бинарник вебдрайвера для разн.браузеров-->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>4.4.3</version>
         </dependency>
 
+
+<!--        <dependency>-->
+<!--            <groupId>org.seleniumhq.selenium</groupId>-->
+<!--            <artifactId>selenium-chrome-driver</artifactId>-->
+<!--            <version>4.8.3</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.seleniumhq.selenium</groupId>-->
+<!--            <artifactId>selenium-api</artifactId>-->
+<!--            <version>4.10.0</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>6.15.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>4.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>6.15.0</version>
-        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -69,11 +67,5 @@
             <scope>test</scope>
         </dependency>
 
-<!--        &lt;!&ndash;зависимость чтобы нормально выводить ответ в джейсоне&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.json</groupId>-->
-<!--            <artifactId>json</artifactId>-->
-<!--            <version>20220924</version>-->
-<!--        </dependency>-->
     </dependencies>
 </project>

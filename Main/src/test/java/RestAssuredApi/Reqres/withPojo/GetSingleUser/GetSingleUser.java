@@ -1,16 +1,13 @@
 package RestAssuredApi.Reqres.withPojo.GetSingleUser;
 
-public class GetSingleUserPojo {
+public class GetSingleUser {
 
-    public String URL_MAIN = "https://reqres.in/";
-    public String USER_ONE = "/api/users/1";
-
-    public class Data{
-        private Integer id;
-        private String email;
-        private String first_name;
-        private String last_name;
-        private String avatar;
+    public class Data {
+        private final Integer id;
+        private final String email;
+        private final String first_name;
+        private final String last_name;
+        private final String avatar;
 
         public Data(Integer id, String email, String first_name, String last_name, String avatar) {
             this.id = id;
@@ -41,9 +38,9 @@ public class GetSingleUserPojo {
         }
     }
 
-    public class Root{
-        public Data data;
-        public Support support;
+    public class Root {
+        private final Data data;
+        private final Support support;
 
         public Root(Data data, Support support) {
             this.data = data;
@@ -59,9 +56,9 @@ public class GetSingleUserPojo {
         }
     }
 
-    public class Support{
-        public String url;
-        public String text;
+    public class Support {
+        private final String url;
+        private final String text;
 
         public Support(String url, String text) {
             this.url = url;

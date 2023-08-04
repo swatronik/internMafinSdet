@@ -31,7 +31,6 @@ public class GetSingleUserTest {
                 .body("support.url", equalTo("https://reqres.in/#support-heading"))
                 .body("support.text", equalTo("To keep ReqRes free, contributions towards server costs are appreciated!"))
                 .extract().response();
-
     }
 
     @Test

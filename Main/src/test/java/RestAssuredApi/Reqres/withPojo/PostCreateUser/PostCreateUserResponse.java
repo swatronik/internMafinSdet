@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class PostCreateUserResponse {
 
-    public String name;
-    public String job;
-    public String id;
-    public Date createdAt;
+    private final String name;
+    private final String job;
+    private final String id;
+    private final Date createdAt;
 
     public PostCreateUserResponse(String name, String job, String id, Date createdAt) {
         this.name = name;

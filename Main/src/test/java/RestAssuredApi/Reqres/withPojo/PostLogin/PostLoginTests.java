@@ -1,7 +1,5 @@
 package RestAssuredApi.Reqres.withPojo.PostLogin;
 
-import RestAssuredApi.Reqres.withPojo.PostCreateUser.PostCreateUserRequest;
-import RestAssuredApi.Reqres.withPojo.PostCreateUser.PostCreateUserResponse;
 import RestAssuredApi.Reqres.withPojo.Specification;
 import io.restassured.RestAssured;
 import jdk.jfr.Description;
@@ -13,26 +11,26 @@ import static io.restassured.RestAssured.given;
 
 public class PostLoginTests {
 
-    @BeforeTest
-    static void setUp() {
-        RestAssured.baseURI = "https://reqres.in";
-    }
+    private final String URL_MAIN = "https://reqres.in/";
+    private final String LOGIN_API = "/api/login";
 
     @Test
     @Description("Тест проверяет создание нового пользователя")
     public void createNewUserTest() {
+        Specification.InstallSpecification(Specification.requestSpec(URL_MAIN), Specification.responseSpecOK200());
         PostLoginRequest request = new PostLoginRequest();
         request.setEmail("eve.holt@reqres.in");
         request.setPassword("cityslicka");
-        Specification.InstallSpecification(Specification.requestSpec(request.URL_MAIN), Specification.responseSpecOK200());
+
+        String actualTokenData = "QpwL5tke4Pnpja7X4";
 
         PostLoginResponse response = given()
                 .body(request)
                 .when()
-                .post(request.LOGIN_API)
+                .post(LOGIN_API)
                 .then().log().all()
                 .extract().as(PostLoginResponse.class);
 
-        Assert.assertEquals( "QpwL5tke4Pnpja7X4", response.getToken());
+        Assert.assertEquals(actualTokenData, response.getToken());
     }
 }

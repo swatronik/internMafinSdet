@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -24,6 +25,22 @@ public class GetListUsersTest {
     @Test
     @Description("Тест проверяет полученные поля на соответствие с ожидаемым результатом")
     public void getListUsersTest() {
+
+            List<String> first_name_Data = new ArrayList<>();
+            first_name_Data.add("George");
+            first_name_Data.add("Janet");
+            first_name_Data.add("Emma");
+            first_name_Data.add("Eve");
+            first_name_Data.add("Charles");
+            first_name_Data.add("Tracey");
+
+            List<String> last_name_Data = new ArrayList<String>();
+            last_name_Data.add("Bluth");
+            last_name_Data.add("Weaver");
+            last_name_Data.add("Wong");
+            last_name_Data.add("Holt");
+            last_name_Data.add("Morris");
+            last_name_Data.add("Ramos");
 
         Response response = given()
                 .baseUri(usersData.URL_MAIN)
@@ -49,12 +66,10 @@ public class GetListUsersTest {
 
         for (int i = 0; i < email.size(); i++) {
             Assert.assertTrue(email.get(i).contains("@reqres.in"));
-            Assert.assertTrue(first_name.get(i).contains(usersData.getFirstNameDataList().get(i)));
-            logger.info(usersData.getFirstNameDataList().get(i));
-            Assert.assertTrue(last_name.get(i).contains(usersData.getLastNameDataList().get(i)));
-            logger.info(usersData.getLastNameDataList().get(i));
+            Assert.assertTrue(first_name.get(i).contains(first_name_Data.get(i)));
+            Assert.assertTrue(last_name.get(i).contains(last_name_Data.get(i)));
             Assert.assertTrue(avatar.get(i).contains(dataId.get(i).toString()));
-            logger.info(dataId.get(i).toString());
+
         }
     }
 }

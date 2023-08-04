@@ -7,7 +7,10 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PostCreateUserTests extends PostCreateUserRequest {
+public class PostCreateUserTests {
+
+    public final String URL_MAIN = "https://reqres.in/";
+    public final String CREATE_USER_API = "/api/users";
 
     @Test
     @Description("Тест проверяет создание нового пользователя")

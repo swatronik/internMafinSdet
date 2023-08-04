@@ -1,10 +1,6 @@
 package RestAssuredApi.Reqres.withPojo.PostLogin;
 
-
 public class PostLoginRequest {
-
-    public String URL_MAIN = "https://reqres.in/";
-    public String LOGIN_API = "/api/login";
 
     private String email;
     private String password;

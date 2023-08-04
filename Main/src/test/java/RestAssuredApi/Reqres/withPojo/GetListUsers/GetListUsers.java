@@ -1,20 +1,17 @@
 package RestAssuredApi.Reqres.withPojo.GetListUsers;
 
-//это в будещем переделать с помощью аннотаций lombok
+import java.util.ArrayList;
 
-public class GetListUsersPojo {
+public class GetListUsers {
 
-    public String URL_MAIN = "https://reqres.in/";
-    public String USERS_LIST_PAGE1 = "/api/users?page=1";
+    public class Datum{
+        private final Integer id;
+        private final String email;
+        private final String first_name;
+        private final String last_name;
+        private final String avatar;
 
-    public class UserData {
-        private Integer id;
-        private String email;
-        private String first_name;
-        private String last_name;
-        private String avatar;
-
-        public UserData(Integer id, String email, String first_name, String last_name, String avatar) {
+        public Datum(Integer id, String email, String first_name, String last_name, String avatar) {
             this.id = id;
             this.email = email;
             this.first_name = first_name;
@@ -43,26 +40,21 @@ public class GetListUsersPojo {
         }
     }
 
-    public class Root {
-        private Integer page;
-        private Integer per_page;
-        private Integer total;
-        private Integer total_pages;
-        private Support support;
+    public class Root{
+        private final Integer page;
+        private final Integer per_page;
+        private final Integer total;
+        private final Integer total_pages;
+        private final ArrayList<Datum> data;
+        private final Support support;
 
-        public Root(Integer page, Integer per_page, Integer total, Integer total_pages, Support support) {
+        public Root(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<Datum> data, Support support) {
             this.page = page;
             this.per_page = per_page;
             this.total = total;
             this.total_pages = total_pages;
+            this.data = data;
             this.support = support;
-        }
-
-        public Root(Integer page, Integer per_page, Integer total, Integer total_pages) {
-            this.page = page;
-            this.per_page = per_page;
-            this.total = total;
-            this.total_pages = total_pages;
         }
 
         public Integer getPage() {
@@ -81,14 +73,18 @@ public class GetListUsersPojo {
             return total_pages;
         }
 
+        public ArrayList<Datum> getData() {
+            return data;
+        }
+
         public Support getSupport() {
             return support;
         }
     }
 
-    public class Support {
-        private String url;
-        private String text;
+    public class Support{
+        private final String url;
+        private final String text;
 
         public Support(String url, String text) {
             this.url = url;

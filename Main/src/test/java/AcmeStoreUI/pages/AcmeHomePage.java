@@ -20,7 +20,7 @@ public class AcmeHomePage {
     public SelenideElement selectSubcategoryBottom = $("ul li .category-2 a");
     public SelenideElement checkSubcategoryElementList = $x("//ul[@class=\"list-horizontal\"]/li[4]");
 
-    public void openPage() {
+    public void openMainPage() {
         open(HOME_PAGE_LINK);
     }
 

@@ -1,6 +1,6 @@
-package AcmeStore.tests;
+package AcmeStoreUI.tests;
 
-import AcmeStore.pages.AcmeHomePage;
+import AcmeStoreUI.pages.AcmeHomePage;
 import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static AcmeStore.pages.AcmeHomePage.*;
+import static AcmeStoreUI.pages.AcmeHomePage.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 

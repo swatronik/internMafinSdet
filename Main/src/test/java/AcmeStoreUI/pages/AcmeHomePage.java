@@ -1,4 +1,4 @@
-package AcmeStore.pages;
+package AcmeStoreUI.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;

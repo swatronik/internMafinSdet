@@ -1,6 +1,5 @@
-package AcmeStore.tests;
+package AcmeStoreUI.tests;
 
-import AcmeStore.pages.AcmeHomePage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;

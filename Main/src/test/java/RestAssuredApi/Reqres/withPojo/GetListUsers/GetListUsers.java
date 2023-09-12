@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class GetListUsers {
 
-    public class Datum{
-        private final Integer id;
-        private final String email;
-        private final String first_name;
-        private final String last_name;
-        private final String avatar;
+    public static class Datum{
+        public Integer id;
+        public String email;
+        public String first_name;
+        public String last_name;
+        public String avatar;
 
         public Datum(Integer id, String email, String first_name, String last_name, String avatar) {
             this.id = id;
@@ -17,6 +17,9 @@ public class GetListUsers {
             this.first_name = first_name;
             this.last_name = last_name;
             this.avatar = avatar;
+        }
+
+        public Datum() {
         }
 
         public Integer getId() {
@@ -40,13 +43,13 @@ public class GetListUsers {
         }
     }
 
-    public class Root{
-        private final Integer page;
-        private final Integer per_page;
-        private final Integer total;
-        private final Integer total_pages;
-        private final ArrayList<Datum> data;
-        private final Support support;
+    public static class Root{
+        public Integer page;
+        public Integer per_page;
+        public Integer total;
+        public Integer total_pages;
+        public ArrayList<Datum> data;
+        public Support support;
 
         public Root(Integer page, Integer per_page, Integer total, Integer total_pages, ArrayList<Datum> data, Support support) {
             this.page = page;
@@ -55,6 +58,9 @@ public class GetListUsers {
             this.total_pages = total_pages;
             this.data = data;
             this.support = support;
+        }
+
+        public Root() {
         }
 
         public Integer getPage() {
@@ -82,13 +88,16 @@ public class GetListUsers {
         }
     }
 
-    public class Support{
-        private final String url;
-        private final String text;
+    public static class Support{
+        public String url;
+        public String text;
 
         public Support(String url, String text) {
             this.url = url;
             this.text = text;
+        }
+
+        public Support() {
         }
 
         public String getUrl() {
@@ -99,4 +108,6 @@ public class GetListUsers {
             return text;
         }
     }
+
+
 }

@@ -2,12 +2,12 @@ package RestAssuredApi.Reqres.withPojo.GetSingleUser;
 
 public class GetSingleUser {
 
-    public class Data {
-        private final Integer id;
-        private final String email;
-        private final String first_name;
-        private final String last_name;
-        private final String avatar;
+    public static class Data {
+        public Integer id;
+        public String email;
+        public String first_name;
+        public String last_name;
+        public String avatar;
 
         public Data(Integer id, String email, String first_name, String last_name, String avatar) {
             this.id = id;
@@ -15,6 +15,9 @@ public class GetSingleUser {
             this.first_name = first_name;
             this.last_name = last_name;
             this.avatar = avatar;
+        }
+
+        public Data() {
         }
 
         public int getId() {
@@ -38,13 +41,16 @@ public class GetSingleUser {
         }
     }
 
-    public class Root {
-        private final Data data;
-        private final Support support;
+    public static class Root {
+        public Data data;
+        public Support support;
 
         public Root(Data data, Support support) {
             this.data = data;
             this.support = support;
+        }
+
+        public Root() {
         }
 
         public Data getData() {
@@ -56,13 +62,16 @@ public class GetSingleUser {
         }
     }
 
-    public class Support {
-        private final String url;
-        private final String text;
+    public static class Support {
+        public String url;
+        public String text;
 
         public Support(String url, String text) {
             this.url = url;
             this.text = text;
+        }
+
+        public Support() {
         }
 
         public String getUrl() {

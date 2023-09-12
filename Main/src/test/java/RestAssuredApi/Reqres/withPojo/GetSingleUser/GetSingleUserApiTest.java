@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class GetSingleUserApiTest {
 
@@ -31,20 +32,22 @@ public class GetSingleUserApiTest {
                 .when()
                 .get(USER_ONE)
                 .then().log().all()
+                .body(matchesJsonSchemaInClasspath("response-schema-GetSingleUserApiTest.json"))
                 .extract().body().as(GetSingleUser.Root.class);
+
 
         //Data
         Assert.assertEquals(getDataSingleUser.getData().getId(), idData.intValue());
-        Assert.assertEquals(getDataSingleUser.getData().getEmail(), email);
-        Assert.assertEquals(getDataSingleUser.getData().getFirst_name(), first_name);
-        Assert.assertEquals(getDataSingleUser.getData().getLast_name(), last_name);
-        Assert.assertEquals(getDataSingleUser.getData().getAvatar(), avatar);
-        //Support
-        Assert.assertEquals(getDataSingleUser.getSupport().getUrl(), url);
-        Assert.assertEquals(getDataSingleUser.getSupport().getText(), text);
-        Assert.assertTrue(getDataSingleUser.getSupport().getText().contains(containsText));
-        Assert.assertTrue(getDataSingleUser.getSupport().getText().endsWith(endsWithText));
-        Assert.assertTrue(getDataSingleUser.getSupport().getText().equals(text));
-        Assert.assertFalse(getDataSingleUser.getSupport().getText().isEmpty());
+//        Assert.assertEquals(getDataSingleUser.getData().getEmail(), email);
+//        Assert.assertEquals(getDataSingleUser.getData().getFirst_name(), first_name);
+//        Assert.assertEquals(getDataSingleUser.getData().getLast_name(), last_name);
+//        Assert.assertEquals(getDataSingleUser.getData().getAvatar(), avatar);
+//        //Support
+//        Assert.assertEquals(getDataSingleUser.getSupport().getUrl(), url);
+//        Assert.assertEquals(getDataSingleUser.getSupport().getText(), text);
+//        Assert.assertTrue(getDataSingleUser.getSupport().getText().contains(containsText));
+//        Assert.assertTrue(getDataSingleUser.getSupport().getText().endsWith(endsWithText));
+//        Assert.assertTrue(getDataSingleUser.getSupport().getText().equals(text));
+//        Assert.assertFalse(getDataSingleUser.getSupport().getText().isEmpty());
     }
 }

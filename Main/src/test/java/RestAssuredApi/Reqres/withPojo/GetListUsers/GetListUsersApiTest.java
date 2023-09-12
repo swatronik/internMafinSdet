@@ -1,16 +1,26 @@
 package RestAssuredApi.Reqres.withPojo.GetListUsers;
 
 import RestAssuredApi.Reqres.withPojo.Specification;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.testng.FileAssert.fail;
 
 public class GetListUsersApiTest {
 
     public String URL_MAIN = "https://reqres.in/";
-    public String USERS_LIST_PAGE1 = "/api/users?page=1";
+    public String USERS_LIST_PAGE1 = "/api/users?page=2";
 
     @Test
     @Description("Тест проверяет поля Json файла, полученного в ответе")
@@ -29,6 +39,7 @@ public class GetListUsersApiTest {
                 .when()
                 .get(USERS_LIST_PAGE1)
                 .then().log().all()
+                .body(matchesJsonSchemaInClasspath("response-schema-GetListUsersApiTest.json"))
                 .extract().as(GetListUsers.Root.class);
 
         //Root
@@ -42,5 +53,36 @@ public class GetListUsersApiTest {
         //Datum
         rootData.getData().stream().forEach(x -> Assert.assertTrue(x.getAvatar().contains(x.getId().toString())));      //проверка что у аватара есть ид (стрим проверки разобрать)
         Assert.assertTrue(rootData.getData().stream().allMatch(x -> x.getEmail().endsWith(endsWith)));                  //проверка что email оканчивается на @reqres.in
+
+
+        //тест на проверку элемента 2
+        Response response = given()
+                .when()
+                .get(USERS_LIST_PAGE1)
+                .then()
+                .statusCode(200)
+                .extract().response();
+
+        // Извлекаем список из ответа
+        JsonPath jsonPath = new JsonPath(response.asString());
+        List<Map<String, Object>> dataList = jsonPath.getList("data");
+
+        // Находим конкретный объект в списке по ID
+        Optional<Map<String, Object>> userOptional = dataList.stream()
+                .filter(user -> user.get("id").equals(2))
+                .findFirst();
+
+        // Проверяем поля объекта
+        if (userOptional.isPresent()) {
+            Map<String, Object> user = userOptional.get();
+            assertThat(user.get("email"), equalTo("janet.weaver@reqres.in"));
+            assertThat(user.get("first_name"), equalTo("Janet"));
+            assertThat(user.get("last_name"), equalTo("Weaver"));
+            assertThat(user.get("avatar"), equalTo("https://reqres.in/img/faces/2-image.jpg"));
+            //fail("Всё нормально в этом тесте");
+        } else {
+            fail("Пользователь с ID 2 не найден!");
+        }
+
     }
 }

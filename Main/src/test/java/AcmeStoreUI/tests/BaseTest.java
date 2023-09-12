@@ -10,7 +10,9 @@ abstract public class BaseTest {                                                
 
     public void setUp() {                                                                                               //метод настройки и инициализации браузера
         WebDriverManager.chromedriver().setup();                                                                        //скачивает драйвер, прописывает путь, и осн. настройки.
+        //System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
         Configuration.browser = "chrome";
+        Configuration.browserVersion = "116";
         Configuration.driverManagerEnabled = true;
         Configuration.browserSize = "1920x1080";
         Configuration.headless = false;                                                                                 //будем ли видеть браузер при выполнении тестов
